@@ -1,0 +1,39 @@
+import type { Metadata } from "next";
+import { Inter, Lexend, Fira_Code, Playfair_Display } from "next/font/google";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/ui/theme-provider";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const lexend = Lexend({ subsets: ["latin"], variable: "--font-display" });
+const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-mono" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "500", "600", "700"] });
+
+export const metadata: Metadata = {
+  title: "Miguel - Développeur IA & Automatisation",
+  description: "Création de solutions intelligentes et évolutives avec le code et l'IA.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="fr" suppressHydrationWarning>
+      <body 
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased", 
+          inter.variable, 
+          lexend.variable, 
+          firaCode.variable,
+          playfair.variable
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
