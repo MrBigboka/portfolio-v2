@@ -6,15 +6,21 @@ import { motion } from 'framer-motion';
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
+  description?: string;
   accentWord?: string; // Mot à mettre en évidence avec l'effet lumineux
   align?: 'left' | 'center' | 'right';
+  titleClassName?: string;
+  descriptionClassName?: string;
 }
 
 export default function SectionHeader({ 
   title, 
   subtitle, 
+  description,
   accentWord,
-  align = 'center' 
+  align = 'center',
+  titleClassName = '',
+  descriptionClassName = ''
 }: SectionHeaderProps) {
   // Séparer le titre pour mettre en évidence le mot accentué
   let beforeAccent = '';
@@ -45,7 +51,7 @@ export default function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+        className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight ${titleClassName}`}
       >
         {accentWord ? (
           <>
@@ -70,6 +76,18 @@ export default function SectionHeader({
           title
         )}
       </motion.h2>
+      
+      {description && (
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className={`mt-4 text-lg md:text-xl text-white/70 max-w-3xl mx-auto ${descriptionClassName}`}
+        >
+          {description}
+        </motion.p>
+      )}
     </div>
   );
 }

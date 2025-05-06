@@ -2,12 +2,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ExternalLink, Github } from 'lucide-react'; // Removed unused Monitor, CheckCircle2
+import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import SectionHeader from '@/components/ui/SectionHeader';
+import TechBadge from './TechBadge';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +24,7 @@ interface ExtendedProject {
   link?: string; // Not currently used in the UI, but kept for data structure
   demoUrl?: string;
   githubUrl?: string;
+  logo?: string;
   bgColor?: string; // Tailwind class for background, e.g., 'bg-gradient-to-b from-[#3E1A35] to-[#2A1B2F]'
   shortDesc?: string;
   features?: string[];
@@ -34,10 +36,10 @@ export default function ProjectsSection() {
     {
       id: 'coresync',
       title: 'CoreSync',
-      description: 'Un SaaS IA qui centralise la documentation, les processus internes et les outils de communication pour les grandes équipes. Avec son onboarding dynamique et son agent virtuel intelligent, CoreSync améliore la productivité et réduit les pertes de temps dans les entreprises.',
+      description: 'Un SaaS IA qui centralise documentation, processus internes et outils de communication pour grandes équipes. Améliore productivité et réduit pertes de temps grâce à son agent virtuel intelligent.',
       image: '/projects/coresync.png',
       hoverImage: '/projects/coresync3.png',
-      tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'LLM', 'MAKE.COM', 'VERCEL'],
+      tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'LLM', 'N8N', 'VERCEL'],
       demoUrl: '#', // Replace with actual URL or remove if not applicable
       githubUrl: '#', // Replace with actual URL or remove if not applicable
       bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
@@ -49,15 +51,16 @@ export default function ProjectsSection() {
         'Automatisations possibles via Make (workflow internes)',
         'Interface moderne responsive pensée pour desktop et mobile'
       ],
-      accentColor: '#9D71E8' // Mauve
+      accentColor: '#9D71E8', // Mauve
+      logo: '/projects/coresyncLogo.png'
     },
     {
       id: 'nocasemtl',
       title: 'NoCaseMTL',
-      description: 'Boutique e-commerce streetwear Y2K conçue sur Shopify. NoCaseMTL propose une esthétique rétro et urbaine avec des visuels forts, un branding affirmé et une navigation mobile-first, le tout optimisé via des sections personnalisables.',
+      description: 'Boutique e-commerce streetwear Y2K sur Shopify. Esthétique rétro urbaine, visuels forts et navigation mobile-first optimisée via sections personnalisables.',
       image: '/projects/nocase1.png',
       hoverImage: '/projects/nocase2.png',
-      tags: ['SHOPIFY', 'LIQUID', 'TAILWIND CSS', 'MOBILE-FIRST UX', 'BRANDING', 'CUSTOM SECTIONS'],
+      tags: ['SHOPIFY', 'TAILWIND CSS'],
       demoUrl: '#',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
@@ -69,15 +72,16 @@ export default function ProjectsSection() {
         'Version mobile optimisée pour l\\\'expérience utilisateur',
         'Paiements, inventaire et promotions automatisés via apps Shopify'
       ],
-      accentColor: '#94949C' // Gris-noir
+      accentColor: '#94949C', // Gris-noir
+      logo: '/projects/nocaselogo.png'
     },
     {
       id: 'econome',
       title: 'EconoME',
-      description: 'Une application intelligente de gestion financière personnelle. L\'utilisateur connecte ses revenus et dépenses, et l\'IA génère des insights personnalisés, des graphiques clairs et des suggestions concrètes pour améliorer sa santé financière.',
-      image: '/projects/econome.png',
-      hoverImage: '/projects/econome2.png',
-      tags: ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS', 'LLM', 'PRISMA', 'POSTGRESQL', 'VERCEL'],
+      description: 'Application IA de gestion financière personnelle. Connecte revenus et dépenses pour générer insights personnalisés et suggestions concrètes via visualisations claires.',
+      image: '/projects/economeDemo.jpg',
+      hoverImage: '/projects/economeDemo.jpg',
+      tags: ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS', 'LLM', 'SUPABASE', 'VERCEL'],
       demoUrl: '#',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#1A3E2A]/80 via-black/60 to-[#1A3E2A]/30',
@@ -89,13 +93,15 @@ export default function ProjectsSection() {
         'Mode simulation pour estimer les économies potentielles',
         'Interface simple, épurée, motivante'
       ],
-      accentColor: '#10B981' // Green
+      accentColor: '#10B981', // Green
+      logo: '/projects/economeLogo.png'
     },
   ];
 
   const [activeProject, setActiveProject] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const projectsContainerRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null); // This will be the pinned element
   const projectCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -164,17 +170,77 @@ export default function ProjectsSection() {
     );
   }, [activeProject]); // Animate when activeProject changes
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && projectsContainerRef.current && detailsRef.current) {
+      // Animation pour l'entrée initiale de la section
+      const mainTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: projectsContainerRef.current,
+          start: 'top 80%', // Start when the top of the projects section hits 80% from the top of the viewport
+          end: 'bottom 20%', // End when the bottom of the projects section hits 20% from the top of the viewport
+          toggleActions: 'play none none reverse',
+          markers: false, // Set to true for debugging
+        },
+      });
+
+      // Animer le titre de la section
+      mainTl.fromTo(
+        '.projects-title',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        0
+      );
+      
+      // Animer la description de la section
+      mainTl.fromTo(
+        '.projects-description',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        0.2
+      );
+
+      // Animer les cartes de projet une par une
+      const projectCards = document.querySelectorAll('.project-card');
+      projectCards.forEach((card, index) => {
+        mainTl.fromTo(
+          card,
+          { opacity: 0, y: 50, scale: 0.95 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power2.out' },
+          0.3 + (index * 0.15) // Délai progressif pour chaque carte
+        );
+      });
+
+      // Pin the details section while scrolling through projects
+      ScrollTrigger.create({
+        trigger: detailsRef.current,
+        start: 'top 20%', // Start pinning when the top of the details section hits 20% from the top of the viewport
+        endTrigger: projectsContainerRef.current,
+        end: 'bottom 80%', // End pinning when the bottom of the projects section hits 80% from the top of the viewport
+        pin: true,
+        pinSpacing: false,
+        markers: false, // Set to true for debugging
+      });
+
+      // Clean up
+      return () => {
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      };
+    }
+  }, []);
+
   return (
     <section 
       id="projects" 
       ref={sectionRef}
       className="relative py-16 md:py-20 pb-32 md:pb-40 bg-transparent text-white overflow-hidden" // Ajout de padding en bas
     >
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8" ref={projectsContainerRef}>
         <SectionHeader 
           title="Mes Projets" 
-          subtitle="RÉALISATIONS RÉCENTES" 
-          accentWord="Projets" 
+          subtitle="RÉALISATIONS RÉCENTES"
+          description="Découvrez mes projets récents, mettant en valeur mes compétences en développement web et mobile."
+          titleClassName="projects-title"
+          descriptionClassName="projects-description"
           align="center" 
         />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mt-8 mb-16">
@@ -185,11 +251,11 @@ export default function ProjectsSection() {
               {projects.map((project, index) => (
                 <div 
                   key={project.id} 
-                  className={`project-card-trigger relative`} // Removed group class from here
+                  className="project-card relative"
                   ref={(el) => { projectCardRefs.current[index] = el; }}
                 >
                   <div 
-                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900/50'}`}
+                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'}`}
                     style={{
                        borderColor: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1',
                        boxShadow: activeProject === index 
@@ -219,10 +285,10 @@ export default function ProjectsSection() {
                       {/* Lueur thématique derrière la miniature */}
                       <div 
                         className="absolute inset-0 w-[95%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-3xl blur-2xl opacity-40 z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 group-hover:opacity-60"
-                        style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff80, #9D71E840)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df80, #94949C40)' : 'linear-gradient(to bottom right, #a5ebd180, #10B98140)' }}
+                        style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df, #94949C)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
                       ></div>
                       <div 
-                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[2] ${project.bgColor} transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
+                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[2] bg-black transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
                         style={{boxShadow: project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'nocasemtl' ? '0 10px 30px -5px rgba(217, 217, 223, 0.4), 0 0 15px -5px rgba(217, 217, 223, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <img
@@ -254,45 +320,90 @@ export default function ProjectsSection() {
               <AnimatePresence mode='wait'>
                 {projects.length > 0 && activeProject < projects.length && (
                   <motion.div
-                    key={projects[activeProject].id} // Use project ID for reliable key
-                    initial={{ opacity: 0.5, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }} // Smoother ease
+                    key={activeProject}
+                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -40, scale: 0.95 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }}
                     className="flex flex-col pt-0 mt-0"
                   >
-                    <div className="flex items-center gap-3.5 mb-4 pt-0">
-                      <div className="h-1 w-12 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
-                      <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-                        {projects[activeProject].title}
-                      </h3>
-                    </div>
-                    
-                    <p className="text-white/75 mb-7 text-base md:text-lg leading-relaxed">
-                      {projects[activeProject].description}
-                    </p>
-                    
-                    <div className="mb-7 space-y-3">
-                      {projects[activeProject].features?.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3.5">
-                          <span className="text-xl font-semibold leading-tight" style={{color: getProjectAccentColor(activeProject)}}>+</span>
-                          <p className="text-white/80 text-sm md:text-base">{feature}</p>
+                    <motion.div 
+                      className="flex items-center justify-between mb-6 pt-0"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                    >
+                      <div className="flex items-center gap-3.5">
+                        <div className="relative">
+                          <div className="absolute -left-1 -top-1 w-10 h-10 rounded-full opacity-20" style={{ background: `radial-gradient(circle, ${getProjectAccentColor(activeProject)} 0%, transparent 70%)` }}></div>
+                          <div className="w-8 h-8 flex items-center justify-center rounded-lg border-2 rotate-45" style={{ borderColor: getProjectAccentColor(activeProject) }}>
+                            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
+                          </div>
                         </div>
-                      ))}
-                    </div>
+                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                          {projects[activeProject].title}
+                        </h3>
+                      </div>
+                      
+                      {projects[activeProject].logo && (
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
+                          <img 
+                            src={projects[activeProject].logo} 
+                            alt={`${projects[activeProject].title} logo`} 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      )}
+                    </motion.div>
                     
-                    <div className="mb-8">
+                    <motion.p 
+                      className="text-white/75 mb-7 text-base md:text-lg leading-relaxed"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                    >
+                      {projects[activeProject].description}
+                    </motion.p>
+                    
+                    <motion.div 
+                      className="space-y-4 mb-8"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
+                    >
+                      <div className="mb-7 space-y-3">
+                        {projects[activeProject].features?.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3.5">
+                            <span className="text-xl font-semibold leading-tight" style={{color: getProjectAccentColor(activeProject)}}>+</span>
+                            <p className="text-white/80 text-sm md:text-base">{feature}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                      
+                    <motion.div 
+                      className="flex flex-wrap gap-2 mb-7"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 }}
+                    >
                        <h4 className="text-sm font-medium mb-4 text-white/60 tracking-wider">TECHNOLOGIES UTILISÉES</h4>
                       <div className="flex flex-wrap gap-2.5">
                         {projects[activeProject].tags.map((tag) => (
-                          <span key={tag} className="px-3.5 py-2 bg-gray-500/10 border border-gray-500/20 rounded-lg text-xs font-medium text-white/70 tracking-wide shadow-sm">
-                            {tag}
-                          </span>
+                          <TechBadge key={tag} name={tag} />
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="flex flex-wrap gap-4 mt-auto">
+                    <motion.div 
+                      className="flex flex-wrap gap-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.5 }}
+                    >
                       {(projects[activeProject]?.demoUrl && projects[activeProject]?.demoUrl !== '#') && (
                         <Button 
                           style={{ 
@@ -318,7 +429,7 @@ export default function ProjectsSection() {
                           </Link>
                         </Button>
                       )}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>

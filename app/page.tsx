@@ -11,6 +11,10 @@ import { ArrowRight, ExternalLink, FileText, Linkedin, Github, Terminal, Server,
 import { useTheme } from 'next-themes';
 import React, { useState, useEffect } from 'react';
 import ProjectsSection from '@/components/ProjectsSection';
+import AwardSection from '@/components/AwardSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
+import TechStack from '@/components/TechStack';
 
 // Badges technologiques avec icônes
 function TechBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
@@ -242,6 +246,9 @@ export default function Home() {
       {/* Section Projets */}
       <ProjectsSection />
       
+      {/* Section Distinction - Bourse CPMT */}
+      <AwardSection />
+      
       {/* Sections supplémentaires inspirées de l'exemple */}
       <section className="relative z-10 py-20 px-6 md:px-12 bg-gray-50/80 dark:bg-[#0F1729]/70 backdrop-blur-sm border-t border-b border-gray-200/50 dark:border-white/10 shadow-inner transition-colors duration-300">
         <div className="max-w-5xl mx-auto">
@@ -373,20 +380,29 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+          
+          {/* Tech Stack avec badges */}
+          <div className="mt-12 bg-[#0A1220] p-8 rounded-xl border border-white/10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <TechStack />
+            </motion.div>
+          </div>
         </div>
       </section>
       
-      {/* Citation en bas de page */}
-      <motion.div 
-        className="relative z-10 py-8 text-center text-gray-700 dark:text-white/80 text-sm italic px-4 bg-gray-50 dark:bg-[#0F1729] border-t border-gray-200 dark:border-white/10 shadow-inner transition-colors duration-300"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <p className="max-w-2xl mx-auto font-medium">
-          "La simplicité est la sophistication suprême." — <span className="not-italic font-semibold text-[#d42d1d] dark:text-[#d42d1d]">Léonard de Vinci</span>
-        </p>
-      </motion.div>
+      {/* Section Contact */}
+      <ContactSection />
+      
+      {/* Espace avant le footer */}
+      <div className="h-8"></div>
+      
+      {/* Footer */}
+      <Footer />
       
       {/* Styles globaux pour les animations personnalisées */}
       <style jsx global>{`
