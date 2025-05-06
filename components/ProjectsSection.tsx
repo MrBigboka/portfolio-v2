@@ -40,7 +40,7 @@ export default function ProjectsSection() {
       tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'LLM', 'MAKE.COM', 'VERCEL'],
       demoUrl: '#', // Replace with actual URL or remove if not applicable
       githubUrl: '#', // Replace with actual URL or remove if not applicable
-      bgColor: 'bg-gradient-to-br from-[#3E1A35]/80 via-black/60 to-black/90',
+      bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
       shortDesc: 'Plateforme SaaS IA centralisant documentation et processus pour grandes équipes.',
       features: [
         'Onboarding guidé avec animations et agent AI intégré',
@@ -49,7 +49,7 @@ export default function ProjectsSection() {
         'Automatisations possibles via Make (workflow internes)',
         'Interface moderne responsive pensée pour desktop et mobile'
       ],
-      accentColor: '#DB2777' // Pink/Magenta
+      accentColor: '#9D71E8' // Mauve
     },
     {
       id: 'nocasemtl',
@@ -60,7 +60,7 @@ export default function ProjectsSection() {
       tags: ['SHOPIFY', 'LIQUID', 'TAILWIND CSS', 'MOBILE-FIRST UX', 'BRANDING', 'CUSTOM SECTIONS'],
       demoUrl: '#',
       githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#1A1F3E]/80 via-black/60 to-black/90',
+      bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
       shortDesc: 'E-commerce streetwear Y2K au branding affirmé et navigation mobile-first.',
       features: [
         'Boutique Shopify avec gestion complète des collections',
@@ -69,7 +69,7 @@ export default function ProjectsSection() {
         'Version mobile optimisée pour l\\\'expérience utilisateur',
         'Paiements, inventaire et promotions automatisés via apps Shopify'
       ],
-      accentColor: '#3B82F6' // Blue
+      accentColor: '#94949C' // Gris-noir
     },
     {
       id: 'econome',
@@ -80,7 +80,7 @@ export default function ProjectsSection() {
       tags: ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS', 'LLM', 'PRISMA', 'POSTGRESQL', 'VERCEL'],
       demoUrl: '#',
       githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#1A3E2A]/80 via-black/60 to-black/90',
+      bgColor: 'bg-gradient-to-br from-[#1A3E2A]/80 via-black/60 to-[#1A3E2A]/30',
       shortDesc: 'Application IA de gestion financière avec insights personnalisés et graphiques clairs.',
       features: [
         'Dashboard dynamique avec visualisation des dépenses & revenus',
@@ -108,18 +108,25 @@ export default function ProjectsSection() {
 
     ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill existing triggers
 
-    // Pin the right column (detailsRef)
+    // Créer un point d'arrêt pour le défilement à la fin de la section
+    const pinExitTrigger = document.createElement('div');
+    pinExitTrigger.style.height = '1px';
+    pinExitTrigger.style.width = '100%';
+    pinExitTrigger.style.position = 'absolute';
+    pinExitTrigger.style.bottom = '0';
+    pinExitTrigger.style.left = '0';
+    pinExitTrigger.style.zIndex = '-1';
+    sectionRef.current.appendChild(pinExitTrigger);
+    
+    // Pin the right column with a defined end point
     ScrollTrigger.create({
-      trigger: sectionRef.current, // The entire section is the trigger for pinning duration
+      trigger: sectionRef.current,
       start: "top top",
-      // Pin until the bottom of the projectsContainerRef (left column) reaches the bottom of the viewport
-      end: () => `+=${projectsContainerRef.current!.offsetHeight}`,
+      end: "bottom center", // S'arrête exactement quand la section suivante apparaît
       pin: detailsRef.current,
       pinSpacing: false,
-      scrub: false, 
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      // markers: true, // For debugging the pin area
     });
 
     // Create ScrollTriggers for each project card to update activeProject
@@ -133,14 +140,16 @@ export default function ProjectsSection() {
         onEnterBack: () => setActiveProject(index), // When scrolling back up
         toggleActions: "play none none reverse",
         invalidateOnRefresh: true,
-        // markers: {startColor: "pink", endColor: "pink"}, // For debugging individual card triggers
       });
     });
     
-    // Ensure ScrollTrigger refreshes on dynamic content changes if any
+    // Ensure ScrollTrigger refreshes on dynamic content changes
     ScrollTrigger.refresh();
 
     return () => {
+      if (sectionRef.current && pinExitTrigger.parentNode === sectionRef.current) {
+        sectionRef.current.removeChild(pinExitTrigger);
+      }
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, [projects.length]); // Rerun if number of projects changes
@@ -159,7 +168,7 @@ export default function ProjectsSection() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="relative py-16 md:py-20 bg-transparent text-white overflow-hidden" // Removed fixed height constraint
+      className="relative py-16 md:py-20 pb-32 md:pb-40 bg-transparent text-white overflow-hidden" // Ajout de padding en bas
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader 
@@ -168,7 +177,7 @@ export default function ProjectsSection() {
           accentWord="Projets" 
           align="center" 
         />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mt-8 mb-16">
           
           <div className="lg:col-span-8" ref={projectsContainerRef}>
             {/* Reduced space-y for tighter card layout */}
@@ -176,43 +185,56 @@ export default function ProjectsSection() {
               {projects.map((project, index) => (
                 <div 
                   key={project.id} 
-                  className={`project-card-trigger group relative`} // Added group for hover effects on image
+                  className={`project-card-trigger relative`} // Removed group class from here
                   ref={(el) => { projectCardRefs.current[index] = el; }}
                 >
                   <div 
-                    className={`relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900/50'}`}
+                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900/50'}`}
                     style={{
-                       borderColor: activeProject === index ? `${getProjectAccentColor(index)}40` : 'rgba(55, 65, 81, 0.6)', // Tailwind gray-700 equivalent with opacity
-                       boxShadow: activeProject === index ? `0 0 45px -5px ${getProjectAccentColor(index)}1A, 0 0 20px -10px ${getProjectAccentColor(index)}15` : '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)', // Softer shadow for non-active
+                       borderColor: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1',
+                       boxShadow: activeProject === index 
+                         ? `0 0 45px -5px ${project.id === 'coresync' ? '#dea9ff80' : project.id === 'nocasemtl' ? '#d9d9df80' : '#a5ebd180'}, 0 0 20px -10px ${project.id === 'coresync' ? '#dea9ff60' : project.id === 'nocasemtl' ? '#d9d9df60' : '#a5ebd160'}` 
+                         : `0 4px 15px -1px ${project.id === 'coresync' ? '#dea9ff30' : project.id === 'nocasemtl' ? '#d9d9df30' : '#a5ebd130'}`
                     }}
                   >
                     {/* Optional: subtle inner gradient overlay if needed */}
                     {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5 z-[1]"></div> */}
                     
-                    <div className="p-6 md:p-8 z-[2] flex-grow flex flex-col justify-start">
+                    <div className="p-6 md:p-8 z-[2] flex-grow flex flex-col justify-start mb-6">
                       <div className="flex items-start justify-between mb-4">
-                        <p className="text-xl md:text-2xl text-white/95 font-medium leading-snug max-w-[calc(100%-3rem)]">
+                        <p 
+                          className="text-xl md:text-2xl font-medium leading-snug max-w-[calc(100%-3rem)]"
+                          style={{ color: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1' }} // Couleur pâle correspondant au thème
+                        >
                           {project.shortDesc}
                         </p>
-                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white/50 mt-1 flex-shrink-0 transition-colors group-hover:text-white/80" />
+                        <ArrowRight 
+                          className="w-5 h-5 md:w-6 md:h-6 mt-1 flex-shrink-0 transition-colors"
+                          style={{ color: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1' }} // Couleur pâle correspondant au thème
+                        />
                       </div>
                     </div>
 
                     <div className="relative z-[2] mt-auto px-3 pb-3 md:px-4 md:pb-4">
+                      {/* Lueur thématique derrière la miniature */}
                       <div 
-                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10`}
-                        style={{boxShadow: `0 10px 30px -10px ${getProjectAccentColor(index)}2A`}}
+                        className="absolute inset-0 w-[95%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-3xl blur-2xl opacity-40 z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 group-hover:opacity-60"
+                        style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff80, #9D71E840)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df80, #94949C40)' : 'linear-gradient(to bottom right, #a5ebd180, #10B98140)' }}
+                      ></div>
+                      <div 
+                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[2] ${project.bgColor} transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
+                        style={{boxShadow: project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'nocasemtl' ? '0 10px 30px -5px rgba(217, 217, 223, 0.4), 0 0 15px -5px rgba(217, 217, 223, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+                          className="w-full h-full object-cover transition-all duration-500 ease-out"
                         />
-                        {project.hoverImage && (
+                        {project.hoverImage && project.id !== 'coresync' && (
                           <img
                             src={project.hoverImage}
                             alt={`${project.title} hover preview`}
-                            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
+                            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out"
                           />
                         )}
                       </div>
@@ -241,7 +263,7 @@ export default function ProjectsSection() {
                   >
                     <div className="flex items-center gap-3.5 mb-4 pt-0">
                       <div className="h-1 w-12 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
-                      <h3 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: getProjectAccentColor(activeProject) }}>
+                      <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
                         {projects[activeProject].title}
                       </h3>
                     </div>
