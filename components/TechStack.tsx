@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import TechBadge from './TechBadge';
@@ -16,6 +17,20 @@ const TechStack: React.FC<TechStackProps> = ({ className = '' }) => {
     'FRAMER MOTION',
     'NODE.JS',
     'EXPRESS.JS',
+    'FIRESTORE',
+    'AWS',
+    'N8N',
+    'MAKE.COM',
+    'LLM',
+    'MIDJOURNEY',
+    'ZUSTAND',
+    'ZOD',
+    'POSTGRESQL',
+    'MONGODB',
+    'PRISMA',
+    'GIT',
+    'GITHUB',
+    'VERCEL',
   ];
 
   return (

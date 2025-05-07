@@ -66,8 +66,17 @@ export default function Home() {
   
   return (
     <main className="relative flex flex-col min-h-screen overflow-hidden bg-white dark:bg-[#101B2E] text-[#101B2E] dark:text-[#F7E3C5] transition-colors duration-300">
-      {/* Background Dynamique */}
-      <AnimatedBackground />
+      {/* Background Dynamique - Placé dans un conteneur avec z-index très bas */}
+      <div 
+        className="fixed inset-0 overflow-hidden pointer-events-none" 
+        style={{ 
+          zIndex: -999, 
+          position: 'fixed',
+          isolation: 'isolate',
+        }}
+      >
+        <AnimatedBackground />
+      </div>
 
       {/* Header minimaliste - Complètement transparent */}
       <header className="fixed top-0 left-0 w-full z-50 px-8 py-6 transition-all duration-300 dark:text-white bg-transparent border-transparent">

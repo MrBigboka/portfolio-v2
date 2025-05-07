@@ -24,11 +24,13 @@ export default function AwardSection() {
     });
   }, [controls]);
   return (
-    <section className="relative z-10 py-20 px-6 md:px-12 border-t border-b border-white/10 shadow-inner transition-colors duration-300">
+    <section className="relative z-50 py-20 px-6 md:px-12 border-t border-b border-white/10 shadow-inner transition-colors duration-300" style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0A1220' }}>
       {/* Arrière-plan animé */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
         <AnimatedBackground />
       </div>
+      {/* Div de séparation pour bloquer le contenu de la section précédente */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-[#dea9ff]/30 z-50"></div>
       <div className="max-w-5xl mx-auto">
         <SectionHeader 
           title="Reconnaissance" 
@@ -87,7 +89,11 @@ export default function AwardSection() {
               </div>
             </div>
             
-            <Button variant="outline" className="w-fit mt-4 border-[#dea9ff] text-white hover:bg-[#dea9ff]/20">
+            <Button 
+              variant="outline" 
+              className="w-fit mt-4 border-[#dea9ff] text-white hover:bg-[#dea9ff]/20"
+              onClick={() => window.open('https://www.cpmt.gouv.qc.ca/', '_blank')}
+            >
               <ExternalLink size={16} className="mr-2" />
               En savoir plus sur la CPMT
             </Button>

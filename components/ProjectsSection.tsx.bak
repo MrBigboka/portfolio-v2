@@ -210,17 +210,6 @@ export default function ProjectsSection() {
         );
       });
 
-      // Pin the details section while scrolling through projects
-      ScrollTrigger.create({
-        trigger: detailsRef.current,
-        start: 'top 20%', // Start pinning when the top of the details section hits 20% from the top of the viewport
-        endTrigger: projectsContainerRef.current,
-        end: 'bottom 80%', // End pinning when the bottom of the projects section hits 80% from the top of the viewport
-        pin: true,
-        pinSpacing: false,
-        markers: false, // Set to true for debugging
-      });
-
       // Clean up
       return () => {
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -232,17 +221,15 @@ export default function ProjectsSection() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="relative py-16 md:py-20 pb-32 md:pb-40 bg-[#0F1729] text-white overflow-hidden min-h-screen" // Ajout d'un fond opaque
-      style={{ position: 'relative', isolation: 'isolate' }}
+      className="relative py-16 md:py-20 pb-32 md:pb-40 bg-transparent text-white overflow-hidden" // Ajout de padding en bas
     >
-      {/* Div de séparation pour bloquer le contenu et éviter le chevauchement */}
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-[#0F1729] z-[100]"></div>
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative" ref={projectsContainerRef}>
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader 
           title="Mes Projets" 
           subtitle="RÉALISATIONS RÉCENTES"
-          accentWord="Projets"
-          titleClassName="text-white"
+          description="Découvrez mes projets récents, mettant en valeur mes compétences en développement web et mobile."
+          titleClassName="projects-title"
+          descriptionClassName="projects-description"
           align="center" 
         />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mt-8 mb-16">
@@ -255,21 +242,14 @@ export default function ProjectsSection() {
                   key={project.id} 
                   className="project-card relative"
                   ref={(el) => { projectCardRefs.current[index] = el; }}
-                  style={{ position: 'relative', zIndex: 100 }}
                 >
                   <div 
-                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-10`}
+                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'}`}
                     style={{
-                       backgroundColor: '#060c18', /* Fond opaque foncé pour masquer l'AnimatedBackground */
-                       position: 'relative',
-                       zIndex: 10, /* Z-index élevé pour passer au-dessus de l'AnimatedBackground */
-                       isolation: 'isolate', /* Propriété CSS moderne pour isoler le contexte d'empilement */
-                       backdropFilter: 'none', /* Désactive tout effet de filtre qui pourrait causer de la transparence */
                        borderColor: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1',
                        boxShadow: activeProject === index 
                          ? `0 0 45px -5px ${project.id === 'coresync' ? '#dea9ff80' : project.id === 'nocasemtl' ? '#d9d9df80' : '#a5ebd180'}, 0 0 20px -10px ${project.id === 'coresync' ? '#dea9ff60' : project.id === 'nocasemtl' ? '#d9d9df60' : '#a5ebd160'}` 
-                         : `0 4px 15px -1px ${project.id === 'coresync' ? '#dea9ff30' : project.id === 'nocasemtl' ? '#d9d9df30' : '#a5ebd130'}`,
-                       maxHeight: '600px' /* Hauteur maximale fixe */
+                         : `0 4px 15px -1px ${project.id === 'coresync' ? '#dea9ff30' : project.id === 'nocasemtl' ? '#d9d9df30' : '#a5ebd130'}`
                     }}
                   >
                     {/* Optional: subtle inner gradient overlay if needed */}
@@ -291,14 +271,16 @@ export default function ProjectsSection() {
                     </div>
 
                     <div className="relative z-[2] mt-auto px-3 pb-3 md:px-4 md:pb-4">
-                      {/* Lueur thématique derrière la miniature */}
-                      <div 
-                        className="absolute inset-0 w-[95%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1"
-                        style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df, #94949C)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
-                      ></div>
-                      <div 
-                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[2] bg-black transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
-                        style={{boxShadow: project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'nocasemtl' ? '0 10px 30px -5px rgba(217, 217, 223, 0.4), 0 0 15px -5px rgba(217, 217, 223, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
+                      {/* Conteneur pour la miniature et sa lueur */}
+                      <div className="relative">
+                        {/* Lueur thématique derrière la miniature */}
+                        <div 
+                          className="absolute inset-0 w-[95%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-3xl blur-2xl opacity-40 z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 group-hover:opacity-60"
+                          style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df, #94949C)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
+                        ></div>
+                        <div 
+                          className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[5] bg-black transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
+                          style={{boxShadow: project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'nocasemtl' ? '0 10px 30px -5px rgba(217, 217, 223, 0.4), 0 0 15px -5px rgba(217, 217, 223, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <img
                           src={project.image}
@@ -309,23 +291,23 @@ export default function ProjectsSection() {
                           <img
                             src={project.hoverImage}
                             alt={`${project.title} hover preview`}
-                            className="absolute inset-0 w-full h-full object-cover hidden group-hover:block transition-all duration-500 ease-out"
+                            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out"
                           />
                         )}
                       </div>
-                    </div>ª
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           
-          <div 
-            className="lg:col-span-4 h-auto" // Height will be managed by pinned content
-            ref={detailsRef} // This outer div is now the pinned element
+          <div
+            ref={detailsRef}
+            className="lg:col-span-4 h-auto lg:sticky lg:top-24"
           >
              {/* Content that gets pinned */}
-            <div className="space-y-4 pt-0 pb-4"> {/* Removed sticky positioning as ScrollTrigger handles it */}
+            <div className="space-y-4 pt-0 pb-4 max-h-[90vh] overflow-y-auto"> {/* Added max height and scroll for content */}
               <AnimatePresence mode='wait'>
                 {projects.length > 0 && activeProject < projects.length && (
                   <motion.div
@@ -369,16 +351,14 @@ export default function ProjectsSection() {
                     </motion.div>
                     
                     <motion.div 
-                      className="text-white/75 mb-7 text-base md:text-lg leading-relaxed max-h-[150px] md:max-h-[200px] overflow-y-auto pr-2 custom-scrollbar"
+                      className="mb-7 overflow-hidden w-full"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.2 }}
-                      style={{
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: 'rgba(255, 255, 255, 0.2) transparent'
-                      }}
                     >
-                      <p>{projects[activeProject].description}</p>
+                      <p className="text-white/75 text-base md:text-lg leading-relaxed break-words overflow-hidden">
+                        {projects[activeProject].description}
+                      </p>
                     </motion.div>
                     
                     <motion.div 
@@ -387,11 +367,11 @@ export default function ProjectsSection() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.3 }}
                     >
-                      <div className="mb-7 space-y-3">
+                      <div className="mb-7 space-y-3 overflow-hidden">
                         {projects[activeProject].features?.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-3.5">
-                            <span className="text-xl font-semibold leading-tight" style={{color: getProjectAccentColor(activeProject)}}>+</span>
-                            <p className="text-white/80 text-sm md:text-base">{feature}</p>
+                          <div key={idx} className="flex items-start gap-3.5 w-full">
+                            <span className="text-xl font-semibold leading-tight flex-shrink-0" style={{color: getProjectAccentColor(activeProject)}}>+</span>
+                            <p className="text-white/80 text-sm md:text-base break-words overflow-hidden text-ellipsis">{feature}</p>
                           </div>
                         ))}
                       </div>

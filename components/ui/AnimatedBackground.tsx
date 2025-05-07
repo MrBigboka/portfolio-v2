@@ -3,7 +3,25 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 
-export default function AnimatedBackground() {
+// Fonction pour convertir une couleur hexadécimale en format RGB
+const hexToRgb = (hex: string): string => {
+  // Supprimer le # si présent
+  const cleanHex = hex.replace('#', '');
+  
+  // Convertir en RGB
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  
+  // Retourner au format RGB
+  return `${r}, ${g}, ${b}`;
+};
+
+interface AnimatedBackgroundProps {
+  excludeSelector?: string; // Sélecteur CSS pour les éléments à exclure
+}
+
+export default function AnimatedBackground({ excludeSelector }: AnimatedBackgroundProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
@@ -17,6 +35,20 @@ export default function AnimatedBackground() {
   useEffect(() => {
     // Skip effect execution if not mounted
     if (!isMounted) return;
+    
+    // Fonction pour vérifier si un point est à l'intérieur d'un élément exclu
+    const isPointInExcludedElement = (x: number, y: number): boolean => {
+      if (!excludeSelector) return false;
+      
+      const elements = document.querySelectorAll(excludeSelector);
+      for (const element of Array.from(elements)) {
+        const rect = element.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+          return true;
+        }
+      }
+      return false;
+    };
 
 
     const canvas = canvasRef.current;
@@ -100,11 +132,28 @@ export default function AnimatedBackground() {
         
         particle.x += particle.speedX + waveX * 0.2;
         particle.y += particle.speedY + waveY * 0.2;
-
-        // Pulse effect
+        
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
+        
+        // Pulse size for some particles
         if (particle.pulse) {
-          particle.opacity += Math.sin(time * particle.pulseSpeed * 10) * 0.01;
-          particle.opacity = Math.max(0.1, Math.min(0.7, particle.opacity));
+          particle.size += Math.sin(time * 3) * particle.pulseSpeed;
+        }
+        
+        // Vérifier si la particule est dans une zone exclue
+        if (!isPointInExcludedElement(particle.x, particle.y)) {
+          // Draw particle seulement si elle n'est pas dans une zone exclue
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          // Utiliser directement la couleur si c'est déjà au format rgba ou la convertir si c'est un hex
+          ctx.fillStyle = particle.color.startsWith('#') 
+            ? `rgba(${hexToRgb(particle.color)}, ${particle.opacity})` 
+            : particle.color;
+          ctx.fill();
         }
 
         // Mouse interaction - particles move away from cursor
@@ -187,8 +236,12 @@ export default function AnimatedBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.7 }}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none"
+      style={{ 
+        opacity: 0.7,
+        zIndex: -1000,
+        position: 'fixed',
+      }}
     />
   );
 }
