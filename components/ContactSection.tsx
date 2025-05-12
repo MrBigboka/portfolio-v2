@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Linkedin, Github, MessageSquare } from 'lucide-react';
+import { Send, Mail, Linkedin, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SectionHeader from '@/components/ui/SectionHeader';
-import AnimatedBackground from '@/components/ui/AnimatedBackground';
+// AnimatedBackground removed as per user preference
 
 export default function ContactSection() {
   const [formState, setFormState] = useState({
@@ -31,9 +31,9 @@ export default function ContactSection() {
   
   return (
     <section className="relative z-10 py-24 px-6 md:px-12 border-t border-white/10 shadow-inner transition-colors duration-300">
-      {/* Arrière-plan animé */}
+      {/* AnimatedBackground removed as per user preference */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <AnimatedBackground />
+        {/* Static background styling */}
       </div>
       
       <div className="max-w-5xl mx-auto">
@@ -127,7 +127,7 @@ export default function ContactSection() {
             <h3 className="text-2xl md:text-3xl font-bold text-white">Discutons de votre <span className="text-[#D9A441]">projet</span></h3>
             
             <p className="text-white/80 leading-relaxed">
-              Vous avez un projet en tête ou vous souhaitez simplement échanger ? N'hésitez pas à me contacter, je serai ravi de discuter avec vous.
+              Vous avez un projet en tête ou vous souhaitez simplement échanger ? N&apos;hésitez pas à me contacter, je serai ravi de discuter avec vous.
             </p>
             
             <div className="space-y-5">

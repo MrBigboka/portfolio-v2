@@ -6,7 +6,7 @@ import { Trophy, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
-import AnimatedBackground from '@/components/ui/AnimatedBackground';
+// AnimatedBackground removed as per user preference
 
 export default function AwardSection() {
   const controls = useAnimation();
@@ -25,9 +25,9 @@ export default function AwardSection() {
   }, [controls]);
   return (
     <section className="relative z-50 py-20 px-6 md:px-12 border-t border-b border-white/10 shadow-inner transition-colors duration-300" style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0A1220' }}>
-      {/* Arrière-plan animé */}
+      {/* AnimatedBackground removed as per user preference */}
       <div id="awards-section" className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
-        <AnimatedBackground excludeSelector="#projects-section, #expertise-section" />
+        {/* Static background styling */}
       </div>
       {/* Div de séparation pour bloquer le contenu de la section précédente */}
       <div className="absolute top-0 left-0 w-full h-1 bg-[#64FFDA]/30 z-50"></div>

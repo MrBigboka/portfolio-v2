@@ -10,7 +10,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import SectionHeader from '@/components/ui/SectionHeader';
 import TechBadge from './TechBadge';
-import AnimatedBackground from '@/components/ui/AnimatedBackground';
+// AnimatedBackground removed as per user preference
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -239,9 +239,9 @@ export default function ProjectsSection() {
       className="relative py-16 md:py-20 pb-32 md:pb-40 text-white overflow-hidden min-h-screen" 
       style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0F1729' }}
     >
-      {/* Animated background for visual consistency with AwardSection */}
+      {/* AnimatedBackground removed as per user preference */}
       <div id="projects-section" className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
-        <AnimatedBackground excludeSelector="#expertise-section, #awards-section" />
+        {/* Background styling without AnimatedBackground */}
       </div>
       {/* Div de séparation pour bloquer le contenu et éviter le chevauchement */}
       <div className="absolute bottom-0 left-0 w-full h-20 bg-[#0F1729] z-[100]"></div>

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import '../../app/theme-toggle.css';
 
 export function FancyThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
