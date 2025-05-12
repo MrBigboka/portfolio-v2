@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface TechBadgeProps {
   name: string;
@@ -16,7 +17,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
       'TAILWIND': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
       'TAILWIND CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
       'NODE.JS': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
-      'EXPRESS.JS': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg',
+      'EXPRESS.JS': 'https://cdn.simpleicons.org/express/FFFFFF',
       'MONGODB': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg',
       'POSTGRESQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
       'SUPABASE': 'https://cdn.simpleicons.org/supabase/3ECF8E',
@@ -29,14 +30,14 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
       'SHADCN': 'https://cdn.simpleicons.org/shadcnui/000000',
       'SHADCN UI': 'https://cdn.simpleicons.org/shadcnui/000000',
       'PRISMA': 'https://cdn.simpleicons.org/prisma/2D3748',
-      'LLM': 'https://cdn.simpleicons.org/openai/412991',
       'MIDJOURNEY': 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/midjourney.svg',
-      'ZUSTAND': 'https://cdn.simpleicons.org/react/61DAFB',
-      'ZOD': 'https://cdn.simpleicons.org/zod/3E67B1',
       'GIT': 'https://cdn.simpleicons.org/git/F05032',
       'GITHUB': 'https://cdn.simpleicons.org/github/FFFFFF',
       'FIRESTORE': 'https://cdn.simpleicons.org/firebase/FFCA28',
-      'AWS': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg',
+      'AWS': 'https://cdn.simpleicons.org/amazonaws/FF9900',
+      'HUGGING FACE': 'https://cdn.simpleicons.org/huggingface/FFBD4F',
+      'K8': 'https://cdn.simpleicons.org/kubernetes/326CE5',
+      'PYTHON': 'https://cdn.simpleicons.org/python/3776AB',
     };
 
     // Recherche exacte
@@ -56,9 +57,25 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
 
   const logoUrl = getLogoUrl(name);
 
+  // Utiliser l'image locale pour AWS
+  const useLocalImage = name === 'AWS';
+  
   return (
-    <div className={`px-4 py-2 bg-[#0B1221] hover:bg-[#131F35] border border-white/10 rounded-full transition-colors duration-300 flex items-center gap-2 ${className}`}>
-      {logoUrl ? (
+    <div 
+      className={`px-4 py-2 bg-[#0B1221] hover:bg-[#131F35] border border-white/10 rounded-full transition-colors duration-300 flex items-center gap-2 ${className}`}
+      data-component-name="TechBadge"
+    >
+      {useLocalImage ? (
+        <div className="relative w-4 h-4">
+          <Image 
+            src="/stack/aws.png" 
+            alt="AWS logo" 
+            width={16} 
+            height={16}
+            className="object-contain"
+          />
+        </div>
+      ) : logoUrl ? (
         <img 
           src={logoUrl} 
           alt={`${name} logo`} 

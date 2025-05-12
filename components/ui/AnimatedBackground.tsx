@@ -19,9 +19,10 @@ const hexToRgb = (hex: string): string => {
 
 interface AnimatedBackgroundProps {
   excludeSelector?: string; // Sélecteur CSS pour les éléments à exclure
+  disableInSections?: string[]; // IDs des sections où l'animation doit être désactivée
 }
 
-export default function AnimatedBackground({ excludeSelector }: AnimatedBackgroundProps = {}) {
+export default function AnimatedBackground({ excludeSelector = '' }: AnimatedBackgroundProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
@@ -35,6 +36,8 @@ export default function AnimatedBackground({ excludeSelector }: AnimatedBackgrou
   useEffect(() => {
     // Skip effect execution if not mounted
     if (!isMounted) return;
+    
+    // Fonction simplifiée pour vérifier si un point est dans une zone exclue
     
     // Fonction pour vérifier si un point est à l'intérieur d'un élément exclu
     const isPointInExcludedElement = (x: number, y: number): boolean => {
@@ -123,6 +126,8 @@ export default function AnimatedBackground({ excludeSelector }: AnimatedBackgrou
       time += 0.01;
       animationFrame = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Code simplifié - pas de vérification de section
 
       // Update and draw particles
       particles.forEach(particle => {
@@ -225,7 +230,9 @@ export default function AnimatedBackground({ excludeSelector }: AnimatedBackgrou
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrame);
     };
-  }, [theme, isMounted]); // Adding isMounted as a dependency to satisfy the linter
+  // Use memoized values for arrays and objects in dependencies to prevent unnecessary re-renders
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme, isMounted]); // Removing disableInSections and excludeSelector from dependencies to avoid array size changes
 
   // Conditionally render the canvas only on the client-side
   if (!isMounted) {
@@ -236,11 +243,15 @@ export default function AnimatedBackground({ excludeSelector }: AnimatedBackgrou
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none"
+      className="w-full h-full pointer-events-none"
       style={{ 
         opacity: 0.7,
-        zIndex: -1000,
-        position: 'fixed',
+        zIndex: 0,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
       }}
     />
   );

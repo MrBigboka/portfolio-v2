@@ -4,11 +4,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import SectionHeader from '@/components/ui/SectionHeader';
 import TechBadge from './TechBadge';
+import AnimatedBackground from '@/components/ui/AnimatedBackground';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -101,7 +103,6 @@ export default function ProjectsSection() {
   const [activeProject, setActiveProject] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const projectsContainerRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null); // This will be the pinned element
   const projectCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -122,11 +123,14 @@ export default function ProjectsSection() {
     pinExitTrigger.style.bottom = '0';
     pinExitTrigger.style.left = '0';
     pinExitTrigger.style.zIndex = '-1';
-    sectionRef.current.appendChild(pinExitTrigger);
+    
+    // Stockage de la référence pour le nettoyage
+    const sectionRefCurrent = sectionRef.current;
+    sectionRefCurrent.appendChild(pinExitTrigger);
     
     // Pin the right column with a defined end point
     ScrollTrigger.create({
-      trigger: sectionRef.current,
+      trigger: sectionRefCurrent,
       start: "top top",
       end: "bottom center", // S'arrête exactement quand la section suivante apparaît
       pin: detailsRef.current,
@@ -153,8 +157,8 @@ export default function ProjectsSection() {
     ScrollTrigger.refresh();
 
     return () => {
-      if (sectionRef.current && pinExitTrigger.parentNode === sectionRef.current) {
-        sectionRef.current.removeChild(pinExitTrigger);
+      if (sectionRefCurrent && pinExitTrigger.parentNode === sectionRefCurrent) {
+        sectionRefCurrent.removeChild(pinExitTrigger);
       }
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
@@ -232,9 +236,13 @@ export default function ProjectsSection() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="relative py-16 md:py-20 pb-32 md:pb-40 bg-[#0F1729] text-white overflow-hidden min-h-screen" // Ajout d'un fond opaque
-      style={{ position: 'relative', isolation: 'isolate' }}
+      className="relative py-16 md:py-20 pb-32 md:pb-40 text-white overflow-hidden min-h-screen" 
+      style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0F1729' }}
     >
+      {/* Animated background for visual consistency with AwardSection */}
+      <div id="projects-section" className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
+        <AnimatedBackground excludeSelector="#expertise-section, #awards-section" />
+      </div>
       {/* Div de séparation pour bloquer le contenu et éviter le chevauchement */}
       <div className="absolute bottom-0 left-0 w-full h-20 bg-[#0F1729] z-[100]"></div>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative" ref={projectsContainerRef}>
@@ -247,7 +255,8 @@ export default function ProjectsSection() {
         />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mt-8 mb-16">
           
-          <div className="lg:col-span-8" ref={projectsContainerRef}>
+          {/* Version desktop: affichage en colonnes */}
+          <div className="hidden lg:block lg:col-span-8" ref={projectsContainerRef}>
             {/* Reduced space-y for tighter card layout */}
             <div className="space-y-24 md:space-y-32 relative z-[5]">
               {projects.map((project, index) => (
@@ -255,14 +264,14 @@ export default function ProjectsSection() {
                   key={project.id} 
                   className="project-card relative"
                   ref={(el) => { projectCardRefs.current[index] = el; }}
-                  style={{ position: 'relative', zIndex: 100 }}
+                  style={{ position: 'relative', zIndex: 200 }}
                 >
                   <div 
-                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-10`}
+                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-[200]`}
                     style={{
                        backgroundColor: '#060c18', /* Fond opaque foncé pour masquer l'AnimatedBackground */
                        position: 'relative',
-                       zIndex: 10, /* Z-index élevé pour passer au-dessus de l'AnimatedBackground */
+                       zIndex: 200, /* Z-index très élevé pour passer au-dessus de l'AnimatedBackground */
                        isolation: 'isolate', /* Propriété CSS moderne pour isoler le contexte d'empilement */
                        backdropFilter: 'none', /* Désactive tout effet de filtre qui pourrait causer de la transparence */
                        borderColor: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1',
@@ -272,10 +281,20 @@ export default function ProjectsSection() {
                        maxHeight: '600px' /* Hauteur maximale fixe */
                     }}
                   >
-                    {/* Optional: subtle inner gradient overlay if needed */}
-                    {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5 z-[1]"></div> */}
+                    {/* Multiple solid background layers to ensure complete opacity */}
+                    <div className="absolute inset-0 bg-black z-[101]"></div>
+                    <div className="absolute inset-0 bg-[#060c18] z-[102]"></div>
+                    <div className="absolute inset-0 z-[103]" style={{
+                      background: project.id === 'coresync' 
+                        ? 'linear-gradient(135deg, #1a0d2c 0%, #0d0616 100%)'
+                        : project.id === 'nocasemtl'
+                        ? 'linear-gradient(135deg, #1e1e1e 0%, #0d0d0d 100%)'
+                        : 'linear-gradient(135deg, #0c1e14 0%, #07130d 100%)'
+                    }}></div>
+                    {/* Extra opaque overlay to ensure no transparency */}
+                    <div className="absolute inset-0 bg-[#060c18]/95 mix-blend-normal z-[104]"></div>
                     
-                    <div className="p-6 md:p-8 z-[2] flex-grow flex flex-col justify-start mb-6">
+                    <div className="p-6 md:p-8 z-[105] flex-grow flex flex-col justify-start mb-6">
                       <div className="flex items-start justify-between mb-4">
                         <p 
                           className="text-xl md:text-2xl font-medium leading-snug max-w-[calc(100%-3rem)]"
@@ -290,26 +309,30 @@ export default function ProjectsSection() {
                       </div>
                     </div>
 
-                    <div className="relative z-[2] mt-auto px-3 pb-3 md:px-4 md:pb-4">
+                    <div className="relative z-[105] mt-auto px-3 pb-3 md:px-4 md:pb-4">
                       {/* Lueur thématique derrière la miniature */}
                       <div 
                         className="absolute inset-0 w-[95%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1"
                         style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df, #94949C)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
                       ></div>
                       <div 
-                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[2] bg-black transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
+                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[106] bg-black transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
                         style={{boxShadow: project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'nocasemtl' ? '0 10px 30px -5px rgba(217, 217, 223, 0.4), 0 0 15px -5px rgba(217, 217, 223, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
-                        <img
+                        <Image
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover transition-all duration-500 ease-out"
+                          width={600}
+                          height={450}
                         />
                         {project.hoverImage && project.id !== 'coresync' && (
-                          <img
+                          <Image
                             src={project.hoverImage}
                             alt={`${project.title} hover preview`}
                             className="absolute inset-0 w-full h-full object-cover hidden group-hover:block transition-all duration-500 ease-out"
+                            width={600}
+                            height={450}
                           />
                         )}
                       </div>
@@ -320,8 +343,9 @@ export default function ProjectsSection() {
             </div>
           </div>
           
+          {/* Version desktop: détails épinglés */}
           <div 
-            className="lg:col-span-4 h-auto" // Height will be managed by pinned content
+            className="hidden lg:block lg:col-span-4 h-auto" // Height will be managed by pinned content
             ref={detailsRef} // This outer div is now the pinned element
           >
              {/* Content that gets pinned */}
@@ -330,20 +354,22 @@ export default function ProjectsSection() {
                 {projects.length > 0 && activeProject < projects.length && (
                   <motion.div
                     key={activeProject}
-                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -40, scale: 0.95 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.98 }}
                     transition={{ 
-                      duration: 0.6, 
+                      duration: 0.15, 
                       ease: [0.25, 0.1, 0.25, 1]
                     }}
+                    data-component-name="MotionComponent"
                     className="flex flex-col pt-0 mt-0"
                   >
                     <motion.div 
                       className="flex items-center justify-between mb-6 pt-0"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.1 }}
+                      transition={{ duration: 0.1, delay: 0.02 }}
+                      data-component-name="MotionComponent"
                     >
                       <div className="flex items-center gap-3.5">
                         <div className="relative">
@@ -359,10 +385,12 @@ export default function ProjectsSection() {
                       
                       {projects[activeProject].logo && (
                         <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
-                          <img 
-                            src={projects[activeProject].logo} 
+                          <Image 
+                            src={projects[activeProject].logo!} 
                             alt={`${projects[activeProject].title} logo`} 
                             className="w-full h-full object-contain"
+                            width={80}
+                            height={80}
                           />
                         </div>
                       )}
@@ -370,9 +398,9 @@ export default function ProjectsSection() {
                     
                     <motion.div 
                       className="text-white/75 mb-7 text-base md:text-lg leading-relaxed max-h-[150px] md:max-h-[200px] overflow-y-auto pr-2 custom-scrollbar"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.2 }}
+                      transition={{ duration: 0.1, delay: 0.03 }}
                       style={{
                         scrollbarWidth: 'thin',
                         scrollbarColor: 'rgba(255, 255, 255, 0.2) transparent'
@@ -383,9 +411,10 @@ export default function ProjectsSection() {
                     
                     <motion.div 
                       className="space-y-4 mb-8"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.3 }}
+                      transition={{ duration: 0.1, delay: 0.04 }}
+                      data-component-name="MotionComponent"
                     >
                       <div className="mb-7 space-y-3">
                         {projects[activeProject].features?.map((feature, idx) => (
@@ -399,9 +428,9 @@ export default function ProjectsSection() {
                       
                     <motion.div 
                       className="flex flex-wrap gap-2 mb-7"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 }}
+                      transition={{ duration: 0.1, delay: 0.05 }}
                     >
                        <h4 className="text-sm font-medium mb-4 text-white/60 tracking-wider">TECHNOLOGIES UTILISÉES</h4>
                       <div className="flex flex-wrap gap-2.5">
@@ -413,9 +442,9 @@ export default function ProjectsSection() {
 
                     <motion.div 
                       className="flex flex-wrap gap-4"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.5 }}
+                      transition={{ duration: 0.1, delay: 0.06 }}
                     >
                       {(projects[activeProject]?.demoUrl && projects[activeProject]?.demoUrl !== '#') && (
                         <Button 
@@ -447,6 +476,125 @@ export default function ProjectsSection() {
                 )}
               </AnimatePresence>
             </div>
+          </div>
+        </div>
+        
+        {/* Version mobile: affichage en cards comme dans la capture d'écran */}
+        <div className="lg:hidden mt-8">
+          <div className="space-y-16">
+            {projects.map((project) => (
+              <div key={project.id} className="relative mb-12">
+                {/* Card avec image et titre superposé */}
+                <div 
+                  className="relative rounded-2xl overflow-hidden border-2 shadow-xl"
+                  style={{
+                    borderColor: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981',
+                    boxShadow: `0 10px 30px -5px ${project.id === 'coresync' ? 'rgba(157, 113, 232, 0.3)' : project.id === 'nocasemtl' ? 'rgba(148, 148, 156, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
+                  }}
+                >
+                  {/* Image du projet */}
+                  <div className="aspect-[16/9] w-full relative">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                  
+                  {/* Overlay avec titre et flèche */}
+                  <div 
+                    className="absolute inset-x-0 bottom-0 p-4 flex justify-between items-center"
+                    style={{
+                      background: `linear-gradient(to top, rgba(15, 23, 41, 0.95), rgba(15, 23, 41, 0.7) 60%, rgba(15, 23, 41, 0))`
+                    }}
+                  >
+                    <div className="flex items-center gap-3">
+                      {project.logo && (
+                        <div className="w-10 h-10 rounded-full bg-black/30 p-1 flex items-center justify-center relative">
+                          <Image 
+                            src={project.logo} 
+                            alt={`${project.title} logo`}
+                            className="w-full h-full object-contain" 
+                            width={40}
+                            height={40}
+                          />
+                        </div>
+                      )}
+                      <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                    </div>
+                    <ArrowRight 
+                      className="w-5 h-5"
+                      style={{ color: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981' }}
+                    />
+                  </div>
+                </div>
+                
+                {/* Description du projet - Style adapté de MotionComponent et Home */}
+                <motion.div 
+                  className="mt-4 bg-white/5 dark:bg-[#0a192f]/20 backdrop-blur-sm p-6 rounded-lg border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  data-component-name="Home"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    {project.id === 'coresync' ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#9D71E8]"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    ) : project.id === 'nocasemtl' ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#94949C]"><path d="M20.91 8.84 8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"/><path d="m3.09 8.84 12.35-6.61a1.93 1.93 0 0 1 1.81 0l3.65 1.9a2.12 2.12 0 0 1 .1 3.69L8.73 14.75a2 2 0 0 1-1.94 0L3 12.51a2.12 2.12 0 0 1 .09-3.67Z"/><line x1="12" x2="12" y1="22" y2="13"/><path d="M20 13.5v3.37a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13.5"/></svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#10B981]"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    )}
+                    <h3 className="text-white text-xl font-semibold">{project.title}</h3>
+                  </div>
+                  
+                  <p className="text-white/80 mb-6">
+                    {project.shortDesc}
+                  </p>
+                  
+                  {/* Liste des fonctionnalités avec puces */}
+                  <div className="space-y-3 mb-6">
+                    {project.features?.map((feature, idx) => (
+                      <motion.div 
+                        key={idx} 
+                        className="flex items-start gap-2.5"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: idx * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <span 
+                          className="text-lg font-semibold leading-tight mt-0.5"
+                          style={{color: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981'}}
+                        >+</span>
+                        <p className="text-white/70 text-sm">{feature}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Technologies utilisées */}
+                  <div className="mt-6 pt-4 border-t border-white/10">
+                    <h4 className="text-xs font-medium mb-3 text-white/60 tracking-wider">TECHNOLOGIES UTILISÉES</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, idx) => (
+                        <motion.div
+                          key={tag}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: idx * 0.05 }}
+                          viewport={{ once: true }}
+                        >
+                          <TechBadge key={tag} name={tag} />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

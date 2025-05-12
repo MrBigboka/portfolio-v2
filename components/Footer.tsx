@@ -3,14 +3,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
-import AnimatedBackground from '@/components/ui/AnimatedBackground';
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 py-8 border-t border-white/10 backdrop-blur-sm">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <AnimatedBackground />
-      </div>
+    <footer className="relative z-10 py-8 border-t border-white/10 bg-[#0a192f]/90 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center gap-4">
         <motion.div
           initial={{ opacity: 0 }}

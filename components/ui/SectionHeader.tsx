@@ -40,7 +40,8 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="uppercase tracking-widest text-sm font-medium text-[#B74134] mb-3"
+          className="uppercase tracking-widest text-sm font-medium text-[#fad0cc] mb-3"
+          data-component-name="MotionComponent"
         >
           {subtitle}
         </motion.p>
@@ -65,6 +66,7 @@ export default function SectionHeader({
                   fontWeight: 'normal',
                   letterSpacing: '0.02em'
                 }}
+                data-component-name="SectionHeader"
               >
                 {accentWord}
               </span>
