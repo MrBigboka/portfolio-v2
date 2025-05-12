@@ -10,7 +10,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import SectionHeader from '@/components/ui/SectionHeader';
 import TechBadge from './TechBadge';
-// AnimatedBackground removed as per user preference
+import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -177,59 +177,31 @@ export default function ProjectsSection() {
   useEffect(() => {
     if (typeof window !== 'undefined' && projectsContainerRef.current && detailsRef.current) {
       // Animation pour l'entrée initiale de la section
-      const mainTl = gsap.timeline({
+      gsap.timeline({
         scrollTrigger: {
           trigger: projectsContainerRef.current,
           start: 'top 80%', // Start when the top of the projects section hits 80% from the top of the viewport
           end: 'bottom 20%', // End when the bottom of the projects section hits 20% from the top of the viewport
-          toggleActions: 'play none none reverse',
-          markers: false, // Set to true for debugging
-        },
+          toggleActions: 'play none none reverse'
+        }
       });
-
-      // Animer le titre de la section
-      mainTl.fromTo(
-        '.projects-title',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
-        0
-      );
       
-      // Animer la description de la section
-      mainTl.fromTo(
-        '.projects-description',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
-        0.2
-      );
-
-      // Animer les cartes de projet une par une
-      const projectCards = document.querySelectorAll('.project-card');
-      projectCards.forEach((card, index) => {
-        mainTl.fromTo(
-          card,
-          { opacity: 0, y: 50, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power2.out' },
-          0.3 + (index * 0.15) // Délai progressif pour chaque carte
-        );
-      });
-
-      // Pin the details section while scrolling through projects
+      // Create a separate ScrollTrigger for pinning the details section
       ScrollTrigger.create({
         trigger: detailsRef.current,
-        start: 'top 20%', // Start pinning when the top of the details section hits 20% from the top of the viewport
+        start: "top 20%",  // Commence quand le haut de la section atteint 20% depuis le haut du viewport
         endTrigger: projectsContainerRef.current,
         end: 'bottom 80%', // End pinning when the bottom of the projects section hits 80% from the top of the viewport
         pin: true,
         pinSpacing: false,
-        markers: false, // Set to true for debugging
+        markers: false // Set to true for debugging
       });
-
-      // Clean up
-      return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      };
     }
+
+    // Clean up
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
@@ -237,14 +209,13 @@ export default function ProjectsSection() {
       id="projects" 
       ref={sectionRef}
       className="relative py-16 md:py-20 pb-32 md:pb-40 text-white overflow-hidden min-h-screen" 
-      style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0F1729' }}
+      style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0E1A2B' }}
     >
-      {/* AnimatedBackground removed as per user preference */}
-      <div id="projects-section" className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
-        {/* Background styling without AnimatedBackground */}
-      </div>
+      {/* Animated background using the new GlobalAnimatedBackground component */}
+      <GlobalAnimatedBackground sectionId="projects-section" opacity={0.5} />
+      
       {/* Div de séparation pour bloquer le contenu et éviter le chevauchement */}
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-[#0F1729] z-[100]"></div>
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-[#0E1A2B] z-[100]"></div>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative" ref={projectsContainerRef}>
         <SectionHeader 
           title="Mes Projets" 
@@ -269,7 +240,7 @@ export default function ProjectsSection() {
                   <div 
                     className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-[200]`}
                     style={{
-                       backgroundColor: '#060c18', /* Fond opaque foncé pour masquer l'AnimatedBackground */
+                       backgroundColor: '#0E1A2B', /* Fond opaque bleu nuit conforme à la palette */
                        position: 'relative',
                        zIndex: 200, /* Z-index très élevé pour passer au-dessus de l'AnimatedBackground */
                        isolation: 'isolate', /* Propriété CSS moderne pour isoler le contexte d'empilement */
@@ -283,7 +254,7 @@ export default function ProjectsSection() {
                   >
                     {/* Multiple solid background layers to ensure complete opacity */}
                     <div className="absolute inset-0 bg-black z-[101]"></div>
-                    <div className="absolute inset-0 bg-[#060c18] z-[102]"></div>
+                    <div className="absolute inset-0 bg-[#0E1A2B] z-[102]"></div>
                     <div className="absolute inset-0 z-[103]" style={{
                       background: project.id === 'coresync' 
                         ? 'linear-gradient(135deg, #1a0d2c 0%, #0d0616 100%)'
@@ -374,8 +345,14 @@ export default function ProjectsSection() {
                       <div className="flex items-center gap-3.5">
                         <div className="relative">
                           <div className="absolute -left-1 -top-1 w-10 h-10 rounded-full opacity-20" style={{ background: `radial-gradient(circle, ${getProjectAccentColor(activeProject)} 0%, transparent 70%)` }}></div>
-                          <div className="w-8 h-8 flex items-center justify-center rounded-lg border-2 rotate-45" style={{ borderColor: getProjectAccentColor(activeProject) }}>
-                            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
+                          <div className="w-8 h-8 flex items-center justify-center rounded-full border-2" style={{ borderColor: getProjectAccentColor(activeProject) }}>
+                            {projects[activeProject].id === 'coresync' ? (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: getProjectAccentColor(activeProject) }}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                            ) : projects[activeProject].id === 'nocasemtl' ? (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: getProjectAccentColor(activeProject) }}><path d="M20.91 8.84 8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"/><path d="m3.09 8.84 12.35-6.61a1.93 1.93 0 0 1 1.81 0l3.65 1.9a2.12 2.12 0 0 1 .1 3.69L8.73 14.75a2 2 0 0 1-1.94 0L3 12.51a2.12 2.12 0 0 1 .09-3.67Z"/><line x1="12" x2="12" y1="22" y2="13"/><path d="M20 13.5v3.37a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13.5"/></svg>
+                            ) : (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: getProjectAccentColor(activeProject) }}><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            )}
                           </div>
                         </div>
                         <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">

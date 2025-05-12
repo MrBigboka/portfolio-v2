@@ -38,11 +38,11 @@ export default function Home() {
       {/* Projects Section Component */}
       <ProjectsSection />
       
-      {/* Award Section Component */}
-      <AwardSection />
-      
       {/* Expertise Section Component */}
       <ExpertiseSection />
+
+      {/* Award Section Component */}
+      <AwardSection />
       
       {/* Contact Section Component */}
       <ContactSection />

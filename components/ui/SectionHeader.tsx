@@ -3,6 +3,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Palette de couleurs du portfolio
+const colors = {
+  bleuNuit: '#0E1A2B',
+  cremeClair: '#F8EBD7',
+  rougeBrique: '#C3513B',
+  beigeFonce: '#D2B28D',
+  bleuArdoise: '#2C3E50',
+  jauneDoux: '#F4C065'
+};
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -40,7 +50,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="uppercase tracking-widest text-sm font-medium text-[#fad0cc] mb-3"
+          className={`uppercase tracking-widest text-sm font-medium mb-3 ${titleClassName.includes('text-white') ? `text-[${colors.jauneDoux}]` : `text-[${colors.rougeBrique}]`}`}
           data-component-name="MotionComponent"
         >
           {subtitle}
@@ -59,7 +69,7 @@ export default function SectionHeader({
             {beforeAccent}
             <span className="relative inline-block">
               <span 
-                className="relative z-10 bg-gradient-to-r from-[#F7E3C5] via-[#D9A441] to-[#B74134] text-transparent bg-clip-text animate-gradient italic" 
+                className="relative z-10 bg-gradient-to-r from-[#F8EBD7] via-[#D2B28D] to-[#C3513B] text-transparent bg-clip-text animate-gradient italic" 
                 style={{ 
                   fontFamily: '"Brush Script MT", "Brush Script Std", cursive',
                   fontSize: '1.15em',
@@ -70,7 +80,7 @@ export default function SectionHeader({
               >
                 {accentWord}
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[#F7E3C5]/30 via-[#D9A441]/30 to-[#B74134]/30 blur-lg filter opacity-70 animate-pulse"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-[#F8EBD7]/30 via-[#D2B28D]/30 to-[#C3513B]/30 blur-lg filter opacity-70 animate-pulse"></span>
             </span>
             {afterAccent}
           </>
@@ -85,7 +95,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className={`mt-4 text-lg md:text-xl text-white/70 max-w-3xl mx-auto ${descriptionClassName}`}
+          className={`mt-4 text-lg md:text-xl max-w-3xl mx-auto ${titleClassName.includes('text-white') ? `text-[${colors.cremeClair}]/80` : `text-[${colors.bleuArdoise}]/80`} ${descriptionClassName}`}
         >
           {description}
         </motion.p>

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Braces, Server, Database, Cpu, Terminal, Layers, FolderOpen, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import TypewriterEffect from '@/components/ui/TypewriterEffect';
-import AnimatedBackground from '@/components/ui/AnimatedBackground';
+import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 // Badges technologiques avec icônes
 function TechBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
@@ -20,11 +20,9 @@ function TechBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 md:px-12 pt-20" style={{ backgroundColor: '#0a192f' }}>
-      {/* Animated background for visual consistency with other sections */}
-      <div id="hero-section" className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
-        <AnimatedBackground excludeSelector="#projects-section, #expertise-section, #awards-section" />
-      </div>
+    <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 md:px-12 pt-20" style={{ backgroundColor: '#0E1A2B' }}>
+      {/* Animated background using the new GlobalAnimatedBackground component */}
+      <GlobalAnimatedBackground sectionId="hero-section" opacity={0.7} />
       <div className="max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Colonne gauche - Texte et CTA */}
         <motion.div 
@@ -37,7 +35,7 @@ const HeroSection: React.FC = () => {
           {/* Titre et sous-titre */}
           <div>
             <motion.p 
-              className="text-[#fad0cc] font-bold mb-2 tracking-widest"
+              className="text-[#C3513B] font-bold mb-2 tracking-widest"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
