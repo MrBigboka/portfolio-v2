@@ -92,10 +92,31 @@
   animation: pulse-light 3s ease-in-out infinite;
 }
 
-/* Dark mode variant */
-.dark * { 
-  /* Replaces @custom-variant dark */
-  color-scheme: dark;
+/* Transitions globales */
+.section-transition {
+  transition: all 0.5s ease-in-out;
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 /* Theme variables */
@@ -137,6 +158,21 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Nouvelles variables pour la cohérence des couleurs */
+  --theme-primary: #0E1A2B;
+  --theme-secondary: #101B2E;
+  --theme-accent: #D9A441;
+  --theme-accent-2: #B74134;
+  --theme-text: #F7E3C5;
+  --theme-text-muted: rgba(247, 227, 197, 0.7);
+  --theme-border: rgba(255, 255, 255, 0.1);
+  --theme-gradient: linear-gradient(135deg, var(--theme-accent), var(--theme-accent-2));
+}
+
+/* Dark mode variant */
+.dark * { 
+  color-scheme: dark;
 }
 
 :root {
