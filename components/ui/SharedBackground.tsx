@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 
-// Palette de couleurs du portfolio
+// Palette de couleurs du portfolio (même palette que GlobalAnimatedBackground)
 const colors = {
   bleuNuit: '#0E1A2B',
   cremeClair: '#F8EBD7',
@@ -13,37 +13,11 @@ const colors = {
   jauneDoux: '#F4C065'
 };
 
-// Couleurs spécifiques pour chaque section
-type SectionId = 'projects-section' | 'expertise-section' | 'awards-section' | 'contact-section' | 'default';
-
-const sectionColors: Record<SectionId, string[]> = {
-  'projects-section': [colors.bleuArdoise, colors.rougeBrique, colors.jauneDoux],
-  'expertise-section': [colors.bleuNuit, colors.bleuArdoise, colors.jauneDoux],
-  'awards-section': [colors.bleuNuit, colors.beigeFonce, colors.cremeClair],
-  'contact-section': [colors.bleuArdoise, colors.rougeBrique, colors.cremeClair],
-  'default': [colors.bleuNuit, colors.bleuArdoise, colors.jauneDoux]
-};
-
-interface GlobalAnimatedBackgroundProps {
-  sectionId: string;
+interface SharedBackgroundProps {
   opacity?: number;
 }
 
-// Helper function to safely get section colors
-function getSectionColors(id: string): string[] {
-  if (id === 'projects-section' || 
-      id === 'expertise-section' || 
-      id === 'awards-section' || 
-      id === 'contact-section') {
-    return sectionColors[id as SectionId];
-  }
-  return sectionColors['default'];
-}
-
-export default function GlobalAnimatedBackground({ 
-  sectionId,
-  opacity = 0.6
-}: GlobalAnimatedBackgroundProps) {
+export default function SharedBackground({ opacity = 0.5 }: SharedBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
   
@@ -58,7 +32,7 @@ export default function GlobalAnimatedBackground({
     // Set canvas size
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = window.innerHeight * 2; // Double height to cover multiple sections
     };
 
     setCanvasSize();
@@ -77,18 +51,13 @@ export default function GlobalAnimatedBackground({
       pulseSpeed: number;
     }[] = [];
     
-    // Adapter le nombre de particules en fonction de la taille de l'écran
-    const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 40 : 80;
+    const particleCount = 120; // More particles for a larger area
     const isLightTheme = theme !== 'dark';
     
-    // Get colors for this specific section
-    const sectionColorSet = getSectionColors(sectionId);
-    
-    // Colors based on theme and section
-    const primaryColor = isLightTheme ? sectionColorSet[0] : colors.cremeClair;
-    const accentColor = sectionColorSet[1] || colors.rougeBrique;
-    const accentColor2 = sectionColorSet[2] || colors.jauneDoux;
+    // Colors based on theme
+    const primaryColor = isLightTheme ? colors.bleuArdoise : colors.cremeClair;
+    const accentColor = colors.rougeBrique;
+    const accentColor2 = colors.jauneDoux;
     
     // Create particles
     for (let i = 0; i < particleCount; i++) {
@@ -96,21 +65,13 @@ export default function GlobalAnimatedBackground({
       const isAccent = Math.random() < 0.15;
       const isAccent2 = !isAccent && Math.random() < 0.1;
       
-      // Ajuster la taille des particules pour les écrans mobiles
-      const particleSize = isMobile 
-        ? Math.random() * 1.8 + 0.3 // Plus petites particules sur mobile
-        : Math.random() * 2.5 + 0.5; // Taille normale sur desktop
-      
-      // Ajuster la vitesse des particules pour les écrans mobiles
-      const speedFactor = isMobile ? 0.3 : 0.5;
-      
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: particleSize,
+        size: Math.random() * 2.5 + 0.5,
         color: isAccent ? accentColor : isAccent2 ? accentColor2 : primaryColor,
-        speedX: (Math.random() - 0.5) * speedFactor,
-        speedY: (Math.random() - 0.5) * speedFactor,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
         opacity: Math.random() * 0.5 + 0.2,
         pulse: Math.random() > 0.5,
         pulseSpeed: Math.random() * 0.02 + 0.01
@@ -164,15 +125,12 @@ export default function GlobalAnimatedBackground({
 
         // Mouse interaction - particles move away from cursor
         const dx = mouseX - particle.x;
-        const dy = mouseY - particle.y;
+        const dy = mouseY - particle.y - window.scrollY; // Adjust for scroll
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        // Ajuster la distance d'interaction pour les écrans mobiles
-        const interactionDistance = isMobile ? 100 : 150;
-        
-        if (distance < interactionDistance) {
+        if (distance < 150) {
           const angle = Math.atan2(dy, dx);
-          const force = (interactionDistance - distance) / 1000;
+          const force = (150 - distance) / 1000;
           particle.speedX -= Math.cos(angle) * force;
           particle.speedY -= Math.sin(angle) * force;
         }
@@ -189,12 +147,9 @@ export default function GlobalAnimatedBackground({
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          // Ajuster la distance de connexion pour les écrans mobiles
-          const connectionDistance = isMobile ? 100 : 150;
-
-          if (distance < connectionDistance) {
+          if (distance < 150) {
             // Calculate opacity based on distance
-            const opacity = (1 - distance / connectionDistance) * 0.2;
+            const opacity = (1 - distance / 150) * 0.2;
             
             // Determine if this is a connection between accent particles
             const isAccentConnection = 
@@ -220,11 +175,12 @@ export default function GlobalAnimatedBackground({
               connectionColor = primaryColor;
             }
             
+            // Draw connection
             ctx.beginPath();
-            ctx.strokeStyle = `${connectionColor}${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
-            ctx.lineWidth = 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `${connectionColor}${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -234,24 +190,21 @@ export default function GlobalAnimatedBackground({
     animate();
 
     return () => {
+      cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', setCanvasSize);
       window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrame);
     };
-  }, [theme, opacity, sectionId]);
-  
+  }, [theme, opacity]);
+
   return (
-    <div id={sectionId} className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
-      <canvas
+    <div className="fixed inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
+      <canvas 
         ref={canvasRef}
         className="w-full h-full pointer-events-none"
         style={{ 
           opacity,
           position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0
+          inset: 0
         }}
       />
     </div>

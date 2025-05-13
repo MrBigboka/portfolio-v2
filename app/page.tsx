@@ -3,16 +3,18 @@
 // CSS pour les particules statiques de la section Hero
 import './hero-particles.css';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Import components
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import AwardSection from '@/components/AwardSection';
 import ExpertiseSection from '@/components/ExpertiseSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -34,6 +36,9 @@ export default function Home() {
 
       {/* Hero Section Component */}
       <HeroSection />
+      
+      {/* About Section Component with GSAP animation */}
+      <AboutSection />
       
       {/* Projects Section Component */}
       <ProjectsSection />
@@ -64,6 +69,22 @@ export default function Home() {
         }
         .animation-delay-1000 {
           animation-delay: 1s;
+        }
+        
+        /* Styles pour l'animation GSAP */
+        @keyframes slowGradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        /* Masquer la barre de défilement tout en permettant le défilement */
+        .hide-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none; /* Chrome, Safari and Opera */
         }
       `}</style>
     </main>

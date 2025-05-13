@@ -12,9 +12,9 @@ const ExpertiseSection: React.FC = () => {
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
   return (
-    <section className="relative z-10 min-h-screen flex flex-col justify-center py-24 px-6 md:px-12 backdrop-blur-sm border-t border-gray-200/5 dark:border-white/5 transition-colors duration-300">
-      {/* Animated background */}
-      <GlobalAnimatedBackground sectionId="expertise-section" opacity={0.5} />
+    <section className="relative z-10 min-h-screen flex flex-col justify-center py-24 px-6 md:px-12 backdrop-blur-sm transition-colors duration-300" style={{ backgroundColor: '#101B2E' }}>
+      {/* Animated background avec les particules */}
+      <GlobalAnimatedBackground sectionId="expertise-section" opacity={0.8} />
       {/* Solid background color */}
       <div className="max-w-6xl w-full mx-auto flex flex-col justify-between h-full">
         {/* Top section with rotating wheel and header */}
@@ -28,11 +28,11 @@ const ExpertiseSection: React.FC = () => {
             >
               <div className="relative p-3">
                 {/* Cercles lumineux animés */}
-                <div className="absolute inset-0 rounded-full blur-2xl bg-[#64FFDA]/20 animate-pulse"></div>
-                <div className="absolute inset-2 rounded-full blur-lg bg-[#64FFDA]/30 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute inset-0 rounded-full blur-2xl bg-[#D9A441]/20 animate-pulse"></div>
+                <div className="absolute inset-2 rounded-full blur-lg bg-[#D9A441]/30 animate-pulse" style={{ animationDelay: '1s' }}></div>
                 
                 {/* Bordure brillante */}
-                <div className="absolute inset-0 rounded-full border-2 border-[#64FFDA]/50 animate-pulse" style={{ animationDuration: '3s' }}></div>
+                <div className="absolute inset-0 rounded-full border-2 border-[#D9A441]/50 animate-pulse" style={{ animationDuration: '3s' }}></div>
                 
                 {/* Image avec couleur turquoise */}
                 <Image
@@ -42,13 +42,13 @@ const ExpertiseSection: React.FC = () => {
                   height={160}
                   className="relative z-10"
                   style={{
-                    filter: 'brightness(1.2) contrast(1.1) drop-shadow(0 0 10px rgba(100, 255, 218, 0.7))',
-                    WebkitFilter: 'brightness(1.2) contrast(1.1) drop-shadow(0 0 10px rgba(100, 255, 218, 0.7))',
+                    filter: 'brightness(1.2) contrast(1.1) drop-shadow(0 0 10px rgba(217, 164, 65, 0.7))',
+                    WebkitFilter: 'brightness(1.2) contrast(1.1) drop-shadow(0 0 10px rgba(217, 164, 65, 0.7))',
                   }}
                 />
                 
                 {/* Effet de brillance supplémentaire */}
-                <div className="absolute inset-0 z-20 rounded-full bg-gradient-to-br from-transparent via-[#64FFDA]/5 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 z-20 rounded-full bg-gradient-to-br from-transparent via-[#D9A441]/5 to-transparent pointer-events-none"></div>
               </div>
             </motion.div>
           </div>
@@ -60,7 +60,7 @@ const ExpertiseSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="uppercase tracking-widest text-sm font-medium text-[#fad0cc] mb-3"
+              className="uppercase tracking-widest text-sm font-medium text-[#D9A441] mb-3"
             >
               JE CHERCHE CONSTAMMENT À M&apos;AMÉLIORER
             </motion.p>
@@ -75,11 +75,9 @@ const ExpertiseSection: React.FC = () => {
               <span className="text-white">Mon </span>
               <span className="relative inline-block">
                 <span 
-                  className="relative z-10 bg-gradient-to-r from-[#F7E3C5] via-[#D9A441] to-[#B74134] text-transparent bg-clip-text animate-gradient italic" 
+                  className="relative z-10 bg-gradient-to-r from-[#F7E3C5] via-[#D9A441] to-[#B74134] text-transparent bg-clip-text animate-gradient italic brush-script" 
                   style={{ 
-                    fontFamily: '"Brush Script MT", "Brush Script Std", cursive',
                     fontSize: '1.15em',
-                    fontWeight: 'normal',
                     letterSpacing: '0.02em'
                   }}
                 >
@@ -92,9 +90,9 @@ const ExpertiseSection: React.FC = () => {
         </div>
 
         {/* Tech Stack Grid - Centered design */}
-        <div className="w-full mx-auto mb-16">
+        <div className="w-full mx-auto mb-16">          
           <motion.div 
-            className="flex flex-wrap justify-center gap-3 md:gap-4 px-2 max-w-4xl mx-auto"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-2 max-w-4xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, staggerChildren: 0.05 }}
@@ -149,6 +147,23 @@ const ExpertiseSection: React.FC = () => {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.7 }}>
               <TechBadge name="GITHUB" />
             </motion.div>
+            
+            {/* Additional Languages */}
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.75 }}>
+              <TechBadge name="PYTHON" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.8 }}>
+              <TechBadge name="C#" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.85 }}>
+              <TechBadge name=".NET" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.9 }}>
+              <TechBadge name="KOTLIN" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.95 }}>
+              <TechBadge name="SCALA" />
+            </motion.div>
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.75 }}>
               <TechBadge name="VERCEL" />
             </motion.div>
@@ -167,25 +182,25 @@ const ExpertiseSection: React.FC = () => {
               <TechBadge name="N8N" />
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 1 }}>
+              <TechBadge name="DOCKER" />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 1 }}>
               <TechBadge name="MAKE.COM" />
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 1.05 }}>
               <TechBadge name="HUGGING FACE" />
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 1.1 }}>
-              <TechBadge name="MIDJOURNEY" />
-            </motion.div>
           </motion.div>
         </div>
 
-        {/* Bottom section with banner */}
+        {/* Bottom section with banner - Version épurée pour mobile */}
         <div className="mt-auto">
           {/* Banner with enhanced dynamic background */}
-          <div className="relative w-full overflow-hidden px-6 md:px-8">
+          <div className="relative w-full overflow-hidden px-4 sm:px-6 md:px-8">
             <div className="relative rounded-xl border border-[#64FFDA]/20 overflow-hidden shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-r from-[#0d2e4d] to-[#1a1f4d] opacity-90"></div>
               
-              {/* Effet de vague */}
+              {/* Effet de vague simplifié */}
               <div 
                 className="absolute inset-0 bg-gradient-to-r from-[#64FFDA]/10 via-transparent to-[#64FFDA]/10" 
                 style={{
@@ -194,8 +209,8 @@ const ExpertiseSection: React.FC = () => {
                 }}
               ></div>
               
-              {/* Points lumineux */}
-              <div className="absolute inset-0 overflow-hidden opacity-30">
+              {/* Points lumineux réduits pour mobile */}
+              <div className="absolute inset-0 overflow-hidden opacity-30 hidden md:block">
                 {[...Array(5)].map((_, i) => (
                   <div 
                     key={i}
@@ -210,10 +225,20 @@ const ExpertiseSection: React.FC = () => {
                 ))}
               </div>
               
-              <div className="py-5 text-center relative z-10">
-                <p className="text-white font-medium text-sm uppercase tracking-wider">
-                  <span className="text-[#64FFDA]">•</span> RESPONSIVE <span className="text-[#64FFDA]">•</span> DYNAMIQUE <span className="text-[#64FFDA]">•</span> SCALABLE <span className="text-[#64FFDA]">•</span> PERFORMANCE <span className="text-[#64FFDA]">•</span> AGILE <span className="text-[#64FFDA]">•</span>
-                </p>
+              <div className="py-4 sm:py-5 text-center relative z-10">
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-3 items-center">
+                  <span className="text-[#64FFDA] text-lg font-light leading-none">•</span>
+                  <span className="text-white text-xs sm:text-sm font-medium uppercase tracking-wider">RESPONSIVE</span>
+                  <span className="text-[#64FFDA] text-lg font-light leading-none">•</span>
+                  <span className="text-white text-xs sm:text-sm font-medium uppercase tracking-wider">DYNAMIQUE</span>
+                  <span className="text-[#64FFDA] text-lg font-light leading-none">•</span>
+                  <span className="text-white text-xs sm:text-sm font-medium uppercase tracking-wider">SCALABLE</span>
+                  <span className="text-[#64FFDA] text-lg font-light leading-none hidden sm:inline">•</span>
+                  <span className="text-white text-xs sm:text-sm font-medium uppercase tracking-wider hidden sm:inline">PERFORMANCE</span>
+                  <span className="text-[#64FFDA] text-lg font-light leading-none hidden sm:inline">•</span>
+                  <span className="text-white text-xs sm:text-sm font-medium uppercase tracking-wider hidden sm:inline">AGILE</span>
+                  <span className="text-[#64FFDA] text-lg font-light leading-none hidden sm:inline">•</span>
+                </div>
               </div>
             </div>
           </div>

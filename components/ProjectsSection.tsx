@@ -41,7 +41,7 @@ export default function ProjectsSection() {
       description: 'Un SaaS IA qui centralise documentation, processus internes et outils de communication pour grandes équipes. Améliore productivité et réduit pertes de temps grâce à son agent virtuel intelligent.',
       image: '/projects/coresync.png',
       hoverImage: '/projects/coresync3.png',
-      tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'LLM', 'N8N', 'VERCEL'],
+      tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'FIRESTORE', 'N8N', 'VERCEL'],
       demoUrl: '#', // Replace with actual URL or remove if not applicable
       githubUrl: '#', // Replace with actual URL or remove if not applicable
       bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
@@ -71,7 +71,7 @@ export default function ProjectsSection() {
         'Boutique Shopify avec gestion complète des collections',
         'Branding rétro-futuriste cohérent avec la mode Y2K',
         'Lookbook animé, filtres par tailles/styles, fiches produits soignées',
-        'Version mobile optimisée pour l\\\'expérience utilisateur',
+        'Version mobile optimisée pour l\'expérience utilisateur',
         'Paiements, inventaire et promotions automatisés via apps Shopify'
       ],
       accentColor: '#94949C', // Gris-noir
@@ -83,7 +83,7 @@ export default function ProjectsSection() {
       description: 'Application IA de gestion financière personnelle. Connecte revenus et dépenses pour générer insights personnalisés et suggestions concrètes via visualisations claires.',
       image: '/projects/economeDemo.jpg',
       hoverImage: '/projects/economeDemo.jpg',
-      tags: ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS', 'LLM', 'SUPABASE', 'VERCEL'],
+      tags: ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS', 'FIRESTORE', 'SUPABASE', 'VERCEL'],
       demoUrl: '#',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#1A3E2A]/80 via-black/60 to-[#1A3E2A]/30',
@@ -97,7 +97,7 @@ export default function ProjectsSection() {
       ],
       accentColor: '#10B981', // Green
       logo: '/projects/economeLogo.png'
-    },
+    }
   ];
 
   const [activeProject, setActiveProject] = useState(0);
@@ -209,13 +209,13 @@ export default function ProjectsSection() {
       id="projects" 
       ref={sectionRef}
       className="relative py-16 md:py-20 pb-32 md:pb-40 text-white overflow-hidden min-h-screen" 
-      style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0E1A2B' }}
+      style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#101B2E' }}
     >
       {/* Animated background using the new GlobalAnimatedBackground component */}
       <GlobalAnimatedBackground sectionId="projects-section" opacity={0.5} />
       
       {/* Div de séparation pour bloquer le contenu et éviter le chevauchement */}
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-[#0E1A2B] z-[100]"></div>
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-[#101B2E] z-[100]"></div>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative" ref={projectsContainerRef}>
         <SectionHeader 
           title="Mes Projets" 
@@ -336,41 +336,43 @@ export default function ProjectsSection() {
                     className="flex flex-col pt-0 mt-0"
                   >
                     <motion.div 
-                      className="flex items-center justify-between mb-6 pt-0"
+                      className="flex items-center mb-6 pt-0 gap-5"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.1, delay: 0.02 }}
                       data-component-name="MotionComponent"
                     >
-                      <div className="flex items-center gap-3.5">
-                        <div className="relative">
-                          <div className="absolute -left-1 -top-1 w-10 h-10 rounded-full opacity-20" style={{ background: `radial-gradient(circle, ${getProjectAccentColor(activeProject)} 0%, transparent 70%)` }}></div>
-                          <div className="w-8 h-8 flex items-center justify-center rounded-full border-2" style={{ borderColor: getProjectAccentColor(activeProject) }}>
-                            {projects[activeProject].id === 'coresync' ? (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: getProjectAccentColor(activeProject) }}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                            ) : projects[activeProject].id === 'nocasemtl' ? (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: getProjectAccentColor(activeProject) }}><path d="M20.91 8.84 8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"/><path d="m3.09 8.84 12.35-6.61a1.93 1.93 0 0 1 1.81 0l3.65 1.9a2.12 2.12 0 0 1 .1 3.69L8.73 14.75a2 2 0 0 1-1.94 0L3 12.51a2.12 2.12 0 0 1 .09-3.67Z"/><line x1="12" x2="12" y1="22" y2="13"/><path d="M20 13.5v3.37a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13.5"/></svg>
-                            ) : (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: getProjectAccentColor(activeProject) }}><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                            )}
+                      {/* Logo à gauche avec contour de la couleur thématique */}
+                      {projects[activeProject].logo && (
+                        <div className="relative flex-shrink-0 transition-transform duration-300 hover:scale-105">
+                          {/* Fond lumineux derrière le logo */}
+                          <div className="absolute -inset-1.5 rounded-xl opacity-20" 
+                               style={{ background: `radial-gradient(circle, ${getProjectAccentColor(activeProject)} 0%, transparent 70%)` }}
+                          ></div>
+                          
+                          {/* Contour coloré autour du logo */}
+                          <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-xl overflow-hidden p-2"
+                               style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: getProjectAccentColor(activeProject), backgroundColor: '#0E1A2B' }}
+                          >
+                            <Image 
+                              src={projects[activeProject].logo!} 
+                              alt={`${projects[activeProject].title} logo`} 
+                              className="w-full h-full object-contain drop-shadow-md"
+                              width={80}
+                              height={80}
+                              style={{ filter: `drop-shadow(0 0 5px ${getProjectAccentColor(activeProject)}40)` }}
+                            />
                           </div>
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                      )}
+                      
+                      {/* Titre à droite */}
+                      <div className="flex-grow">
+                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-1">
                           {projects[activeProject].title}
                         </h3>
+                        <div className="w-20 h-1 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
                       </div>
-                      
-                      {projects[activeProject].logo && (
-                        <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
-                          <Image 
-                            src={projects[activeProject].logo!} 
-                            alt={`${projects[activeProject].title} logo`} 
-                            className="w-full h-full object-contain"
-                            width={80}
-                            height={80}
-                          />
-                        </div>
-                      )}
                     </motion.div>
                     
                     <motion.div 
@@ -396,13 +398,15 @@ export default function ProjectsSection() {
                       <div className="mb-7 space-y-3">
                         {projects[activeProject].features?.map((feature, idx) => (
                           <div key={idx} className="flex items-start gap-3.5">
-                            <span className="text-xl font-semibold leading-tight" style={{color: getProjectAccentColor(activeProject)}}>+</span>
+                            <div className="flex items-center justify-center w-5 h-5 rounded-full mt-0.5" style={{backgroundColor: `${getProjectAccentColor(activeProject)}19`}}>
+                              <span className="text-base font-semibold leading-none" style={{color: getProjectAccentColor(activeProject)}}>+</span>
+                            </div>
                             <p className="text-white/80 text-sm md:text-base">{feature}</p>
                           </div>
                         ))}
                       </div>
                     </motion.div>
-                      
+                    
                     <motion.div 
                       className="flex flex-wrap gap-2 mb-7"
                       initial={{ opacity: 0, y: 10 }}

@@ -6,7 +6,7 @@ import { Trophy, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
-// AnimatedBackground removed as per user preference
+import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 export default function AwardSection() {
   const controls = useAnimation();
@@ -24,13 +24,15 @@ export default function AwardSection() {
     });
   }, [controls]);
   return (
-    <section className="relative z-50 py-20 px-6 md:px-12 border-t border-b border-white/10 shadow-inner transition-colors duration-300" style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#0A1220' }}>
-      {/* AnimatedBackground removed as per user preference */}
-      <div id="awards-section" className="absolute inset-0 -z-10 overflow-hidden" style={{ zIndex: -1 }}>
-        {/* Static background styling */}
+    <section className="relative z-10 min-h-screen py-24 px-6 md:px-12 overflow-hidden" style={{ backgroundColor: '#101B2E' }}>
+      {/* Animated background avec les particules */}
+      <GlobalAnimatedBackground sectionId="awards-section" opacity={0.8} />
+      
+      {/* Éléments décoratifs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-r from-[#D9A441]/20 to-[#B74134]/20 blur-3xl"></div>
+        <div className="absolute bottom-1/4 -left-10 w-40 h-40 rounded-full bg-gradient-to-r from-[#0E1A2B]/30 to-[#F7E3C5]/20 blur-3xl"></div>
       </div>
-      {/* Div de séparation pour bloquer le contenu de la section précédente */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-[#64FFDA]/30 z-50"></div>
       <div className="max-w-5xl mx-auto">
         <SectionHeader 
           title="Reconnaissance" 
@@ -50,8 +52,8 @@ export default function AwardSection() {
             className="relative group"
             animate={controls}
           >
-            <div className="absolute inset-0 rounded-xl blur-2xl opacity-40 bg-[#64FFDA]/30 group-hover:opacity-60 transition-opacity duration-500"></div>
-            <div className="relative overflow-hidden rounded-xl">
+            <div className="absolute inset-0 rounded-xl blur-2xl opacity-40 bg-gradient-to-r from-[#D9A441]/30 to-[#B74134]/30 group-hover:opacity-60 transition-opacity duration-500"></div>
+            <div className="relative overflow-hidden rounded-xl border border-[#D9A441]/20 shadow-lg shadow-[#D9A441]/10 group-hover:shadow-xl group-hover:shadow-[#D9A441]/20 transition-all duration-500">
               <Image 
                 src="/diploma.png" 
                 alt="Bourse CPMT" 
@@ -65,8 +67,10 @@ export default function AwardSection() {
           {/* Partie droite - Description */}
           <div className="flex flex-col space-y-6">
             <div className="flex items-center gap-3">
-              <Trophy size={28} className="text-[#64FFDA]" />
-              <h3 className="text-white text-2xl md:text-3xl font-bold">Bourse CPMT</h3>
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center">
+                <Trophy size={24} className="text-white" />
+              </div>
+              <h3 className="text-white text-2xl md:text-3xl font-bold">Bourse <span className="text-[#D9A441]">CPMT</span></h3>
             </div>
             
             <p className="text-white/90 text-lg leading-relaxed">
@@ -76,25 +80,25 @@ export default function AwardSection() {
             
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#64FFDA]"></div>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#D9A441] to-[#B74134]"></div>
                 <p className="text-white/80">Reconnaissance d&apos;excellence académique</p>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#64FFDA]"></div>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#D9A441] to-[#B74134]"></div>
                 <p className="text-white/80">Soutien au développement professionnel</p>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#64FFDA]"></div>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#D9A441] to-[#B74134]"></div>
                 <p className="text-white/80">Promotion des talents dans le numérique</p>
               </div>
             </div>
             
             <Button 
               variant="outline" 
-              className="w-fit mt-4 border-[#64FFDA] text-white hover:bg-[#64FFDA]/20"
+              className="w-fit mt-4 bg-[#0B1221]/80 border-[#D9A441]/40 text-white hover:bg-[#0B1221] hover:border-[#D9A441] hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1 transition-all duration-300"
               onClick={() => window.open('https://www.cpmt.gouv.qc.ca/', '_blank')}
             >
-              <ExternalLink size={16} className="mr-2" />
+              <ExternalLink size={16} className="mr-2 text-[#D9A441]" />
               En savoir plus sur la CPMT
             </Button>
           </div>

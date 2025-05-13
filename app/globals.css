@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Police Brush Script Std de Adobe Typekit */
+.brush-script {
+  font-family: "brush-script-std", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* Animation for blinking cursor */
 @keyframes blink {
   0%, 100% { opacity: 1; }
