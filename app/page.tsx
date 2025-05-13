@@ -3,7 +3,7 @@
 // CSS pour les particules statiques de la section Hero
 import './hero-particles.css';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Import components
 import Header from '@/components/Header';
@@ -14,7 +14,7 @@ import AwardSection from '@/components/AwardSection';
 import ExpertiseSection from '@/components/ExpertiseSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
+// import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);

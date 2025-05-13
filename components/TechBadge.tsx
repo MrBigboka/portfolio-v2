@@ -3,10 +3,9 @@ import Image from 'next/image';
 
 interface TechBadgeProps {
   name: string;
-  className?: string;
 }
 
-const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
+const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
   // Fonction pour obtenir l'URL du logo officiel
   const getLogoUrl = (techName: string): string | null => {
     const techMap: Record<string, string> = {
@@ -75,7 +74,6 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
     
     // Palette de couleurs pour les gradients (couleurs vives et attrayantes)
     const gradients = [
-      'from-[#D9A441] to-[#B74134]', // Or -> Rouge brique
       'from-[#64FFDA] to-[#0055FF]', // Turquoise -> Bleu
       'from-[#FF6B6B] to-[#FF8E53]', // Rouge -> Orange
       'from-[#4158D0] to-[#C850C0]', // Bleu -> Violet
@@ -88,12 +86,12 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
     return gradients[hash % gradients.length];
   };
   
-  const gradientClass = getRandomGradient(name);
+  const gradient = getRandomGradient(name);
   
   // Extraire les couleurs du dégradé pour les utiliser dans l'animation de l'icône
-  const extractGradientColors = (gradientClass: string) => {
-    const fromMatch = gradientClass.match(/from-\[(#[0-9A-F]+)\]/i);
-    const toMatch = gradientClass.match(/to-\[(#[0-9A-F]+)\]/i);
+  const extractGradientColors = (gradient: string) => {
+    const fromMatch = gradient.match(/from-\[(#[0-9A-F]+)\]/i);
+    const toMatch = gradient.match(/to-\[(#[0-9A-F]+)\]/i);
     
     return {
       from: fromMatch ? fromMatch[1] : '#FFFFFF',
@@ -101,19 +99,19 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
     };
   };
   
-  const gradientColors = extractGradientColors(gradientClass);
+  const gradientColors = extractGradientColors(gradient);
   
   // Fonction pour obtenir une couleur de bordure assortie au dégradé
-  const getBorderColor = (gradientClass: string) => {
-    const fromMatch = gradientClass.match(/from-\[(#[0-9A-F]+)\]/i);
+  const getBorderColor = (gradient: string) => {
+    const fromMatch = gradient.match(/from-\[(#[0-9A-F]+)\]/i);
     return fromMatch ? fromMatch[1] : '#FFFFFF';
   };
   
-  const borderColor = getBorderColor(gradientClass);
+  const borderColor = getBorderColor(gradient);
   
   return (
     <div 
-      className={`px-4 py-2 bg-[#0B1221] rounded-full transition-all duration-200 ease-in-out flex items-center gap-2 group ${className}`}
+      className={`relative inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 bg-gradient-to-r ${gradient} hover:shadow-lg hover:scale-105`}
       style={{
         borderWidth: '1px',
         borderStyle: 'solid',
@@ -132,7 +130,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
         // Appliquer le dégradé au texte
         const textElement = target.querySelector('span > span') as HTMLElement;
         if (textElement) {
-          const gradientClass = textElement.getAttribute('data-gradient-class');
+
           textElement.style.color = 'transparent';
           textElement.style.background = `linear-gradient(to right, ${gradientColors.from}, ${gradientColors.to})`;
           textElement.style.webkitBackgroundClip = 'text';
@@ -195,29 +193,23 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
         ) : logoUrl ? (
           <>
             {/* Logo normal */}
-            <img 
-              src={logoUrl} 
-              alt={`${name} logo`} 
-              className="absolute inset-0 w-4 h-4 object-contain transition-opacity duration-200 ease-in-out group-hover:opacity-0"
+            <Image
+              src={logoUrl}
+              alt={`${name} logo`}
+              width={14}
+              height={14}
+              className="w-3.5 h-3.5 mr-1.5"
               style={{ filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : 'none' }}
-              onError={(e) => {
-                // Fallback en cas d'erreur de chargement
-                e.currentTarget.style.display = 'none';
-              }}
             />
             
             {/* Logo avec effet au survol */}
-            <img 
-              src={logoUrl} 
-              alt={`${name} logo`} 
-              className="absolute inset-0 w-4 h-4 object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out"
-              style={{
-                filter: `${name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1) ' : ''}drop-shadow(0 0 2px ${gradientColors.from})`,
-              }}
-              onError={(e) => {
-                // Fallback en cas d'erreur de chargement
-                e.currentTarget.style.display = 'none';
-              }}
+            <Image
+              src={logoUrl}
+              alt={`${name} logo`}
+              width={16}
+              height={16}
+              className="absolute inset-0 w-4 h-4 object-contain transition-opacity duration-200 ease-in-out group-hover:opacity-0"
+              style={{ filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : 'none' }}
             />
           </>
         ) : null}
@@ -233,7 +225,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name, className = '' }) => {
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
           }}
-          data-gradient-class={gradientClass}
+          data-gradient={gradient}
         >
           {name}
         </span>

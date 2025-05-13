@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import TechBadge from './TechBadge';
-import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
+
 
 const ExpertiseSection: React.FC = () => {
   const wheelRef = useRef<HTMLDivElement>(null);
@@ -13,8 +13,7 @@ const ExpertiseSection: React.FC = () => {
 
   return (
     <section className="relative z-10 min-h-screen flex flex-col justify-center py-24 px-6 md:px-12 backdrop-blur-sm transition-colors duration-300" style={{ backgroundColor: '#101B2E' }}>
-      {/* Animated background avec les particules */}
-      <GlobalAnimatedBackground sectionId="expertise-section" opacity={0.8} />
+
       {/* Solid background color */}
       <div className="max-w-6xl w-full mx-auto flex flex-col justify-between h-full">
         {/* Top section with rotating wheel and header */}
