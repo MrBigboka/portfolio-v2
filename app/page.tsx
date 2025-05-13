@@ -14,7 +14,7 @@ import AwardSection from '@/components/AwardSection';
 import ExpertiseSection from '@/components/ExpertiseSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-// import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
+// 
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);

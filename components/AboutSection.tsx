@@ -19,7 +19,7 @@ const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  // const statRef = useRef<HTMLDivElement>(null);
+  //
   const lineRef = useRef<HTMLDivElement>(null);
   
   // Animation GSAP simplifiée pour éviter les problèmes de texte
@@ -166,27 +166,15 @@ const AboutSection: React.FC = () => {
               </div>
               
               <p className="text-lg leading-relaxed">
-                Je m&apos;appelle Miguel Boka, développeur full-stack basé à L&apos;Assomption, au Québec. Je code depuis l&apos;âge de 15 ans, et aujourd&apos;hui je conçois des applications web complètes, du design jusqu&apos;au déploiement. J&apos;aime autant travailler sur le front-end (React, Next.js, TypeScript) que sur le back-end, les bases de données et l&apos;automatisation.
+                Je m&apos;appelle Miguel Boka, développeur full-stack basé à L&apos;Assomption, au Québec. Passionné par le développement web depuis l&apos;âge de 15 ans, je conçois des applications web complètes en utilisant les technologies modernes comme React, Next.js et Node.js.
               </p>
               
-              <p className="text-[#F8EBD7] text-lg mb-6">Je suis un développeur Full Stack passionné par l&apos;innovation et la création d&apos;expériences web exceptionnelles. Avec une solide expertise en JavaScript et ses frameworks modernes, j&apos;aime relever des défis techniques et transformer des idées créatives en solutions concrètes. Mon approche combine rigueur technique et sensibilité UX pour créer des applications web performantes et intuitives.</p>
-              
-              <p className="text-lg leading-relaxed">
-                Avec plus de 20 projets réalisés et 4 ans d&apos;expérience professionnelle, je suis quelqu&apos;un de polyvalent, autonome et créatif. Mon objectif : bâtir des outils qui font une vraie différence pour les entreprises, que ce soit pour optimiser leurs processus ou lancer de nouvelles idées.
+              <p className="text-[#F8EBD7] text-lg mb-6">
+                Avec 4 ans d&apos;expérience professionnelle, j&apos;ai développé une expertise dans la création d&apos;applications web performantes et intuitives. Mon approche combine créativité et rigueur technique pour transformer des idées en solutions concrètes.
               </p>
               
-              <div className="p-5 bg-[#0E1A2B]/70 rounded-lg border border-[#D9A441]/20">
-                <h3 className="text-xl font-semibold text-white mb-3 flex items-center">
-                  <span className="text-2xl mr-2">💡</span> Mes valeurs
-                </h3>
-                <p className="text-[#F8EBD7] text-lg mb-6">Au-delà du code, je m&apos;intéresse particulièrement à l&apos;architecture des applications, à l&apos;optimisation des performances et à l&apos;automatisation des processus. J&apos;accorde une grande importance à la qualité du code et à l&apos;expérience utilisateur, en m&apos;assurant que chaque projet soit non seulement fonctionnel mais aussi agréable à utiliser.</p>
-                <p className="text-white/90 leading-relaxed">
-                  Je combine créativité et compétences techniques pour créer des solutions numériques innovantes qui répondent aux besoins des utilisateurs et des entreprises. Mon approche est guidée par la rigueur, l&apos;innovation et l&apos;engagement à livrer un travail de qualité. Chaque ligne de code que j&apos;écris vise à créer quelque chose d&apos;utile, d&apos;efficace et de durable.
-                </p>
-              </div>
-              
-              <p className="text-lg leading-relaxed font-medium text-[#D9A441]">
-                Je viens du monde du sport d&apos;équipe, principalement le basket, où j&apos;ai appris la discipline et le travail d&apos;équipe. Aujourd&apos;hui, je mets cette même énergie dans mes projets de développement.
+              <p className="text-lg leading-relaxed text-[#F8EBD7]">
+                En dehors du code, je suis un passionné de basket, où j&apos;ai appris l&apos;importance du travail d&apos;équipe et de la discipline - des valeurs que j&apos;applique quotidiennement dans mes projets de développement.
               </p>
             </div>
           </div>

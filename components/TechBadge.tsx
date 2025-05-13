@@ -111,7 +111,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
   
   return (
     <div 
-      className={`relative inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 bg-gradient-to-r ${gradient} hover:shadow-lg hover:scale-105`}
+      className="relative inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 bg-[#131F35] hover:shadow-lg hover:scale-105"
       style={{
         borderWidth: '1px',
         borderStyle: 'solid',
@@ -122,7 +122,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       onMouseEnter={(e) => {
         // Animation du badge au survol
         const target = e.currentTarget;
-        target.style.backgroundColor = '#131F35';
+        target.style.backgroundColor = '#1A2B45';
         target.style.borderColor = `${borderColor}80`; // Ajouter transparence
         target.style.boxShadow = `0 0 10px rgba(${parseInt(borderColor.slice(1, 3), 16)}, ${parseInt(borderColor.slice(3, 5), 16)}, ${parseInt(borderColor.slice(5, 7), 16)}, 0.2)`;
         target.style.transform = 'translateY(-2px)';
@@ -140,7 +140,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       onMouseLeave={(e) => {
         // Réinitialisation du badge
         const target = e.currentTarget;
-        target.style.backgroundColor = '#0B1221';
+        target.style.backgroundColor = '#131F35';
         target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
         target.style.boxShadow = 'none';
         target.style.transform = 'translateY(0)';
@@ -154,7 +154,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       }}
     >
       {/* Container pour l'icône avec animation */}
-      <div className="relative w-4 h-4 transition-all duration-200 ease-in-out overflow-hidden group-hover:scale-110">
+      <div className="relative w-4 h-4 transition-all duration-200 ease-in-out overflow-hidden group-hover:scale-110 mr-2">
         {useLocalImage ? (
           <>
             {/* Image normale */}
@@ -198,7 +198,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
               alt={`${name} logo`}
               width={14}
               height={14}
-              className="w-3.5 h-3.5 mr-1.5"
+              className="w-3.5 h-3.5 mr-2.5"
               style={{ filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : 'none' }}
             />
             
