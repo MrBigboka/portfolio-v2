@@ -91,10 +91,7 @@ const AboutSection: React.FC = () => {
         <Rocket size={32} className="text-[#B74134]/40" />
       </div>
       
-      {/* Ligne verticale centrale */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#D9A441]/30 to-transparent transform -translate-x-1/2 z-10">
-        <div ref={lineRef} className="h-0 w-full bg-gradient-to-b from-transparent via-[#D9A441]/50 to-transparent"></div>
-      </div>
+
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-20">
         {/* Titre déplacé dans la colonne de droite */}
@@ -104,9 +101,9 @@ const AboutSection: React.FC = () => {
           <div className="lg:col-span-5 flex justify-center">
             <div ref={imageRef} className="relative">
               {/* Cercles décoratifs */}
-              <div className="absolute w-[380px] h-[380px] rounded-full border-2 border-[#D9A441]/20 decorative-circle"></div>
-              <div className="absolute w-[340px] h-[340px] rounded-full border-2 border-[#B74134]/30 decorative-circle"></div>
-              <div className="absolute w-[400px] h-[400px] rounded-full border border-white/5 decorative-circle"></div>
+              <div className="absolute -inset-10 w-[380px] h-[380px] rounded-full border-2 border-[#D9A441]/20 decorative-circle"></div>
+              <div className="absolute -inset-8 w-[340px] h-[340px] rounded-full border-2 border-[#B74134]/30 decorative-circle"></div>
+              <div className="absolute -inset-12 w-[400px] h-[400px] rounded-full border border-white/5 decorative-circle"></div>
               
               {/* Image container avec effet de profondeur et animation au survol */}
               <div className="relative w-[300px] h-[300px] rounded-full overflow-hidden border-4 border-[#D9A441]/40 shadow-[0_0_40px_rgba(217,164,65,0.4)] about-profile-image group transition-all duration-300 hover:scale-105 cursor-pointer">

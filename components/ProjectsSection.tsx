@@ -75,7 +75,7 @@ export default function ProjectsSection() {
         'Paiements, inventaire et promotions automatisés via apps Shopify'
       ],
       accentColor: '#94949C', // Gris-noir
-      logo: '/projects/nocaselogo.png'
+      logo: '/projects/nocaseLogo.png'
     },
     {
       id: 'econome',
@@ -462,19 +462,24 @@ export default function ProjectsSection() {
         
         {/* Version mobile: affichage en cards comme dans la capture d'écran */}
         <div className="lg:hidden mt-8">
-          <div className="space-y-16">
+          <div className="space-y-24">
             {projects.map((project) => (
-              <div key={project.id} className="relative mb-12">
-                {/* Card avec image et titre superposé */}
-                <div 
-                  className="relative rounded-2xl overflow-hidden border-2 shadow-xl"
-                  style={{
-                    borderColor: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981',
-                    boxShadow: `0 10px 30px -5px ${project.id === 'coresync' ? 'rgba(157, 113, 232, 0.3)' : project.id === 'nocasemtl' ? 'rgba(148, 148, 156, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
-                  }}
-                >
-                  {/* Image du projet */}
-                  <div className="aspect-[16/9] w-full relative">
+              <motion.div 
+                key={project.id} 
+                className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] bg-[#0E1A2B] flex flex-col shadow-2xl border-2"
+                style={{
+                  borderColor: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981',
+                  boxShadow: `0 10px 30px -5px ${project.id === 'coresync' ? 'rgba(157, 113, 232, 0.3)' : project.id === 'nocasemtl' ? 'rgba(148, 148, 156, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {/* Image du projet */}
+                {/* Thumbnail */}
+                <div className="h-[400px] relative overflow-hidden bg-[#0E1A2B]">
+                  <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -483,98 +488,59 @@ export default function ProjectsSection() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
-                  
-                  {/* Overlay avec titre et flèche */}
-                  <div 
-                    className="absolute inset-x-0 bottom-0 p-4 flex justify-between items-center"
-                    style={{
-                      background: `linear-gradient(to top, rgba(15, 23, 41, 0.95), rgba(15, 23, 41, 0.7) 60%, rgba(15, 23, 41, 0))`
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
+                </div>
+
+                {/* Contenu */}
+                <div className="flex-1 p-6 bg-[#0E1A2B]"
+                >
+                  {/* En-tête avec logo et titre */}
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-start gap-4">
                       {project.logo && (
-                        <div className="w-10 h-10 rounded-full bg-black/30 p-1 flex items-center justify-center relative">
+                        <div className="w-12 h-12 rounded-full bg-black/30 p-2 flex items-center justify-center relative flex-shrink-0">
                           <Image 
                             src={project.logo} 
                             alt={`${project.title} logo`}
                             className="w-full h-full object-contain" 
-                            width={40}
-                            height={40}
+                            width={48}
+                            height={48}
                           />
                         </div>
                       )}
-                      <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                        <p 
+                          className="text-base leading-relaxed"
+                          style={{ color: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1' }}
+                        >
+                          {project.shortDesc}
+                        </p>
+                      </div>
                     </div>
                     <ArrowRight 
-                      className="w-5 h-5"
+                      className="w-6 h-6 flex-shrink-0"
                       style={{ color: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981' }}
                     />
                   </div>
-                </div>
-                
-                {/* Description du projet - Style adapté de MotionComponent et Home */}
-                <motion.div 
-                  className="mt-4 bg-white/5 dark:bg-[#0a192f]/20 backdrop-blur-sm p-6 rounded-lg border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  data-component-name="Home"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    {project.id === 'coresync' ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#9D71E8]"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    ) : project.id === 'nocasemtl' ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#94949C]"><path d="M20.91 8.84 8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"/><path d="m3.09 8.84 12.35-6.61a1.93 1.93 0 0 1 1.81 0l3.65 1.9a2.12 2.12 0 0 1 .1 3.69L8.73 14.75a2 2 0 0 1-1.94 0L3 12.51a2.12 2.12 0 0 1 .09-3.67Z"/><line x1="12" x2="12" y1="22" y2="13"/><path d="M20 13.5v3.37a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13.5"/></svg>
-                    ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#10B981]"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                    )}
-                    <h3 className="text-white text-xl font-semibold">{project.title}</h3>
-                  </div>
-                  
-                  <p className="text-white/80 mb-6">
-                    {project.shortDesc}
-                  </p>
-                  
-                  {/* Liste des fonctionnalités avec puces */}
-                  <div className="space-y-3 mb-6">
-                    {project.features?.map((feature, idx) => (
-                      <motion.div 
-                        key={idx} 
-                        className="flex items-start gap-2.5"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: idx * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <span 
-                          className="text-lg font-semibold leading-tight mt-0.5"
-                          style={{color: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981'}}
-                        >+</span>
-                        <p className="text-white/70 text-sm">{feature}</p>
-                      </motion.div>
-                    ))}
-                  </div>
                   
                   {/* Technologies utilisées */}
-                  <div className="mt-6 pt-4 border-t border-white/10">
-                    <h4 className="text-xs font-medium mb-3 text-white/60 tracking-wider">TECHNOLOGIES UTILISÉES</h4>
+                  <div className="pt-4 border-t border-white/10">
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, idx) => (
+                      {project.tags.map((tag, index) => (
                         <motion.div
                           key={tag}
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: idx * 0.05 }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
                           viewport={{ once: true }}
                         >
-                          <TechBadge key={tag} name={tag} />
+                          <TechBadge key={`mobile-${project.id}-${tag}`} name={tag} />
                         </motion.div>
                       ))}
                     </div>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
