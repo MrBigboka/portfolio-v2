@@ -50,7 +50,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className={`uppercase tracking-widest text-sm font-medium mb-3 text-[${colors.orDoux}]`}
+          className="uppercase tracking-widest text-sm font-medium mb-3 text-white/80"
           data-component-name="MotionComponent"
         >
           {subtitle}
