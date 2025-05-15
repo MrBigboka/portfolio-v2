@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, ExternalLink, Calendar, Phone, MapPin, Copy } from 'lucide-react';
+import { Mail, Linkedin, Github, ExternalLink, Calendar, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SectionHeader from '@/components/ui/SectionHeader';
 import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 import Image from 'next/image';
-import Toast, { useToast } from '@/components/ui/Toast';
+import { useToast } from '@/components/ui/Toast';
 
 export default function ContactSection() {
   const { showToast, toastComponent } = useToast();
