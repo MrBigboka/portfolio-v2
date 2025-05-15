@@ -163,7 +163,7 @@ const AboutSection: React.FC = () => {
               </div>
               
               <p className="text-lg leading-relaxed">
-                Je m&apos;appelle Miguel Boka, développeur full-stack basé à L&apos;Assomption, au Québec. Passionné par le développement web depuis l&apos;âge de 15 ans, je conçois des applications web complètes en utilisant les technologies modernes comme React, Next.js et Node.js.
+                Je m&apos;appelle Miguel Boka, développeur full-stack basé au Québec. Passionné par le développement web depuis l&apos;âge de 15 ans, je conçois des applications web complètes en utilisant les technologies modernes comme React, Next.js et Node.js.
               </p>
               
               <p className="text-[#F8EBD7] text-lg mb-6">

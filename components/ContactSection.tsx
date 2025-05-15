@@ -30,7 +30,7 @@ export default function ContactSection() {
   };
   
   return (
-    <section className="relative z-10 min-h-screen py-24 px-6 md:px-12 overflow-hidden" style={{ backgroundColor: '#101B2E' }}>
+    <section className="relative z-10 min-h-screen pt-32 pb-16 px-6 md:px-12 overflow-hidden" style={{ backgroundColor: '#101B2E' }}>
       {/* Animated background avec les particules */}
       <GlobalAnimatedBackground sectionId="contact-section" opacity={0.8} />
       

@@ -9,7 +9,7 @@ import TechBadge from './TechBadge';
 const ExpertiseSection: React.FC = () => {
   const wheelRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 1440]); // Rotation 4x plus rapide
 
   return (
     <section className="relative z-10 min-h-screen flex flex-col justify-center py-24 px-6 md:px-12 backdrop-blur-sm transition-colors duration-300" style={{ backgroundColor: '#101B2E' }}>

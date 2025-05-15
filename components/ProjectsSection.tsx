@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ExternalLink, Github } from 'lucide-react';
+import { ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -42,7 +42,7 @@ export default function ProjectsSection() {
       image: '/projects/coresync.png',
       hoverImage: '/projects/coresync3.png',
       tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'FIRESTORE', 'N8N', 'VERCEL'],
-      demoUrl: '#', // Replace with actual URL or remove if not applicable
+      demoUrl: 'https://coresync.vercel.app', // URL du site CoreSync
       githubUrl: '#', // Replace with actual URL or remove if not applicable
       bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
       shortDesc: 'Plateforme SaaS IA centralisant documentation et processus pour grandes équipes.',
@@ -204,6 +204,12 @@ export default function ProjectsSection() {
     };
   }, []);
 
+  const goToProjectURL = (url: string | undefined) => {
+    if (url && url !== '#') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <section 
       id="projects" 
@@ -238,7 +244,7 @@ export default function ProjectsSection() {
                   style={{ position: 'relative', zIndex: 200 }}
                 >
                   <div 
-                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-[200]`}
+                    className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-[200] ${project.demoUrl && project.demoUrl !== '#' ? 'cursor-pointer' : ''}`}
                     style={{
                        backgroundColor: '#0E1A2B', /* Fond opaque bleu nuit conforme à la palette */
                        position: 'relative',
@@ -251,6 +257,7 @@ export default function ProjectsSection() {
                          : `0 4px 15px -1px ${project.id === 'coresync' ? '#dea9ff30' : project.id === 'nocasemtl' ? '#d9d9df30' : '#a5ebd130'}`,
                        maxHeight: '600px' /* Hauteur maximale fixe */
                     }}
+                    onClick={() => project.demoUrl && project.demoUrl !== '#' ? goToProjectURL(project.demoUrl) : null}
                   >
                     {/* Multiple solid background layers to ensure complete opacity */}
                     <div className="absolute inset-0 bg-black z-[101]"></div>
@@ -427,20 +434,7 @@ export default function ProjectsSection() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.1, delay: 0.06 }}
                     >
-                      {(projects[activeProject]?.demoUrl && projects[activeProject]?.demoUrl !== '#') && (
-                        <Button 
-                          style={{ 
-                            backgroundColor: getProjectAccentColor(activeProject), 
-                            boxShadow: `0 4px 14px -2px ${getProjectAccentColor(activeProject)}50`
-                          }} 
-                          className={`hover:opacity-90 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300`}
-                          asChild
-                        >
-                          <Link href={projects[activeProject].demoUrl!} target="_blank" rel="noopener noreferrer">
-                            Voir le Projet <ExternalLink className="w-4 h-4 ml-2.5" />
-                          </Link>
-                        </Button>
-                      )}
+                      {/* Bouton "Voir le Projet" supprimé - les cartes sont maintenant cliquables */}
                       {(projects[activeProject]?.githubUrl && projects[activeProject]?.githubUrl !== '#') && (
                         <Button 
                           variant="outline" 
@@ -466,7 +460,7 @@ export default function ProjectsSection() {
             {projects.map((project) => (
               <motion.div 
                 key={project.id} 
-                className="rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] bg-[#0E1A2B] flex flex-col shadow-2xl border-2"
+                className={`rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] bg-[#0E1A2B] flex flex-col shadow-2xl border-2 ${project.demoUrl && project.demoUrl !== '#' ? 'cursor-pointer' : ''}`}
                 style={{
                   borderColor: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981',
                   boxShadow: `0 10px 30px -5px ${project.id === 'coresync' ? 'rgba(157, 113, 232, 0.3)' : project.id === 'nocasemtl' ? 'rgba(148, 148, 156, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
@@ -475,6 +469,7 @@ export default function ProjectsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
+                onClick={() => project.demoUrl && project.demoUrl !== '#' ? goToProjectURL(project.demoUrl) : null}
               >
                 {/* Image du projet */}
                 {/* Thumbnail */}

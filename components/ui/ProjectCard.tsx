@@ -2,10 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 
 // Type pour les projets
 export interface Project {
@@ -16,6 +14,7 @@ export interface Project {
   tags: string[];
   link?: string;
   bgColor?: string;
+  logo?: string;
 }
 
 interface ProjectCardProps {
@@ -49,7 +48,20 @@ export default function ProjectCard({ project, index, isLarge = false }: Project
       <div className="p-8 md:p-10 flex flex-col h-full">
         {/* En-tête du projet */}
         <div className="flex justify-between items-start mb-6">
-          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+          <div className="flex items-center gap-3">
+            {project.logo && (
+              <div className="w-10 h-10 rounded-full bg-black/30 p-1 flex items-center justify-center relative">
+                <Image 
+                  src={project.logo} 
+                  alt={`${project.title} logo`}
+                  className="w-full h-full object-contain" 
+                  width={40}
+                  height={40}
+                />
+              </div>
+            )}
+            <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+          </div>
           <motion.div
             initial={{ opacity: 0.6 }}
             animate={{ opacity: isHovered ? 1 : 0.6 }}
@@ -87,16 +99,7 @@ export default function ProjectCard({ project, index, isLarge = false }: Project
               </span>
             ))}
           </div>
-          {project.link && (
-            <Link href={project.link} target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="outline"
-                className="text-white border-white/20 hover:bg-white/10 hover:text-white flex items-center gap-2"
-              >
-                Voir le projet <ExternalLink size={16} />
-              </Button>
-            </Link>
-          )}
+          {/* Bouton de lien supprimé */}
         </div>
       </div>
     </motion.div>

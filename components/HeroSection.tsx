@@ -19,6 +19,13 @@ function TechBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
 }
 
 const HeroSection: React.FC = () => {
+  // Fonction pour faire défiler vers une section spécifique avec un défilement doux
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 pt-16 md:pt-20" style={{ backgroundColor: '#0E1A2B' }}>
       {/* Animated background using the new GlobalAnimatedBackground component */}
@@ -72,7 +79,7 @@ const HeroSection: React.FC = () => {
               transition={{ delay: 0.4 }}
             >
               <TypewriterEffect 
-                text="Je crée des solutions intelligentes et performantes qui transforment les idées en expériences numériques exceptionnelles."
+                text="Je suis un passionné de la techno qui transforme les idées en projets concrets. J'aime créer des outils simples, efficaces et intelligents qui font vraiment une différence."
                 speed={30}
                 className="inline-block"
               />
@@ -103,6 +110,7 @@ const HeroSection: React.FC = () => {
           >
             <Button 
               className="bg-[#B74134] text-[#F7E3C5] hover:bg-[#B74134]/90 hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base font-semibold tracking-wide shadow-xl flex items-center gap-2 border border-[#B74134]/20 transition-all duration-300"
+              onClick={() => scrollToSection('projects-section')}
             >
               <FolderOpen className="h-4 w-4 sm:h-5 sm:w-5" /> VOIR MES PROJETS
             </Button>
@@ -110,6 +118,7 @@ const HeroSection: React.FC = () => {
             <Button 
               variant="outline" 
               className="bg-[#101B2E] dark:bg-[#F7E3C5] text-[#F7E3C5] dark:text-[#101B2E] hover:bg-[#101B2E]/90 dark:hover:bg-[#F7E3C5]/90 hover:scale-105 border-[#101B2E] dark:border-[#F7E3C5] rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base font-semibold tracking-wide shadow-xl flex items-center gap-2 transition-all duration-300"
+              onClick={() => scrollToSection('contact-section')}
             >
               <Mail className="h-4 w-4 sm:h-5 sm:w-5" /> CONTACT
             </Button>

@@ -54,12 +54,13 @@ const Header: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Link 
-            href="/cv.pdf" 
+            href="/cv/cv 2025.pdf" 
             target="_blank"
             className="text-[#0a192f] dark:text-[#f5f0e8] hover:text-[#d42d1d] dark:hover:text-[#d42d1d] font-medium transition-colors duration-300 flex items-center gap-2"
+            aria-label="Télécharger mon CV 2025"
           >
             <FileText size={18} />
-            <span className="font-medium tracking-wide hidden md:inline">CV</span>
+            <span className="font-medium tracking-wide hidden md:inline">CV 2025</span>
           </Link>
           <Link 
             href="https://linkedin.com/in/miguel-boka" 
