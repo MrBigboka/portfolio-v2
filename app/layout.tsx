@@ -36,6 +36,10 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Miguel - Développeur IA & Automatisation",
   description: "Création de solutions intelligentes et évolutives avec le code et l'IA.",
+  icons: {
+    icon: "/logo-miguel-transp.png",
+    apple: "/logo-miguel-transp.png",
+  },
 };
 
 export default function RootLayout({

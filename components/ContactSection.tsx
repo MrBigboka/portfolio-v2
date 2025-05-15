@@ -133,7 +133,7 @@ export default function ContactSection() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                href="https://calendly.com/miguelboka" 
+                href="https://calendly.com/bokamiguel" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
