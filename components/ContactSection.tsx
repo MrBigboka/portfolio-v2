@@ -111,18 +111,18 @@ export default function ContactSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 href="mailto:contact@miguelboka.dev" 
-                className="group flex items-center gap-4 p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
+                className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
-                  <Mail size={24} className="text-white group-hover:scale-110 transition-all duration-300" />
+                <div className="min-w-[48px] min-h-[48px] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
+                  <Mail size={20} className="text-white group-hover:scale-110 transition-all duration-300" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-[#D9A441] text-sm font-medium">Email</p>
-                  <p className="text-white font-medium">contact@miguelboka.dev</p>
+                  <p className="text-white font-medium truncate">contact@miguelboka.dev</p>
                 </div>
                 <button 
                   onClick={(e) => { e.preventDefault(); handleCopyEmail(); }}
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-all duration-200"
+                  className="min-w-[32px] min-h-[32px] w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-all duration-200"
                   title="Copier l'email"
                 >
                   <Copy size={14} className="text-white/70" />
@@ -136,16 +136,16 @@ export default function ContactSection() {
                 href="https://calendly.com/miguelboka" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
+                className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
-                  <Calendar size={24} className="text-white group-hover:scale-110 transition-all duration-300" />
+                <div className="min-w-[48px] min-h-[48px] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
+                  <Calendar size={20} className="text-white group-hover:scale-110 transition-all duration-300" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-[#D9A441] text-sm font-medium">Calendrier</p>
                   <div className="flex items-center gap-1">
-                    <p className="text-white font-medium">Prendre rendez-vous</p>
-                    <ExternalLink size={14} className="text-white/60" />
+                    <p className="text-white font-medium truncate">Prendre rendez-vous</p>
+                    <ExternalLink size={14} className="text-white/60 flex-shrink-0" />
                   </div>
                 </div>
               </motion.a>
@@ -162,16 +162,16 @@ export default function ContactSection() {
                 href="https://linkedin.com/in/miguelboka" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
+                className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
-                  <Linkedin size={24} className="text-white group-hover:scale-110 transition-all duration-300" />
+                <div className="min-w-[48px] min-h-[48px] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
+                  <Linkedin size={20} className="text-white group-hover:scale-110 transition-all duration-300" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-[#D9A441] text-sm font-medium">LinkedIn</p>
                   <div className="flex items-center gap-1">
-                    <p className="text-white font-medium">linkedin.com/in/miguelboka</p>
-                    <ExternalLink size={14} className="text-white/60" />
+                    <p className="text-white font-medium truncate">linkedin.com/in/miguelboka</p>
+                    <ExternalLink size={14} className="text-white/60 flex-shrink-0" />
                   </div>
                 </div>
               </a>
@@ -180,16 +180,16 @@ export default function ContactSection() {
                 href="https://github.com/MrBigboka" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
+                className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-[#0B1221]/80 hover:bg-[#0B1221] backdrop-blur-sm rounded-xl border border-[#D9A441]/20 hover:border-[#D9A441]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1"
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
-                  <Github size={24} className="text-white group-hover:scale-110 transition-all duration-300" />
+                <div className="min-w-[48px] min-h-[48px] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center group-hover:from-[#D9A441]/40 group-hover:to-[#B74134]/40 transition-all duration-300">
+                  <Github size={20} className="text-white group-hover:scale-110 transition-all duration-300" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-[#D9A441] text-sm font-medium">GitHub</p>
                   <div className="flex items-center gap-1">
-                    <p className="text-white font-medium">github.com/MrBigboka</p>
-                    <ExternalLink size={14} className="text-white/60" />
+                    <p className="text-white font-medium truncate">github.com/MrBigboka</p>
+                    <ExternalLink size={14} className="text-white/60 flex-shrink-0" />
                   </div>
                 </div>
               </a>
