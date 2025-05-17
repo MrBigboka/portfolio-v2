@@ -3,6 +3,7 @@ import { Inter, Lexend, Fira_Code, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,10 +37,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Miguel - Développeur IA & Automatisation",
   description: "Création de solutions intelligentes et évolutives avec le code et l'IA.",
-  icons: {
-    icon: "/logo-miguel-transp.png",
-    apple: "/logo-miguel-transp.png",
-  },
+  icons: [
+    { rel: 'icon', url: '/logo-miguel-transp.png' },
+    { rel: 'apple-touch-icon', url: '/logo-miguel-transp.png' },
+    { rel: 'shortcut icon', url: '/logo-miguel-transp.png' }
+  ],
 };
 
 export default function RootLayout({
@@ -63,6 +65,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
