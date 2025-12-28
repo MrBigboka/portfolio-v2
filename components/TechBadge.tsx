@@ -22,7 +22,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       'FRAMER': 'https://cdn.simpleicons.org/framer/0055FF',
       'FRAMER MOTION': 'https://cdn.simpleicons.org/framer/0055FF',
       'SHOPIFY': 'https://cdn.simpleicons.org/shopify/7AB55C',
-      'N8N': 'https://cdn.simpleicons.org/n8n/FF6D00',
+      'N8N': 'https://cdn.simpleicons.org/n8n/FFFFFF',
       'MAKE.COM': 'https://cdn.simpleicons.org/integromat/2F8CBB',
       'VERCEL': 'https://cdn.simpleicons.org/vercel/000000',
       'SHADCN': 'https://cdn.simpleicons.org/shadcnui/000000',
@@ -45,6 +45,11 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       'HTML': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
       'CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
       'JAVASCRIPT': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+      'OPENAI': 'https://cdn.simpleicons.org/openai/FFFFFF',
+      'TWILIO': 'https://cdn.simpleicons.org/twilio/F22F46',
+      'STRIPE': 'https://cdn.simpleicons.org/stripe/635BFF',
+      'FIREBASE': 'https://cdn.simpleicons.org/firebase/FFCA28',
+      'LIQUID': 'https://cdn.simpleicons.org/liquid/7AB55C',
     };
 
     // Recherche exacte
@@ -111,7 +116,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
   
   return (
     <div 
-      className="relative inline-flex items-center gap-3 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 bg-[#131F35] hover:shadow-lg hover:scale-105"
+      className="relative inline-flex items-center gap-3 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 bg-[#1a1a1a] hover:shadow-lg hover:scale-105"
       style={{
         borderWidth: '1px',
         borderStyle: 'solid',
@@ -122,7 +127,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       onMouseEnter={(e) => {
         // Animation du badge au survol
         const target = e.currentTarget;
-        target.style.backgroundColor = '#1A2B45';
+        target.style.backgroundColor = '#252525';
         target.style.borderColor = `${borderColor}80`; // Ajouter transparence
         target.style.boxShadow = `0 0 10px rgba(${parseInt(borderColor.slice(1, 3), 16)}, ${parseInt(borderColor.slice(3, 5), 16)}, ${parseInt(borderColor.slice(5, 7), 16)}, 0.2)`;
         target.style.transform = 'translateY(-2px)';
@@ -140,7 +145,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       onMouseLeave={(e) => {
         // Réinitialisation du badge
         const target = e.currentTarget;
-        target.style.backgroundColor = '#131F35';
+        target.style.backgroundColor = '#1a1a1a';
         target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
         target.style.boxShadow = 'none';
         target.style.transform = 'translateY(0)';

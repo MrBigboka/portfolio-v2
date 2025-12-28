@@ -8,9 +8,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import SectionHeader from '@/components/ui/SectionHeader';
 import TechBadge from './TechBadge';
-import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -36,66 +34,117 @@ interface ExtendedProject {
 export default function ProjectsSection() {
   const projects: ExtendedProject[] = [
     {
+      id: 'sidequest',
+      title: 'SideQuest',
+      description: 'SideQuest rend l\'organisation de sorties simple et rapide. Découvre des événements par catégories et région, sauvegarde tes lieux favoris, et reçois des recommandations "For You" basées sur tes goûts. Moins de scroll, moins de chaos, plus de plans concrets.',
+      image: '/projects/sidequest-mockup.png',
+      hoverImage: '/projects/sidequest-mockup.png',
+      tags: ['REACT NATIVE', 'TYPESCRIPT', 'SUPABASE'],
+      demoUrl: 'https://testflight.apple.com/join/wPWFm761',
+      githubUrl: '#',
+      bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
+      shortDesc: 'L\'app qui rend l\'organisation de sorties simple et rapide.',
+      features: [
+        'Problème: Trouver des plans et organiser des sorties = chaos',
+        'Solution: Événements par catégorie, favoris, recommandations "For You"',
+        'Preuve: App iOS en beta publique TestFlight'
+      ],
+      accentColor: '#8B5CF6',
+      logo: '/projects/sidequest-logo.png'
+    },
+    {
+      id: 'tracksy',
+      title: 'Tracksy',
+      description: 'Les freelances perdent du temps à tracker leurs heures et générer des factures manuellement. Tracksy automatise tout: suivi du temps, génération de factures, comptabilité intégrée.',
+      image: '/projects/tracksy-landing.png',
+      hoverImage: '/projects/tracksy-landing.png',
+      tags: ['NEXT.JS', 'TYPESCRIPT', 'PRISMA', 'POSTGRESQL'],
+      demoUrl: 'https://tracksy.me',
+      githubUrl: '#',
+      bgColor: 'bg-gradient-to-br from-[#0a1f0a]/90 via-[#0d1a0d]/80 to-[#0a1f0a]/70',
+      shortDesc: 'Suivi du temps et facturation automatique pour freelances.',
+      features: [
+        'Problème: Perte de temps sur le tracking et la facturation manuelle',
+        'Solution: Génération automatique de factures depuis le suivi du temps',
+        'Preuve: Produit complet en production, de l\'idée au déploiement'
+      ],
+      accentColor: '#d5ff3f',
+      logo: '/projects/tracksy_icon.png'
+    },
+    {
+      id: 'memocall',
+      title: 'MemoCall',
+      description: 'Assistant IA pour PME qui transforme les appels téléphoniques en actions concrètes. Transcription, résumé, extraction des besoins client, génération de to-do et pré-remplissage de documents (bon de commande, formulaires) — puis validation et export. L\'IA qui écoute, comprend et agit.',
+      image: '/projects/Memocall-landing.png',
+      hoverImage: '/projects/Memocall-landing.png',
+      tags: ['NEXT.JS', 'TYPESCRIPT', 'OPENAI', 'SUPABASE', 'TWILIO'],
+      demoUrl: 'https://memocall.ai',
+      githubUrl: '#',
+      bgColor: 'bg-gradient-to-br from-[#1a1a1a]/90 via-[#0d0d0d]/80 to-[#1a1a1a]/70',
+      shortDesc: 'Assistant IA qui transforme vos appels en actions concrètes.',
+      features: [
+        'Problème: Perte d\'info et saisie manuelle coûteuse après les appels',
+        'Solution: Transcription → résumé → to-do → pré-remplissage docs → export',
+        'Preuve: Pipeline IA complet pour métiers téléphone-intensifs'
+      ],
+      accentColor: '#FFFFFF',
+      logo: '/projects/memocall_icon.png'
+    },
+    {
       id: 'coresync',
       title: 'CoreSync',
-      description: 'Un SaaS IA qui centralise documentation, processus internes et outils de communication pour grandes équipes. Améliore productivité et réduit pertes de temps grâce à son agent virtuel intelligent.',
+      description: 'Les grandes équipes perdent du temps à chercher documentation et processus internes. CoreSync centralise tout avec un agent IA pour interroger la base de connaissances.',
       image: '/projects/coresync.png',
       hoverImage: '/projects/coresync3.png',
-      tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'FRAMER MOTION', 'SHADCN UI', 'FIRESTORE', 'N8N', 'VERCEL'],
-      demoUrl: 'https://coresync.vercel.app', // URL du site CoreSync
-      githubUrl: '#', // Replace with actual URL or remove if not applicable
+      tags: ['NEXT.JS', 'FIRESTORE', 'N8N', 'OPENAI'],
+      demoUrl: 'https://coresync.vercel.app',
+      githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
-      shortDesc: 'Plateforme SaaS IA centralisant documentation et processus pour grandes équipes.',
+      shortDesc: 'Plateforme SaaS avec agent IA pour centraliser vos processus.',
       features: [
-        'Onboarding guidé avec animations et agent AI intégré',
-        'Modules personnalisables : formation, RH, sécurité, documentation',
-        'Recherche intelligente via LLM sur base de connaissances internes',
-        'Automatisations possibles via Make (workflow internes)',
-        'Interface moderne responsive pensée pour desktop et mobile'
+        'Problème: Temps perdu à chercher documentation et processus',
+        'Solution: Agent IA pour interroger la base de connaissances interne',
+        'Preuve: Architecture modulaire complexe avec LLM intégré'
       ],
-      accentColor: '#9D71E8', // Mauve
+      accentColor: '#9D71E8',
       logo: '/projects/coresyncLogo.png'
     },
     {
       id: 'nocasemtl',
       title: 'NoCaseMTL',
-      description: 'Boutique e-commerce streetwear Y2K sur Shopify. Esthétique rétro urbaine, visuels forts et navigation mobile-first optimisée via sections personnalisables.',
+      description: 'Plateforme e-commerce pour la vente de coques de téléphone personnalisées à Montréal.',
       image: '/projects/nocase1.png',
       hoverImage: '/projects/nocase2.png',
-      tags: ['SHOPIFY', 'TAILWIND CSS'],
+      tags: ['SHOPIFY', 'LIQUID', 'JAVASCRIPT'],
       demoUrl: '#',
       githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
-      shortDesc: 'E-commerce streetwear Y2K au branding affirmé et navigation mobile-first.',
+      bgColor: 'bg-gradient-to-br from-[#1e1e1e]/90 via-[#0d0d0d]/80 to-[#1e1e1e]/70',
+      shortDesc: 'E-commerce de coques personnalisées.',
       features: [
-        'Boutique Shopify avec gestion complète des collections',
-        'Branding rétro-futuriste cohérent avec la mode Y2K',
-        'Lookbook animé, filtres par tailles/styles, fiches produits soignées',
-        'Version mobile optimisée pour l\'expérience utilisateur',
-        'Paiements, inventaire et promotions automatisés via apps Shopify'
+        'Problème: Manque de personnalisation pour coques de téléphone',
+        'Solution: Plateforme e-commerce avec personnalisation en temps réel',
+        'Preuve: Site complet avec paiement Stripe intégré'
       ],
-      accentColor: '#94949C', // Gris-noir
+      accentColor: '#94949C',
       logo: '/projects/nocaseLogo.png'
     },
     {
       id: 'econome',
       title: 'EconoME',
-      description: 'Application IA de gestion financière personnelle. Connecte revenus et dépenses pour générer insights personnalisés et suggestions concrètes via visualisations claires.',
+      description: 'Application de gestion budgétaire personnelle pour suivre ses dépenses et économiser.',
       image: '/projects/economeDemo.jpg',
       hoverImage: '/projects/economeDemo.jpg',
-      tags: ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS', 'FIRESTORE', 'SUPABASE', 'VERCEL'],
+      tags: ['REACT', 'TYPESCRIPT', 'FIREBASE'],
       demoUrl: '#',
       githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#1A3E2A]/80 via-black/60 to-[#1A3E2A]/30',
-      shortDesc: 'Application IA de gestion financière avec insights personnalisés et graphiques clairs.',
+      bgColor: 'bg-gradient-to-br from-[#1a3a1a]/90 via-[#0d1a0d]/80 to-[#1a3a1a]/70',
+      shortDesc: 'Gestion budgétaire personnelle.',
       features: [
-        'Dashboard dynamique avec visualisation des dépenses & revenus',
-        'Génération d\'insights IA basés sur les transactions',
-        'Conseils personnalisés (ex. : "Tu dépenses 22 % de plus en resto que le mois passé")',
-        'Mode simulation pour estimer les économies potentielles',
-        'Interface simple, épurée, motivante'
+        'Problème: Difficulté à suivre ses dépenses quotidiennes',
+        'Solution: App intuitive avec catégorisation automatique',
+        'Preuve: Interface simple et efficace pour budget personnel'
       ],
-      accentColor: '#10B981', // Green
+      accentColor: '#4CAF50',
       logo: '/projects/economeLogo.png'
     }
   ];
@@ -111,98 +160,37 @@ export default function ProjectsSection() {
   };
 
   useEffect(() => {
-    if (!sectionRef.current || !projectsContainerRef.current || !detailsRef.current) return;
+    // Delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      if (!sectionRef.current) return;
 
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill existing triggers
-
-    // Créer un point d'arrêt pour le défilement à la fin de la section
-    const pinExitTrigger = document.createElement('div');
-    pinExitTrigger.style.height = '1px';
-    pinExitTrigger.style.width = '100%';
-    pinExitTrigger.style.position = 'absolute';
-    pinExitTrigger.style.bottom = '0';
-    pinExitTrigger.style.left = '0';
-    pinExitTrigger.style.zIndex = '-1';
-    
-    // Stockage de la référence pour le nettoyage
-    const sectionRefCurrent = sectionRef.current;
-    sectionRefCurrent.appendChild(pinExitTrigger);
-    
-    // Pin the right column with a defined end point
-    ScrollTrigger.create({
-      trigger: sectionRefCurrent,
-      start: "top top",
-      end: "bottom center", // S'arrête exactement quand la section suivante apparaît
-      pin: detailsRef.current,
-      pinSpacing: false,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-    });
-
-    // Create ScrollTriggers for each project card to update activeProject
-    projectCardRefs.current.forEach((cardRef, index) => {
-      if (!cardRef) return;
-      ScrollTrigger.create({
-        trigger: cardRef,
-        start: "top center+=10%", // A bit below center when entering
-        end: "bottom center-=10%", // A bit above center when exiting
-        onEnter: () => setActiveProject(index),
-        onEnterBack: () => setActiveProject(index), // When scrolling back up
-        toggleActions: "play none none reverse",
-        invalidateOnRefresh: true,
-      });
-    });
-    
-    // Ensure ScrollTrigger refreshes on dynamic content changes
-    ScrollTrigger.refresh();
-
-    return () => {
-      if (sectionRefCurrent && pinExitTrigger.parentNode === sectionRefCurrent) {
-        sectionRefCurrent.removeChild(pinExitTrigger);
-      }
+      // Kill existing triggers to avoid conflicts
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, [projects.length]); // Rerun if number of projects changes
 
-  useEffect(() => {
-    if (!detailsRef.current) return;
-    const elementsToAnimate = detailsRef.current.querySelectorAll('h3, p, div > span, ul > div, button'); // Target specific elements
-    gsap.fromTo(
-      elementsToAnimate,
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: 'power3.out', clearProps: 'all' }
-    );
-  }, [activeProject]); // Animate when activeProject changes
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && projectsContainerRef.current && detailsRef.current) {
-      // Animation pour l'entrée initiale de la section
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: projectsContainerRef.current,
-          start: 'top 80%', // Start when the top of the projects section hits 80% from the top of the viewport
-          end: 'bottom 20%', // End when the bottom of the projects section hits 20% from the top of the viewport
-          toggleActions: 'play none none reverse'
-        }
+      // Create ScrollTriggers for each project card to update activeProject
+      projectCardRefs.current.forEach((cardRef, index) => {
+        if (!cardRef) return;
+        ScrollTrigger.create({
+          trigger: cardRef,
+          start: "top 60%",
+          end: "bottom 40%",
+          onToggle: (self) => {
+            if (self.isActive) {
+              setActiveProject(index);
+            }
+          },
+          invalidateOnRefresh: true,
+        });
       });
       
-      // Create a separate ScrollTrigger for pinning the details section
-      ScrollTrigger.create({
-        trigger: detailsRef.current,
-        start: "top 20%",  // Commence quand le haut de la section atteint 20% depuis le haut du viewport
-        endTrigger: projectsContainerRef.current,
-        end: 'bottom 80%', // End pinning when the bottom of the projects section hits 80% from the top of the viewport
-        pin: true,
-        pinSpacing: false,
-        markers: false // Set to true for debugging
-      });
-    }
+      ScrollTrigger.refresh();
+    }, 100);
 
-    // Clean up
     return () => {
+      clearTimeout(timer);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [projects.length]);
 
   const goToProjectURL = (url: string | undefined) => {
     if (url && url !== '#') {
@@ -214,23 +202,10 @@ export default function ProjectsSection() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="relative py-16 md:py-20 pb-32 md:pb-40 text-white overflow-hidden min-h-screen" 
-      style={{ position: 'relative', isolation: 'isolate', backgroundColor: '#101B2E' }}
+      className="relative pt-32 pb-32 md:pb-40 text-white min-h-screen" 
     >
-      {/* Animated background using the new GlobalAnimatedBackground component */}
-      <GlobalAnimatedBackground sectionId="projects-section" opacity={0.5} />
-      
-      {/* Div de séparation pour bloquer le contenu et éviter le chevauchement */}
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-[#101B2E] z-[100]"></div>
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative" ref={projectsContainerRef}>
-        <SectionHeader 
-          title="Mes Projets" 
-          subtitle="RÉALISATIONS RÉCENTES"
-          accentWord="Projets"
-          titleClassName="text-white"
-          align="center" 
-        />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 mt-8 mb-16">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative" ref={projectsContainerRef}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
           {/* Version desktop: affichage en colonnes */}
           <div className="hidden lg:block lg:col-span-8" ref={projectsContainerRef}>
@@ -246,27 +221,29 @@ export default function ProjectsSection() {
                   <div 
                     className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-[200] ${project.demoUrl && project.demoUrl !== '#' ? 'cursor-pointer' : ''}`}
                     style={{
-                       backgroundColor: '#0E1A2B', /* Fond opaque bleu nuit conforme à la palette */
+                       backgroundColor: project.id === 'memocall' ? '#0a0a0a' : project.id === 'tracksy' ? '#0a1f0a' : '#0E1A2B',
                        position: 'relative',
-                       zIndex: 200, /* Z-index très élevé pour passer au-dessus de l'AnimatedBackground */
-                       isolation: 'isolate', /* Propriété CSS moderne pour isoler le contexte d'empilement */
-                       backdropFilter: 'none', /* Désactive tout effet de filtre qui pourrait causer de la transparence */
-                       borderColor: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1',
+                       zIndex: 200,
+                       isolation: 'isolate',
+                       backdropFilter: 'none',
+                       borderColor: project.accentColor || '#a5ebd1',
                        boxShadow: activeProject === index 
-                         ? `0 0 45px -5px ${project.id === 'coresync' ? '#dea9ff80' : project.id === 'nocasemtl' ? '#d9d9df80' : '#a5ebd180'}, 0 0 20px -10px ${project.id === 'coresync' ? '#dea9ff60' : project.id === 'nocasemtl' ? '#d9d9df60' : '#a5ebd160'}` 
-                         : `0 4px 15px -1px ${project.id === 'coresync' ? '#dea9ff30' : project.id === 'nocasemtl' ? '#d9d9df30' : '#a5ebd130'}`,
-                       maxHeight: '600px' /* Hauteur maximale fixe */
+                         ? `0 0 45px -5px ${project.accentColor}80, 0 0 20px -10px ${project.accentColor}60` 
+                         : `0 4px 15px -1px ${project.accentColor}30`,
+                       maxHeight: '600px'
                     }}
                     onClick={() => project.demoUrl && project.demoUrl !== '#' ? goToProjectURL(project.demoUrl) : null}
                   >
                     {/* Multiple solid background layers to ensure complete opacity */}
-                    <div className="absolute inset-0 bg-black z-[101]"></div>
+                    <div className="absolute inset-0 bg-zinc-900 z-[101]"></div>
                     <div className="absolute inset-0 bg-[#0E1A2B] z-[102]"></div>
                     <div className="absolute inset-0 z-[103]" style={{
                       background: project.id === 'coresync' 
                         ? 'linear-gradient(135deg, #1a0d2c 0%, #0d0616 100%)'
                         : project.id === 'nocasemtl'
                         ? 'linear-gradient(135deg, #1e1e1e 0%, #0d0d0d 100%)'
+                        : project.id === 'econome'
+                        ? 'linear-gradient(135deg, #1a3a1a 0%, #0d1a0d 100%)'
                         : 'linear-gradient(135deg, #0c1e14 0%, #07130d 100%)'
                     }}></div>
                     {/* Extra opaque overlay to ensure no transparency */}
@@ -276,35 +253,35 @@ export default function ProjectsSection() {
                       <div className="flex items-start justify-between mb-4">
                         <p 
                           className="text-xl md:text-2xl font-medium leading-snug max-w-[calc(100%-3rem)]"
-                          style={{ color: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1' }} // Couleur pâle correspondant au thème
+                          style={{ color: project.accentColor || '#FFFFFF' }}
                         >
                           {project.shortDesc}
                         </p>
                         <ArrowRight 
                           className="w-5 h-5 md:w-6 md:h-6 mt-1 flex-shrink-0 transition-colors"
-                          style={{ color: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1' }} // Couleur pâle correspondant au thème
+                          style={{ color: project.accentColor || '#FFFFFF' }}
                         />
                       </div>
                     </div>
 
-                    <div className="relative z-[105] mt-auto px-3 pb-3 md:px-4 md:pb-4">
+                    <div className={`relative z-[105] mt-auto px-3 pb-3 md:px-4 md:pb-4 ${project.id === 'sidequest' ? 'flex justify-center' : ''}`}>
                       {/* Lueur thématique derrière la miniature */}
                       <div 
-                        className="absolute inset-0 w-[95%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1"
-                        style={{ background: project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'nocasemtl' ? 'linear-gradient(to bottom right, #d9d9df, #94949C)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
+                        className={`absolute inset-0 mx-auto rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 ${project.id === 'sidequest' ? 'w-[50%] aspect-[9/16]' : 'w-[95%] aspect-[4/3] md:aspect-[5/4]'}`}
+                        style={{ background: project.id === 'sidequest' ? 'linear-gradient(to bottom right, #c084fc, #8B5CF6)' : project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'tracksy' ? 'linear-gradient(to bottom right, #e8ff8f, #d5ff3f)' : project.id === 'memocall' ? 'linear-gradient(to bottom right, #ffffff, #cccccc)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
                       ></div>
                       <div 
-                        className={`relative w-[90%] mx-auto aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl overflow-hidden shadow-xl border border-white/10 z-[106] bg-black transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1`}
-                        style={{boxShadow: project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'nocasemtl' ? '0 10px 30px -5px rgba(217, 217, 223, 0.4), 0 0 15px -5px rgba(217, 217, 223, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
+                        className={`relative mx-auto overflow-hidden z-[106] transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'w-[45%] aspect-[9/19] bg-transparent border-0 shadow-none' : 'w-[90%] aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl shadow-xl border border-white/10 bg-zinc-900 group-hover:rotate-1'}`}
+                        style={{boxShadow: project.id === 'sidequest' ? 'none' : project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'tracksy' ? '0 10px 30px -5px rgba(213, 255, 63, 0.4), 0 0 15px -5px rgba(213, 255, 63, 0.5)' : project.id === 'memocall' ? '0 10px 30px -5px rgba(255, 255, 255, 0.3), 0 0 15px -5px rgba(255, 255, 255, 0.4)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <Image
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-all duration-500 ease-out"
+                          className={`w-full h-full transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'object-contain' : 'object-cover'}`}
                           width={600}
                           height={450}
                         />
-                        {project.hoverImage && project.id !== 'coresync' && (
+                        {project.hoverImage && project.id !== 'coresync' && project.id !== 'sidequest' && (
                           <Image
                             src={project.hoverImage}
                             alt={`${project.title} hover preview`}
@@ -314,7 +291,7 @@ export default function ProjectsSection() {
                           />
                         )}
                       </div>
-                    </div>ª
+                    </div>
                   </div>
                 </div>
               ))}
@@ -323,11 +300,11 @@ export default function ProjectsSection() {
           
           {/* Version desktop: détails épinglés */}
           <div 
-            className="hidden lg:block lg:col-span-4 h-auto" // Height will be managed by pinned content
-            ref={detailsRef} // This outer div is now the pinned element
+            className="hidden lg:block lg:col-span-4"
+            ref={detailsRef}
           >
-             {/* Content that gets pinned */}
-            <div className="space-y-4 pt-0 pb-4"> {/* Removed sticky positioning as ScrollTrigger handles it */}
+             {/* Content that gets pinned with CSS sticky */}
+            <div className="sticky top-32 space-y-4 pt-8 pb-4">
               <AnimatePresence mode='wait'>
                 {projects.length > 0 && activeProject < projects.length && (
                   <motion.div
@@ -343,28 +320,27 @@ export default function ProjectsSection() {
                     className="flex flex-col pt-0 mt-0"
                   >
                     <motion.div 
-                      className="flex items-center mb-6 pt-0 gap-5"
+                      className="flex items-center mb-8 pt-0 gap-5"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.1, delay: 0.02 }}
                       data-component-name="MotionComponent"
                     >
-                      {/* Logo à gauche avec contour de la couleur thématique */}
+                      {/* Logo avec glow */}
                       {projects[activeProject].logo && (
                         <div className="relative flex-shrink-0 transition-transform duration-300 hover:scale-105">
-                          {/* Fond lumineux derrière le logo */}
-                          <div className="absolute -inset-1.5 rounded-xl opacity-20" 
-                               style={{ background: `radial-gradient(circle, ${getProjectAccentColor(activeProject)} 0%, transparent 70%)` }}
+                          {/* Glow derrière le logo */}
+                          <div className="absolute -inset-3 rounded-2xl blur-xl opacity-40" 
+                               style={{ background: getProjectAccentColor(activeProject) }}
                           ></div>
                           
-                          {/* Contour coloré autour du logo */}
-                          <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-xl overflow-hidden p-2"
-                               style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: getProjectAccentColor(activeProject), backgroundColor: '#0E1A2B' }}
+                          {/* Logo */}
+                          <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
                           >
                             <Image 
                               src={projects[activeProject].logo!} 
                               alt={`${projects[activeProject].title} logo`} 
-                              className="w-full h-full object-contain drop-shadow-md"
+                              className="w-full h-full object-contain p-1 rounded-xl"
                               width={80}
                               height={80}
                               style={{ filter: `drop-shadow(0 0 5px ${getProjectAccentColor(activeProject)}40)` }}
@@ -438,7 +414,7 @@ export default function ProjectsSection() {
                       {(projects[activeProject]?.githubUrl && projects[activeProject]?.githubUrl !== '#') && (
                         <Button 
                           variant="outline" 
-                          className="border-gray-700/80 hover:border-gray-600 bg-black/20 hover:bg-gray-800/40 text-white/70 hover:text-white/90 font-medium text-sm px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="border-gray-700/80 hover:border-gray-600 bg-zinc-900/50 hover:bg-gray-800/40 text-white/70 hover:text-white/90 font-medium text-sm px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                           asChild
                         >
                           <Link href={projects[activeProject].githubUrl!} target="_blank" rel="noopener noreferrer">
@@ -492,7 +468,7 @@ export default function ProjectsSection() {
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-start gap-4">
                       {project.logo && (
-                        <div className="w-12 h-12 rounded-full bg-black/30 p-2 flex items-center justify-center relative flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-zinc-800/50 p-2 flex items-center justify-center relative flex-shrink-0">
                           <Image 
                             src={project.logo} 
                             alt={`${project.title} logo`}
@@ -539,6 +515,23 @@ export default function ProjectsSection() {
             ))}
           </div>
         </div>
+
+        {/* CTA Button - Voir plus de projets */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center mt-16"
+        >
+          <Link 
+            href="/projects"
+            className="group flex items-center gap-3 px-8 py-4 rounded-full border border-purple-500/30 bg-purple-500/10 text-white text-base font-medium hover:bg-purple-500/20 hover:border-purple-400/50 transition-all"
+          >
+            <span>Voir tous les projets</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

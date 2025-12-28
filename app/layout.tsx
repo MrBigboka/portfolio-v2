@@ -35,13 +35,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Miguel - Développeur IA & Automatisation",
-  description: "Création de solutions intelligentes et évolutives avec le code et l'IA.",
-  icons: [
-    { rel: 'icon', url: '/logo-miguel-transp.png' },
-    { rel: 'apple-touch-icon', url: '/logo-miguel-transp.png' },
-    { rel: 'shortcut icon', url: '/logo-miguel-transp.png' }
-  ],
+  title: "SmartScaling - Studio technologique pour projets ambitieux",
+  description: "On conçoit et livre des SaaS qui tournent en production. Systèmes robustes, interfaces soignées, déploiement rapide.",
+  icons: {
+    icon: '/logo/smartscaling.png?v=2',
+    shortcut: '/logo/smartscaling.png?v=2',
+    apple: '/logo/smartscaling.png?v=2',
+  },
 };
 
 export default function RootLayout({

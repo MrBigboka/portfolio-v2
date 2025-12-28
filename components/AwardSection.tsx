@@ -2,19 +2,15 @@
 
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { Trophy, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Trophy, ExternalLink, Award, Star } from 'lucide-react';
 import Image from 'next/image';
-import SectionHeader from '@/components/ui/SectionHeader';
-import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 
 export default function AwardSection() {
   const controls = useAnimation();
   
   useEffect(() => {
-    // Animation de flottement pour le diplôme
     controls.start({
-      y: [0, -15, 0],
+      y: [0, -10, 0],
       transition: {
         duration: 4,
         ease: "easeInOut",
@@ -23,86 +19,110 @@ export default function AwardSection() {
       }
     });
   }, [controls]);
+
   return (
-    <section className="relative z-10 min-h-screen py-24 px-6 md:px-12 overflow-hidden" style={{ backgroundColor: '#101B2E' }}>
-      {/* Animated background avec les particules */}
-      <GlobalAnimatedBackground sectionId="awards-section" opacity={0.8} />
+    <section className="relative z-10 py-24 px-6 md:px-12 overflow-hidden">
+      {/* Subtle purple glow effects */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
       
-      {/* Éléments décoratifs */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-r from-[#D9A441]/20 to-[#B74134]/20 blur-3xl"></div>
-        <div className="absolute bottom-1/4 -left-10 w-40 h-40 rounded-full bg-gradient-to-r from-[#0E1A2B]/30 to-[#F7E3C5]/20 blur-3xl"></div>
-      </div>
-      <div className="max-w-5xl mx-auto">
-        <SectionHeader 
-          title="Reconnaissance" 
-          subtitle="DISTINCTION ACADÉMIQUE" 
-          accentWord="Reconnaissance" 
-          align="center" 
-        />
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <Award className="w-5 h-5 text-purple-400" />
+            <span className="uppercase tracking-[0.3em] text-xs font-medium text-gray-500">
+              Distinction Académique
+            </span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-white text-3xl md:text-4xl font-light tracking-tight"
+          >
+            Ma{' '}
+            <span className="text-purple-400 italic">Reconnaissance</span>
+          </motion.h2>
+        </div>
         
-        <motion.div 
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Partie gauche - Image du diplôme flottante */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left - Floating diploma image */}
           <motion.div 
             className="relative group"
             animate={controls}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="absolute inset-0 rounded-xl blur-2xl opacity-40 bg-gradient-to-r from-[#D9A441]/30 to-[#B74134]/30 group-hover:opacity-60 transition-opacity duration-500"></div>
-            <div className="relative overflow-hidden rounded-xl border border-[#D9A441]/20 shadow-lg shadow-[#D9A441]/10 group-hover:shadow-xl group-hover:shadow-[#D9A441]/20 transition-all duration-500">
+            <div className="absolute inset-0 rounded-2xl blur-2xl opacity-30 bg-purple-500/20 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div className="relative overflow-hidden rounded-2xl border border-purple-500/20 shadow-lg shadow-purple-500/10 group-hover:shadow-xl group-hover:shadow-purple-500/20 transition-all duration-500 group-hover:border-purple-500/40">
               <Image 
                 src="/diploma.png" 
                 alt="Bourse CPMT" 
                 width={600} 
                 height={400} 
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               />
             </div>
           </motion.div>
           
-          {/* Partie droite - Description */}
-          <div className="flex flex-col space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D9A441]/30 to-[#B74134]/30 flex items-center justify-center">
-                <Trophy size={24} className="text-white" />
+          {/* Right - Description */}
+          <motion.div 
+            className="flex flex-col space-y-6"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                <Trophy size={24} className="text-purple-400" />
               </div>
-              <h3 className="text-white text-2xl md:text-3xl font-bold">Bourse <span className="text-[#D9A441]">CPMT</span></h3>
+              <h3 className="text-white text-2xl md:text-3xl font-light">
+                Bourse <span className="text-purple-400 font-medium">CPMT</span>
+              </h3>
             </div>
             
-            <p className="text-white/90 text-lg leading-relaxed">
+            <p className="text-gray-300 text-lg leading-relaxed">
               J&apos;ai eu l&apos;honneur d&apos;être titulaire d&apos;une bourse de la Commission des partenaires du marché du travail (CPMT), 
               reconnaissant l&apos;excellence académique et le potentiel professionnel dans le domaine du développement web.
             </p>
             
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#D9A441] to-[#B74134]"></div>
-                <p className="text-white/80">Reconnaissance d&apos;excellence académique</p>
+            <div className="space-y-4 py-4">
+              <div className="flex items-center gap-3">
+                <Star className="w-4 h-4 text-purple-400" />
+                <p className="text-gray-400">Reconnaissance d&apos;excellence académique</p>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#D9A441] to-[#B74134]"></div>
-                <p className="text-white/80">Soutien au développement professionnel</p>
+              <div className="flex items-center gap-3">
+                <Star className="w-4 h-4 text-purple-400" />
+                <p className="text-gray-400">Soutien au développement professionnel</p>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#D9A441] to-[#B74134]"></div>
-                <p className="text-white/80">Promotion des talents dans le numérique</p>
+              <div className="flex items-center gap-3">
+                <Star className="w-4 h-4 text-purple-400" />
+                <p className="text-gray-400">Promotion des talents dans le numérique</p>
               </div>
             </div>
             
-            <Button 
-              variant="outline" 
-              className="w-fit mt-4 bg-[#0B1221]/80 border-[#D9A441]/40 text-white hover:bg-[#0B1221] hover:border-[#D9A441] hover:shadow-lg hover:shadow-[#D9A441]/10 hover:-translate-y-1 transition-all duration-300"
-              onClick={() => window.open('https://www.cpmt.gouv.qc.ca/', '_blank')}
+            <a 
+              href="https://www.cpmt.gouv.qc.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 w-fit px-6 py-3 rounded-full border border-purple-500/30 text-white hover:bg-purple-500/10 hover:border-purple-500/50 transition-all duration-300"
             >
-              <ExternalLink size={16} className="mr-2 text-[#D9A441]" />
+              <ExternalLink size={16} className="text-purple-400" />
               En savoir plus sur la CPMT
-            </Button>
-          </div>
-        </motion.div>
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

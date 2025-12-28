@@ -50,7 +50,7 @@ export default function ProjectCard({ project, index, isLarge = false }: Project
         <div className="flex justify-between items-start mb-6">
           <div className="flex items-center gap-3">
             {project.logo && (
-              <div className="w-10 h-10 rounded-full bg-black/30 p-1 flex items-center justify-center relative">
+              <div className="w-10 h-10 rounded-full bg-zinc-800/50 p-1 flex items-center justify-center relative">
                 <Image 
                   src={project.logo} 
                   alt={`${project.title} logo`}

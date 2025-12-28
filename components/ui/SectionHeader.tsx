@@ -67,18 +67,8 @@ export default function SectionHeader({
         {accentWord ? (
           <>
             {beforeAccent}
-            <span className="relative inline-block">
-              <span 
-                className="relative z-10 bg-gradient-to-r from-[#F7E3C5] via-[#D9A441] to-[#B74134] text-transparent bg-clip-text animate-gradient italic brush-script" 
-                style={{ 
-                  fontSize: '1.15em',
-                  letterSpacing: '0.02em'
-                }}
-                data-component-name="SectionHeader"
-              >
-                {accentWord}
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[#F7E3C5]/30 via-[#D9A441]/30 to-[#B74134]/30 blur-lg filter opacity-70 animate-pulse"></span>
+            <span className="text-purple-400 italic font-serif">
+              {accentWord}
             </span>
             {afterAccent}
           </>

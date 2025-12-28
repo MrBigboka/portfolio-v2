@@ -2,12 +2,12 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import GlobalAnimatedBackground from '@/components/ui/GlobalAnimatedBackground';
 import { Code, Briefcase, Lightbulb, Rocket } from 'lucide-react';
+import ProfileCard from '@/components/ui/ProfileCard';
 
 // Enregistrer les plugins GSAP
 if (typeof window !== 'undefined') {
@@ -97,36 +97,21 @@ const AboutSection: React.FC = () => {
         {/* Titre déplacé dans la colonne de droite */}
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          {/* Image avec effet de parallaxe */}
+          {/* ProfileCard avec effet moderne */}
           <div className="lg:col-span-5 flex justify-center">
-            <div ref={imageRef} className="relative">
-              {/* Cercles décoratifs */}
-              <div className="absolute -inset-10 w-[380px] h-[380px] rounded-full border-2 border-[#D9A441]/20 decorative-circle"></div>
-              <div className="absolute -inset-8 w-[340px] h-[340px] rounded-full border-2 border-[#B74134]/30 decorative-circle"></div>
-              <div className="absolute -inset-12 w-[400px] h-[400px] rounded-full border border-white/5 decorative-circle"></div>
-              
-              {/* Image container avec effet de profondeur et animation au survol */}
-              <div className="relative w-[300px] h-[300px] rounded-full overflow-hidden border-4 border-[#D9A441]/40 shadow-[0_0_40px_rgba(217,164,65,0.4)] about-profile-image group transition-all duration-300 hover:scale-105 cursor-pointer">
-                {/* Effet de glow */}
-                <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-[#B74134]/40 to-[#D9A441]/40 group-hover:opacity-80 transition-opacity duration-300"></div>
-                
-                <Image
-                  src="/profil.jpeg"
-                  alt="Miguel Boka"
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-3"
-                  sizes="(max-width: 768px) 300px, 300px"
-                  priority
-                />
-                
-                {/* Overlay avec effet de profondeur */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1220]/40 to-transparent mix-blend-overlay group-hover:opacity-60 transition-opacity duration-300"></div>
-              </div>
-              
-              {/* Points lumineux autour de l'image */}
-              <div className="absolute top-0 left-1/4 w-3 h-3 rounded-full bg-[#D9A441] shadow-[0_0_15px_#D9A441] decorative-circle"></div>
-              <div className="absolute top-1/4 right-0 w-2.5 h-2.5 rounded-full bg-[#B74134] shadow-[0_0_12px_#B74134] decorative-circle"></div>
-              <div className="absolute bottom-10 left-10 w-3 h-3 rounded-full bg-white/70 shadow-[0_0_15px_rgba(255,255,255,0.7)] decorative-circle"></div>
+            <div ref={imageRef}>
+              <ProfileCard
+                name="Miguel Boka"
+                title="Lead Architect & Fondateur"
+                handle="MrBigboka"
+                status="Online"
+                contactText="Voir LinkedIn"
+                avatarUrl="/miguelboka.jpg"
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                onContactClick={() => window.open('https://www.linkedin.com/in/miguel-boka-51b407223/', '_blank')}
+              />
             </div>
           </div>
           
