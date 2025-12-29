@@ -42,7 +42,7 @@ const steps = [
 
 export default function MethodSection() {
   return (
-    <section id="method" className="relative z-10 py-24 px-6 md:px-12 overflow-hidden">
+    <section id="method" className="relative z-10 py-24 px-6 md:px-12 overflow-hidden bg-black">
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}

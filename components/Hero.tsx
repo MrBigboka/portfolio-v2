@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import { SmartButton } from './ui/smart-button';
 import DarkVeil from './DarkVeil';
+import { LayoutTextFlip } from './ui/layout-text-flip';
+import { Particles } from './ui/particles';
 
 
 export default function Hero() {
@@ -21,7 +23,7 @@ export default function Hero() {
             <div className="absolute inset-0 w-full h-full">
                 <DarkVeil
                     hueShift={0}
-                    noiseIntensity={0.06}
+                    noiseIntensity={0}
                     scanlineIntensity={0.08}
                     speed={0.3}
                     scanlineFrequency={1.5}
@@ -30,8 +32,19 @@ export default function Hero() {
                 />
             </div>
             
+            {/* Particles at the bottom - Extended to overlap with next section */}
+            <div className="absolute bottom-0 left-0 right-0 h-96 pointer-events-none z-[5] -mb-32">
+                <Particles
+                    className="absolute inset-0"
+                    quantity={150}
+                    ease={80}
+                    color="#d1d5db"
+                    refresh={false}
+                />
+            </div>
+            
             {/* Gradient Transition vers section Solutions - Amélioration */}
-            <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/95 to-transparent pointer-events-none z-10"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/95 to-transparent pointer-events-none z-[6]"></div>
 
             {/* Content with Parallax */}
             <motion.div
@@ -71,11 +84,17 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 text-center leading-relaxed"
+                    className="text-gray-400 text-base sm:text-lg max-w-3xl mx-auto mb-8 text-center leading-relaxed"
                 >
-                    Quand un processus devient trop lourd, on le transforme en logiciel.<br className="hidden sm:block" />
-                    Sites web, apps, SaaS, automatisations — conçus pour réduire<br className="hidden sm:block" />
-                    la friction, pas pour ajouter de la complexité.
+                    Quand un processus devient trop lourd, on le transforme en{' '}
+                    <span className="inline-flex items-baseline">
+                        <LayoutTextFlip
+                            text=""
+                            words={['sites web', 'apps mobiles', 'SaaS', 'automatisations']}
+                            duration={2500}
+                        />
+                    </span>
+                    {' '}— conçus pour réduire la friction, pas pour ajouter de la complexité.
                 </motion.p>
 
                 {/* Proof Line with Profile Photo */}

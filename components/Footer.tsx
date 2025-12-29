@@ -30,7 +30,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative py-12 sm:py-16 px-4 sm:px-6 border-t border-white/5">
+    <footer className="relative py-12 sm:py-16 px-4 sm:px-6 bg-black">
       <div className="max-w-6xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 mb-8 sm:mb-12">
@@ -164,7 +164,7 @@ export default function Footer() {
           className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-gray-600 text-xs sm:text-sm">
-            © {currentYear} Miguel Boka. All rights reserved.
+            © {currentYear} SmartScaling Agency. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/privacy" className="text-gray-600 text-xs sm:text-sm hover:text-gray-400 transition-colors">

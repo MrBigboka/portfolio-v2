@@ -8,6 +8,17 @@ import TechBadge from '@/components/TechBadge';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { SmartButton } from '@/components/ui/smart-button';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { AnimatedButton } from '@/components/ui/animated-button';
+import { Mail, Linkedin, Calendar } from 'lucide-react';
+import { useToast } from '@/components/ui/Toast';
 
 interface Project {
   id: string;
@@ -26,6 +37,14 @@ interface Project {
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [, setHoveredProject] = useState<string | null>(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { showToast, toastComponent } = useToast();
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('miguel.boka@smartscaling.dev');
+    showToast('Email copié dans le presse-papier!', 'success');
+  };
 
   const projects: Project[] = [
     {
@@ -83,7 +102,7 @@ export default function ProjectsPage() {
     {
       id: 'nocasemtl',
       title: 'NoCaseMTL',
-      description: 'Plateforme e-commerce pour la vente de coques de téléphone personnalisées à Montréal.',
+      description: 'Boutique de vêtements streetwear en ligne basée à Montréal. Plateforme e-commerce moderne avec design minimaliste.',
       image: '/projects/nocase1.png',
       tags: ['SHOPIFY', 'LIQUID', 'JAVASCRIPT'],
       category: 'Web',
@@ -119,7 +138,7 @@ export default function ProjectsPage() {
       <Header />
       
       {/* Hero Section - Harmonized with site identity */}
-      <section className="relative pt-32 pb-20 px-6">
+      <section className="relative pt-32 pb-20 px-6 bg-black">
         {/* Grid pattern background */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
@@ -128,7 +147,7 @@ export default function ProjectsPage() {
           }}></div>
         </div>
         {/* Subtle background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-purple-900/5 to-transparent"></div>
         <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-purple-500/10 rounded-full blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -172,7 +191,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Projects Grid - Netflix Style */}
-      <section className="px-6 pb-32">
+      <section className="px-6 pb-32 bg-black">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -307,45 +326,198 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="px-6 pb-32">
-        <div className="max-w-4xl mx-auto">
+      {/* CTA Section - New Contact Style */}
+      <section ref={sectionRef} className="relative px-6 pb-32 pt-16 overflow-hidden">
+        {/* Fluid background image with parallax */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: 'url(/bg-footer.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        </div>
+        
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 pointer-events-none" />
+        
+        <div className="max-w-3xl mx-auto relative z-10">
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl bg-gradient-to-br from-purple-600/20 via-violet-600/10 to-transparent border border-purple-500/30 p-12 overflow-hidden"
+            className="flex justify-center mb-8"
           >
-            {/* Background effects */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
-            
-            <div className="relative z-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Vous avez un projet en tête ?
-              </h2>
-              <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-                Discutons de votre idée et transformons-la en solution concrète qui tourne en production.
-              </p>
-              
-              {/* CTA Button */}
-              <div className="flex justify-center">
-                <SmartButton
-                  variant="cta"
-                  size="lg"
-                  icon="arrow"
-                  href="https://calendly.com/bokamiguel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Réserver un appel
-                </SmartButton>
-              </div>
+            <div className="relative w-16 h-16">
+              <Image
+                src="/logo/smartscaling-logo.png"
+                alt="SmartScaling"
+                fill
+                className="object-contain opacity-90"
+              />
             </div>
           </motion.div>
+
+          {/* Header */}
+          <div className="text-center mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-white text-4xl md:text-6xl font-normal tracking-tight mb-2"
+            >
+              Du concept à la{' '}
+              <span className="font-bold">création</span>
+            </motion.h2>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-white text-3xl md:text-5xl font-normal tracking-tight mb-10"
+            >
+              Faisons-le{' '}
+              <span className="font-bold">ensemble!</span>
+            </motion.h3>
+
+            {/* CTA Button to open sheet */}
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+              <SheetTrigger asChild>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <AnimatedButton onClick={() => setIsSheetOpen(true)} variant="purple">
+                    Me contacter
+                  </AnimatedButton>
+                </motion.div>
+              </SheetTrigger>
+              <SheetContent className="bg-black border-l border-white/10">
+                <SheetHeader className="mb-8">
+                  <SheetTitle className="text-white text-2xl font-light tracking-tight">
+                    Choisissez votre{' '}
+                    <span className="text-purple-400 italic">méthode de contact</span>
+                  </SheetTitle>
+                  <SheetDescription className="text-gray-400 mt-2">
+                    Sélectionnez l&apos;option qui vous convient le mieux
+                  </SheetDescription>
+                </SheetHeader>
+                
+                {/* Availability message */}
+                <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
+                  <p className="text-white font-medium mb-2">
+                    SmartScaling — On construit, on livre.
+                  </p>
+                  <p className="text-gray-400 text-sm">
+                    Systèmes web & applications qui résolvent de vrais problèmes.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Email */}
+                  <button
+                    onClick={() => {
+                      handleCopyEmail();
+                      setIsSheetOpen(false);
+                    }}
+                    className="group w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 text-left"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
+                        <Mail className="w-6 h-6 text-purple-400" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium mb-1">Email</p>
+                        <p className="text-sm text-gray-400">miguel.boka@smartscaling.dev</p>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Calendly */}
+                  <a
+                    href="https://calendly.com/bokamiguel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsSheetOpen(false)}
+                    className="group block w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
+                        <Calendar className="w-6 h-6 text-purple-400" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium mb-1">Calendrier</p>
+                        <p className="text-sm text-gray-400">Réserver un appel de 30 min</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/in/miguel-boka-51b407223/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsSheetOpen(false)}
+                    className="group block w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
+                        <Linkedin className="w-6 h-6 text-purple-400" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium mb-1">LinkedIn</p>
+                        <p className="text-sm text-gray-400">Me connecter sur LinkedIn</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/MrBigboka"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsSheetOpen(false)}
+                    className="group block w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
+                        <Github className="w-6 h-6 text-purple-400" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium mb-1">GitHub</p>
+                        <p className="text-sm text-gray-400">Voir mes projets open source</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </SheetContent>
+            </Sheet>
+
+            {/* Availability message */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-12 text-center"
+            >
+              <p className="text-white text-lg md:text-xl font-medium">
+                Disponible pour nouveaux projets.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
+      {toastComponent}
       <Footer />
     </div>
   );

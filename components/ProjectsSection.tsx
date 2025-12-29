@@ -170,7 +170,7 @@ export default function ProjectsSection() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="relative pt-32 pb-32 md:pb-40 text-white min-h-screen" 
+      className="relative pt-32 pb-32 md:pb-40 text-white min-h-screen bg-black" 
     >
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative" ref={projectsContainerRef}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">

@@ -88,35 +88,31 @@ function TechnologiesCard() {
     const toolsTech = ['SUPABASE', 'OPENAI', 'N8N', 'VERCEL', 'AWS'];
 
     return (
-        <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-4 sm:pt-6 group/card">
-            <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-3 sm:mb-4 text-center leading-tight">
+        <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-4 sm:pt-6 pb-4 group/card">
+            <h3 className="text-white text-sm sm:text-base md:text-lg font-light mb-3 sm:mb-4 text-center leading-tight px-2">
                 Les bons outils,<br />au service du résultat
             </h3>
             
             {/* Tech marquees */}
-            <div className="flex w-full flex-col items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+            <div className="flex w-full flex-col items-center justify-center gap-2 mb-4 sm:mb-6 relative z-10">
                 <Marquee pauseOnHover className="[--duration:20s] [--gap:0.75rem]">
                     {coreTech.map((tech: string) => (
-                        <div key={tech}>
-                            <TechBadge name={tech} />
-                        </div>
+                        <TechBadge key={tech} name={tech} />
                     ))}
                 </Marquee>
                 <Marquee reverse pauseOnHover className="[--duration:20s] [--gap:0.75rem]">
                     {toolsTech.map((tech: string) => (
-                        <div key={tech}>
-                            <TechBadge name={tech} />
-                        </div>
+                        <TechBadge key={tech} name={tech} />
                     ))}
                 </Marquee>
             </div>
 
             {/* Glow effect above browser mockup */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-32 bg-gradient-to-t from-purple-500/20 via-purple-500/10 to-transparent blur-2xl pointer-events-none group-hover/card:from-purple-500/40 group-hover/card:via-purple-500/20 transition-all duration-500"></div>
-            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-48 h-48 bg-purple-500/30 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-24 sm:h-32 bg-gradient-to-t from-purple-500/20 via-purple-500/10 to-transparent blur-2xl pointer-events-none group-hover/card:from-purple-500/40 group-hover/card:via-purple-500/20 transition-all duration-500"></div>
+            <div className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 w-32 sm:w-48 h-32 sm:h-48 bg-purple-500/30 rounded-full blur-3xl pointer-events-none"></div>
 
             {/* Browser mockup preview */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] translate-y-[20%] group-hover/card:translate-y-[10%] transition-transform duration-500 ease-out">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[92%] sm:w-[90%] translate-y-[15%] sm:translate-y-[20%] group-hover/card:translate-y-[8%] sm:group-hover/card:translate-y-[10%] transition-transform duration-500 ease-out">
                 {/* Ripple effect behind the browser */}
                 <div className="absolute inset-0 -top-20 pointer-events-none">
                     <Ripple mainCircleSize={180} mainCircleOpacity={0.15} numCircles={6} />
@@ -130,35 +126,35 @@ function TechnologiesCard() {
                     }}></div>
                     
                     {/* Browser header with URL bar */}
-                    <div className="flex items-center gap-3 px-4 py-3 bg-[#1a1a1a]/80 border-b border-white/5 relative z-10">
-                        <div className="flex gap-1.5">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3 bg-[#1a1a1a]/80 border-b border-white/5 relative z-10">
+                        <div className="flex gap-1">
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
                         </div>
                         <div className="flex-1 flex justify-center">
-                            <div className="bg-[#2a2a2a] rounded-lg px-4 py-1.5 flex items-center gap-2">
-                                <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div className="bg-[#2a2a2a] rounded-lg px-2 sm:px-4 py-1 sm:py-1.5 flex items-center gap-1 sm:gap-2">
+                                <svg className="w-2 h-2 sm:w-3 sm:h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
-                                <span className="text-[11px] text-white/70">miguelboka.dev</span>
+                                <span className="text-[9px] sm:text-[11px] text-white/70">miguelboka.dev</span>
                             </div>
                         </div>
                     </div>
                     
                     {/* Browser content */}
-                    <div className="p-8 flex flex-col items-center justify-center min-h-[200px] relative z-10">
+                    <div className="p-4 sm:p-8 flex flex-col items-center justify-center min-h-[120px] sm:min-h-[200px] relative z-10">
                         <div className="text-center">
-                            <h4 className="text-white text-2xl font-medium mb-1">Sites web qui</h4>
-                            <h4 className="text-purple-400 text-3xl font-semibold italic">marquent.</h4>
+                            <h4 className="text-white text-base sm:text-2xl font-medium mb-0.5 sm:mb-1">Sites web qui</h4>
+                            <h4 className="text-purple-400 text-xl sm:text-3xl font-semibold italic">marquent.</h4>
                         </div>
                         
-                        <div className="flex gap-3 mt-5">
-                            <div className="h-1 w-20 bg-gray-600 rounded"></div>
-                            <div className="h-1 w-14 bg-gray-700 rounded"></div>
+                        <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-5">
+                            <div className="h-0.5 sm:h-1 w-12 sm:w-20 bg-gray-600 rounded"></div>
+                            <div className="h-0.5 sm:h-1 w-8 sm:w-14 bg-gray-700 rounded"></div>
                         </div>
                         
-                        <div className="flex gap-3 mt-6">
+                        <div className="hidden sm:flex gap-3 mt-6">
                             <button className="px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full flex items-center gap-2 hover:bg-gray-200 transition-colors">
                                 Commencer
                                 <ArrowRight className="w-4 h-4" />
@@ -185,7 +181,7 @@ function GlobeCard() {
     };
 
     return (
-        <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-6 sm:pt-8">
+        <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-6 sm:pt-8 pb-6 sm:pb-0">
             <h3 className="text-white text-lg sm:text-xl md:text-2xl font-light mb-2 text-center z-10">
                 Flexible avec les<br />fuseaux horaires
             </h3>
@@ -230,24 +226,25 @@ function GlobeCard() {
 // --- Main Bento Grid Component ---
 export default function BentoGrid() {
     return (
-        <section className="relative pt-16 sm:pt-20 pb-12 sm:pb-20 px-4 sm:px-6">
+        <section className="relative pt-16 sm:pt-20 pb-12 sm:pb-20 px-4 sm:px-6 bg-black z-10">
             {/* Gradient transition depuis Hero */}
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none z-0"></div>
-            <div className="max-w-[1400px] mx-auto">
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-black pointer-events-none z-0"></div>
+            <div className="max-w-[1400px] mx-auto relative z-10">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="text-center mb-12"
+                    className="text-center mb-12 relative z-10"
                     id="solutions"
                 >
                     <p className="text-gray-400 text-sm uppercase tracking-[0.3em] mb-3">
                         Ce qu&apos;on construit
                     </p>
-                    <h2 className="text-white text-3xl md:text-4xl font-light tracking-tight">
+                    <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-tight px-4 max-w-4xl mx-auto">
                         Sites, apps, SaaS{' '}
+                        <br className="sm:hidden" />
                         <span className="text-purple-400 italic">— conçus comme des systèmes</span>
                     </h2>
                 </motion.div>
@@ -258,26 +255,26 @@ export default function BentoGrid() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[250px] sm:auto-rows-[300px]">
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[280px] md:auto-rows-[320px]">
 
                     {/* Row 1, Col 1-2: Collaboration */}
-                    <div className="sm:col-span-2 sm:row-span-1">
+                    <div className="md:col-span-2 md:row-span-1 h-full">
                         <CollaborationCard />
                     </div>
 
                     {/* Row 1-2, Col 3: Technologies (Spans 2 rows vertically on larger screens) */}
-                    <div className="sm:col-span-1 sm:row-span-2 lg:col-span-1 lg:row-span-2">
+                    <div className="md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-full">
                         <TechnologiesCard />
                     </div>
 
                     {/* Row 2-3, Col 1: Globe (Spans 2 rows vertically on larger screens) */}
-                    <div className="sm:col-span-1 sm:row-span-2 lg:col-span-1 lg:row-span-2">
+                    <div className="md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-full">
                         <GlobeCard />
                     </div>
 
                     {/* Row 2, Col 2: Travaillons ensemble */}
                     <motion.div 
-                        className="sm:col-span-1 sm:row-span-1 lg:col-span-1 lg:row-span-1"
+                        className="md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1 h-full"
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -318,7 +315,7 @@ export default function BentoGrid() {
                     </motion.div>
 
                     {/* Row 3, Col 2-3: Impact Card avec stats animées */}
-                    <div className="sm:col-span-2 sm:row-span-1 lg:col-span-2 lg:row-span-1">
+                    <div className="md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1 h-full">
                         <div className="h-full w-full flex flex-col rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-6 sm:p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden">
                             {/* Subtle animated gradient */}
                             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-purple-500/5 animate-pulse pointer-events-none"></div>
