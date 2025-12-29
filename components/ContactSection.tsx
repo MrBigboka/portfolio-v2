@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, ExternalLink, Calendar, Copy } from 'lucide-react';
+import { Mail, Linkedin, Github, ExternalLink, Copy, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import { useToast } from '@/components/ui/Toast';
 
@@ -21,7 +21,7 @@ export default function ContactSection() {
       <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
       
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
+        {/* Header - sobre, pas marketing */}
         <div className="text-center mb-16">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ export default function ContactSection() {
             transition={{ duration: 0.5 }}
             className="uppercase tracking-[0.3em] text-xs font-medium text-gray-500 mb-4"
           >
-            Passons à l&apos;action
+            Contact
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -39,19 +39,9 @@ export default function ContactSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-white text-3xl md:text-4xl font-light tracking-tight"
           >
-            Parlons de votre{' '}
-            <span className="text-purple-400 italic">projet</span>
+            Discutons de votre{' '}
+            <span className="text-purple-400 italic">prochain système</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-gray-400 mt-4 max-w-xl mx-auto"
-          >
-            Décrivez-moi votre objectif en quelques mots.
-            Je vous reviens avec une stratégie claire et un premier scope.
-          </motion.p>
         </div>
         
         <div className="flex flex-col items-center">
@@ -222,27 +212,6 @@ export default function ContactSection() {
             </motion.div>
           </motion.div>
           
-          {/* Invitation message */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-12 text-center max-w-2xl"
-          >
-            <p className="text-gray-400 text-lg mb-8">
-              Vous avez un projet en tête ou vous souhaitez simplement échanger ?<br className="hidden md:block" />
-              N&apos;hésitez pas à me contacter, je serai ravi de discuter avec vous.
-            </p>
-            
-            <a 
-              href="mailto:contact@miguelboka.dev"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30"
-            >
-              <Mail size={18} />
-              Envoyez-moi un email
-            </a>
-          </motion.div>
         </div>
       </div>
       {toastComponent}

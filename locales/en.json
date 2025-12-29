@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cta": "Book a call",
+    "viewProjects": "See systems in production ↓",
+    "viewLinkedIn": "View LinkedIn",
+    "copyEmail": "Copy email",
+    "emailCopied": "Email copied to clipboard!",
+    "takeAppointment": "Schedule a meeting",
+    "codeSource": "Source Code",
+    "viewAllProjects": "View all projects",
+    "duration": "Duration"
+  },
+  "header": {
+    "nav": {
+      "solutions": "Solutions",
+      "projects": "Projects",
+      "method": "Method",
+      "about": "About"
+    }
+  },
+  "hero": {
+    "badge": "Tech Studio — Custom Systems",
+    "title": {
+      "line1": "Less internal chaos.",
+      "line2": "More systems that work."
+    },
+    "subtitle": "When a process becomes too heavy, we turn it into software. Websites, apps, SaaS, automations — designed to reduce friction, not add complexity.",
+    "foundedBy": "Founded by",
+    "founderName": "Miguel Boka",
+    "founderRole": "Lead Architect & Full-Stack Developer"
+  },
+  "bento": {
+    "sectionLabel": "What we build",
+    "sectionTitle": "Websites, apps, SaaS",
+    "sectionTitleAccent": "— designed as systems",
+    "collaborationCard": {
+      "title": "From problem to system",
+      "subtitle": "Business problem → Software system"
+    },
+    "techCard": {
+      "title": "The right tools,",
+      "titleLine2": "serving the result"
+    },
+    "globeCard": {
+      "title": "Available everywhere",
+      "subtitle": "Remote-first, based in Montreal"
+    },
+    "founderCard": {
+      "name": "Miguel Boka",
+      "role": "Lead Architect & Founder",
+      "description": "Systems architect, not just an executor."
+    },
+    "projectsCard": {
+      "label": "SYSTEMS IN PRODUCTION",
+      "projects": {
+        "tracksy": {
+          "name": "Tracksy",
+          "desc": "Time tracking & automatic invoicing for freelancers",
+          "status": "Production"
+        },
+        "memocall": {
+          "name": "MemoCall",
+          "desc": "AI voice assistant that transcribes and analyzes your calls",
+          "status": "Production"
+        },
+        "sidequest": {
+          "name": "SideQuest",
+          "desc": "Social app to discover places and events",
+          "status": "Beta"
+        }
+      }
+    }
+  },
+  "projects": {
+    "tracksy": {
+      "title": "Tracksy",
+      "shortDesc": "Automatic invoicing for freelancers",
+      "description": "Freelancers lose 3-5h/week tracking hours and generating invoices. Tracksy automates the entire cycle: time tracking → invoice generation → accounting export.",
+      "features": {
+        "problem": "Problem: 3-5h/week lost on tracking & invoicing",
+        "system": "System: Time tracking → invoices → automated accounting export",
+        "impact": "Impact: Administrative time reduced by 80%"
+      },
+      "status": "Production"
+    },
+    "memocall": {
+      "title": "MemoCall",
+      "shortDesc": "Your calls → concrete actions",
+      "description": "SMBs lose critical information after every client call. MemoCall transcribes, summarizes, extracts actions and pre-fills documents automatically.",
+      "features": {
+        "problem": "Problem: Lost info and manual entry after every call",
+        "system": "System: Transcription → summary → to-do → pre-filled docs",
+        "impact": "Impact: 0 manual note-taking, 100% of info captured"
+      },
+      "status": "Production"
+    },
+    "coresync": {
+      "title": "CoreSync",
+      "shortDesc": "Knowledge base + AI agent",
+      "description": "Teams waste time searching for documentation and internal processes. CoreSync centralizes everything with an AI agent that responds instantly.",
+      "features": {
+        "problem": "Problem: Time wasted searching for docs and internal processes",
+        "system": "System: AI agent that queries your knowledge base",
+        "impact": "Impact: Instant answers, accelerated onboarding"
+      },
+      "status": "Live"
+    },
+    "sidequest": {
+      "title": "SideQuest",
+      "shortDesc": "Organized outings, zero chaos",
+      "description": "Organizing outings with friends = chaos of messages and indecision. SideQuest centralizes events, favorites and personalized recommendations.",
+      "features": {
+        "problem": "Problem: Organizing outings = message chaos",
+        "system": "System: Events by category + \"For You\" recommendations",
+        "impact": "Impact: iOS app in public beta"
+      },
+      "status": "TestFlight"
+    },
+    "techUsed": "TECHNOLOGIES USED"
+  },
+  "method": {
+    "sectionLabel": "How we work",
+    "sectionTitle": "The",
+    "sectionTitleAccent": "SmartScaling method",
+    "sectionSubtitle": "Each step is designed to save you time and clarity. Zero surprises, zero scope creep.",
+    "steps": {
+      "diagnostic": {
+        "number": "01",
+        "title": "Diagnostic",
+        "outcome": "Total clarity on the problem and scope — no surprises.",
+        "deliverable": "Defined scope + fixed estimate",
+        "duration": "1-2 calls"
+      },
+      "prototype": {
+        "number": "02",
+        "title": "Prototype",
+        "outcome": "You decide on something concrete, not promises.",
+        "deliverable": "Testable prototype before investment",
+        "duration": "1-2 weeks"
+      },
+      "build": {
+        "number": "03",
+        "title": "Build",
+        "outcome": "A usable product, not a POC gathering dust.",
+        "deliverable": "System deployed in production",
+        "duration": "4-12 weeks"
+      },
+      "iterations": {
+        "number": "04",
+        "title": "Iterations",
+        "outcome": "Adjustments based on real usage, not assumptions.",
+        "deliverable": "Continuous post-launch improvements",
+        "duration": "Ongoing"
+      }
+    }
+  },
+  "workWithUs": {
+    "sectionLabel": "Collaboration",
+    "sectionTitle": "Two ways to work with",
+    "sectionTitleAccent": "SmartScaling",
+    "sectionSubtitle": "Depending on your situation, we adapt our approach to maximize value created.",
+    "option1": {
+      "label": "Option 1",
+      "title": "SaaS Service",
+      "description": "You have a clear need and a defined budget. We design and deliver a complete system, ready for production.",
+      "features": {
+        "scope": "Scope defined together from the start",
+        "price": "Fixed price, no surprises",
+        "delivery": "System delivered in production",
+        "support": "Post-launch support included"
+      },
+      "idealFor": {
+        "label": "Ideal for",
+        "description": "SMBs, internal teams, founders with an identified operational problem"
+      }
+    },
+    "option2": {
+      "badge": "Partnership",
+      "label": "Option 2",
+      "title": "Product co-creation",
+      "description": "You've identified a real business problem in a niche. We develop together a product with a shared vision.",
+      "features": {
+        "noBilling": "No initial billing",
+        "valueShare": "Value sharing",
+        "vision": "Shared product vision",
+        "longTerm": "Long-term commitment"
+      },
+      "idealFor": {
+        "label": "Ideal for",
+        "description": "Domain experts with real field knowledge and an identified niche"
+      }
+    }
+  },
+  "contact": {
+    "sectionLabel": "Contact",
+    "sectionTitle": "Let's discuss your",
+    "sectionTitleAccent": "next system",
+    "founderName": "Miguel Boka",
+    "founderRole": "Consultant & Web & Mobile Developer",
+    "badges": {
+      "consultant": "Consultant",
+      "fullStack": "Full Stack",
+      "uxUi": "UX/UI Design",
+      "location": "Montreal, QC"
+    },
+    "email": {
+      "label": "EMAIL",
+      "value": "contact@miguelboka.dev"
+    },
+    "calendar": {
+      "label": "Calendar",
+      "value": "Schedule a meeting"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "value": "linkedin.com/in/miguelboka"
+    },
+    "github": {
+      "label": "GitHub",
+      "value": "github.com/MrBigboka"
+    }
+  },
+  "footer": {
+    "description": "Tech studio founded by Miguel Boka. We design and deliver SaaS that run in production.",
+    "location": "Montreal, Quebec",
+    "sections": {
+      "general": "General",
+      "projects": "Projects",
+      "more": "More"
+    },
+    "links": {
+      "solutions": "Solutions",
+      "projects": "Projects",
+      "method": "Method",
+      "contact": "Contact",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    },
+    "copyright": "© {year} Miguel Boka. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
+  }
+}

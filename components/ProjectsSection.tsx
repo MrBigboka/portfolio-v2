@@ -21,131 +21,99 @@ interface ExtendedProject {
   image: string;
   hoverImage?: string;
   tags: string[];
-  link?: string; // Not currently used in the UI, but kept for data structure
+  link?: string;
   demoUrl?: string;
   githubUrl?: string;
   logo?: string;
-  bgColor?: string; // Tailwind class for background, e.g., 'bg-gradient-to-b from-[#3E1A35] to-[#2A1B2F]'
+  bgColor?: string;
   shortDesc?: string;
   features?: string[];
-  accentColor?: string; // Hex color string, e.g., '#DB2777'
+  accentColor?: string;
+  status: 'Production' | 'Beta' | 'Live' | 'TestFlight';
 }
 
 export default function ProjectsSection() {
+  // Projets principaux pour la landing (3-4 max, format Problème → Système → Impact)
   const projects: ExtendedProject[] = [
-    {
-      id: 'sidequest',
-      title: 'SideQuest',
-      description: 'SideQuest rend l\'organisation de sorties simple et rapide. Découvre des événements par catégories et région, sauvegarde tes lieux favoris, et reçois des recommandations "For You" basées sur tes goûts. Moins de scroll, moins de chaos, plus de plans concrets.',
-      image: '/projects/sidequest-mockup.png',
-      hoverImage: '/projects/sidequest-mockup.png',
-      tags: ['REACT NATIVE', 'TYPESCRIPT', 'SUPABASE'],
-      demoUrl: 'https://testflight.apple.com/join/wPWFm761',
-      githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
-      shortDesc: 'L\'app qui rend l\'organisation de sorties simple et rapide.',
-      features: [
-        'Problème: Trouver des plans et organiser des sorties = chaos',
-        'Solution: Événements par catégorie, favoris, recommandations "For You"',
-        'Preuve: App iOS en beta publique TestFlight'
-      ],
-      accentColor: '#8B5CF6',
-      logo: '/projects/sidequest-logo.png'
-    },
     {
       id: 'tracksy',
       title: 'Tracksy',
-      description: 'Les freelances perdent du temps à tracker leurs heures et générer des factures manuellement. Tracksy automatise tout: suivi du temps, génération de factures, comptabilité intégrée.',
+      description: 'Les freelances perdent 3-5h/semaine à tracker leurs heures et générer des factures. Tracksy automatise tout le cycle: suivi du temps → génération de factures → export comptable.',
       image: '/projects/tracksy-landing.png',
       hoverImage: '/projects/tracksy-landing.png',
       tags: ['NEXT.JS', 'TYPESCRIPT', 'PRISMA', 'POSTGRESQL'],
       demoUrl: 'https://tracksy.me',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#0a1f0a]/90 via-[#0d1a0d]/80 to-[#0a1f0a]/70',
-      shortDesc: 'Suivi du temps et facturation automatique pour freelances.',
+      shortDesc: 'Facturation automatique pour freelances',
       features: [
-        'Problème: Perte de temps sur le tracking et la facturation manuelle',
-        'Solution: Génération automatique de factures depuis le suivi du temps',
-        'Preuve: Produit complet en production, de l\'idée au déploiement'
+        'Problème: 3-5h/semaine perdues sur tracking & facturation',
+        'Système: Suivi temps → factures → export comptable automatisé',
+        'Impact: Temps administratif réduit de 80%'
       ],
       accentColor: '#d5ff3f',
-      logo: '/projects/tracksy_icon.png'
+      logo: '/projects/tracksy_icon.png',
+      status: 'Production'
     },
     {
       id: 'memocall',
       title: 'MemoCall',
-      description: 'Assistant IA pour PME qui transforme les appels téléphoniques en actions concrètes. Transcription, résumé, extraction des besoins client, génération de to-do et pré-remplissage de documents (bon de commande, formulaires) — puis validation et export. L\'IA qui écoute, comprend et agit.',
+      description: 'Les PME perdent des informations critiques après chaque appel client. MemoCall transcrit, résume, extrait les actions et pré-remplit les documents automatiquement.',
       image: '/projects/Memocall-landing.png',
       hoverImage: '/projects/Memocall-landing.png',
       tags: ['NEXT.JS', 'TYPESCRIPT', 'OPENAI', 'SUPABASE', 'TWILIO'],
       demoUrl: 'https://memocall.ai',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#1a1a1a]/90 via-[#0d0d0d]/80 to-[#1a1a1a]/70',
-      shortDesc: 'Assistant IA qui transforme vos appels en actions concrètes.',
+      shortDesc: 'Vos appels → actions concrètes',
       features: [
-        'Problème: Perte d\'info et saisie manuelle coûteuse après les appels',
-        'Solution: Transcription → résumé → to-do → pré-remplissage docs → export',
-        'Preuve: Pipeline IA complet pour métiers téléphone-intensifs'
+        'Problème: Info perdue et saisie manuelle après chaque appel',
+        'Système: Transcription → résumé → to-do → docs pré-remplis',
+        'Impact: 0 prise de notes manuelle, 100% des infos capturées'
       ],
       accentColor: '#FFFFFF',
-      logo: '/projects/memocall_icon.png'
+      logo: '/projects/memocall_icon.png',
+      status: 'Production'
     },
     {
       id: 'coresync',
       title: 'CoreSync',
-      description: 'Les grandes équipes perdent du temps à chercher documentation et processus internes. CoreSync centralise tout avec un agent IA pour interroger la base de connaissances.',
+      description: 'Les équipes perdent du temps à chercher documentation et processus internes. CoreSync centralise tout avec un agent IA qui répond instantanément.',
       image: '/projects/coresync.png',
       hoverImage: '/projects/coresync3.png',
       tags: ['NEXT.JS', 'FIRESTORE', 'N8N', 'OPENAI'],
       demoUrl: 'https://coresync.vercel.app',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
-      shortDesc: 'Plateforme SaaS avec agent IA pour centraliser vos processus.',
+      shortDesc: 'Base de connaissances + agent IA',
       features: [
-        'Problème: Temps perdu à chercher documentation et processus',
-        'Solution: Agent IA pour interroger la base de connaissances interne',
-        'Preuve: Architecture modulaire complexe avec LLM intégré'
+        'Problème: Temps perdu à chercher docs et processus internes',
+        'Système: Agent IA qui interroge votre base de connaissances',
+        'Impact: Réponses instantanées, onboarding accéléré'
       ],
       accentColor: '#9D71E8',
-      logo: '/projects/coresyncLogo.png'
+      logo: '/projects/coresyncLogo.png',
+      status: 'Live'
     },
     {
-      id: 'nocasemtl',
-      title: 'NoCaseMTL',
-      description: 'Plateforme e-commerce pour la vente de coques de téléphone personnalisées à Montréal.',
-      image: '/projects/nocase1.png',
-      hoverImage: '/projects/nocase2.png',
-      tags: ['SHOPIFY', 'LIQUID', 'JAVASCRIPT'],
-      demoUrl: '#',
+      id: 'sidequest',
+      title: 'SideQuest',
+      description: 'Organiser des sorties entre amis = chaos de messages et d\'indécision. SideQuest centralise événements, favoris et recommandations personnalisées.',
+      image: '/projects/sidequest-mockup.png',
+      hoverImage: '/projects/sidequest-mockup.png',
+      tags: ['REACT NATIVE', 'TYPESCRIPT', 'SUPABASE'],
+      demoUrl: 'https://testflight.apple.com/join/wPWFm761',
       githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#1e1e1e]/90 via-[#0d0d0d]/80 to-[#1e1e1e]/70',
-      shortDesc: 'E-commerce de coques personnalisées.',
+      bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
+      shortDesc: 'Sorties organisées, zéro chaos',
       features: [
-        'Problème: Manque de personnalisation pour coques de téléphone',
-        'Solution: Plateforme e-commerce avec personnalisation en temps réel',
-        'Preuve: Site complet avec paiement Stripe intégré'
+        'Problème: Organiser des sorties = chaos de messages',
+        'Système: Événements par catégorie + recommandations "For You"',
+        'Impact: App iOS en beta publique'
       ],
-      accentColor: '#94949C',
-      logo: '/projects/nocaseLogo.png'
-    },
-    {
-      id: 'econome',
-      title: 'EconoME',
-      description: 'Application de gestion budgétaire personnelle pour suivre ses dépenses et économiser.',
-      image: '/projects/economeDemo.jpg',
-      hoverImage: '/projects/economeDemo.jpg',
-      tags: ['REACT', 'TYPESCRIPT', 'FIREBASE'],
-      demoUrl: '#',
-      githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#1a3a1a]/90 via-[#0d1a0d]/80 to-[#1a3a1a]/70',
-      shortDesc: 'Gestion budgétaire personnelle.',
-      features: [
-        'Problème: Difficulté à suivre ses dépenses quotidiennes',
-        'Solution: App intuitive avec catégorisation automatique',
-        'Preuve: Interface simple et efficace pour budget personnel'
-      ],
-      accentColor: '#4CAF50',
-      logo: '/projects/economeLogo.png'
+      accentColor: '#8B5CF6',
+      logo: '/projects/sidequest-logo.png',
+      status: 'TestFlight'
     }
   ];
 
@@ -351,9 +319,21 @@ export default function ProjectsSection() {
                       
                       {/* Titre à droite */}
                       <div className="flex-grow">
-                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-1">
-                          {projects[activeProject].title}
-                        </h3>
+                        <div className="flex items-center gap-3 mb-1">
+                          <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                            {projects[activeProject].title}
+                          </h3>
+                          <span 
+                            className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider rounded-full"
+                            style={{ 
+                              backgroundColor: `${getProjectAccentColor(activeProject)}20`,
+                              color: getProjectAccentColor(activeProject),
+                              border: `1px solid ${getProjectAccentColor(activeProject)}40`
+                            }}
+                          >
+                            {projects[activeProject].status}
+                          </span>
+                        </div>
                         <div className="w-20 h-1 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
                       </div>
                     </motion.div>

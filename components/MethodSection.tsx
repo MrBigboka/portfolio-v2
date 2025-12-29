@@ -2,38 +2,39 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileSearch, Layers, Code2, Rocket, ArrowRight } from 'lucide-react';
+import { FileSearch, Layers, Code2, Rocket } from 'lucide-react';
+import { SmartButton } from '@/components/ui/smart-button';
 
 const steps = [
   {
     number: '01',
-    title: 'Diagnostic & Scope',
-    outcome: 'On comprend votre objectif business et on définit le périmètre exact.',
-    deliverable: 'Document de scope + estimation claire',
+    title: 'Diagnostic',
+    outcome: 'Clarté totale sur le problème et le scope — pas de surprise.',
+    deliverable: 'Scope défini + estimation fixée',
     duration: '1-2 appels',
     icon: FileSearch,
   },
   {
     number: '02',
-    title: 'Prototype décisionnel',
-    outcome: 'Vous voyez et testez avant de construire. On valide ensemble.',
-    deliverable: 'Prototype cliquable + specs techniques',
+    title: 'Prototype',
+    outcome: 'Vous décidez sur du concret, pas sur des promesses.',
+    deliverable: 'Prototype testable avant investissement',
     duration: '1-2 semaines',
     icon: Layers,
   },
   {
     number: '03',
-    title: 'Build & Qualité',
-    outcome: 'Code propre, tests, architecture scalable. On construit pour durer.',
-    deliverable: 'Application déployée + documentation',
+    title: 'Build',
+    outcome: 'Un produit exploitable, pas un POC qui prend la poussière.',
+    deliverable: 'Système déployé en production',
     duration: '4-12 semaines',
     icon: Code2,
   },
   {
     number: '04',
-    title: 'Lancement & Suivi',
-    outcome: 'On vous accompagne post-launch pour ajuster et optimiser.',
-    deliverable: 'Support + itérations basées sur feedback',
+    title: 'Itérations',
+    outcome: 'Ajustements basés sur l\'usage réel, pas sur des hypothèses.',
+    deliverable: 'Améliorations continues post-launch',
     duration: 'Ongoing',
     icon: Rocket,
   },
@@ -42,9 +43,6 @@ const steps = [
 export default function MethodSection() {
   return (
     <section id="method" className="relative z-10 py-24 px-6 md:px-12 overflow-hidden">
-      {/* Subtle purple glow effects */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -75,8 +73,8 @@ export default function MethodSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto"
           >
-            Un process éprouvé pour passer de l&apos;idée au produit live.
-            Pas de surprise, pas de scope creep — juste des résultats.
+            Chaque étape est conçue pour vous faire gagner du temps et de la clarté.
+            Zéro surprise, zéro scope creep.
           </motion.p>
         </div>
 
@@ -131,24 +129,24 @@ export default function MethodSection() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA secondaire - plus doux */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center mt-16"
+          className="flex justify-center mt-16"
         >
-          <p className="text-gray-400 mb-6">Prêt à démarrer?</p>
-          <a
+          <SmartButton
+            variant="ghost"
+            size="md"
+            icon="arrow"
             href="https://calendly.com/bokamiguel"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30"
           >
-            <span>Réserver un appel découverte</span>
-            <ArrowRight className="w-5 h-5" />
-          </a>
+            Explorer la faisabilité
+          </SmartButton>
         </motion.div>
       </div>
     </section>

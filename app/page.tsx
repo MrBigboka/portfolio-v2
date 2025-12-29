@@ -5,8 +5,8 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import BentoGrid from '@/components/BentoGrid';
 import ProjectsSection from '@/components/ProjectsSection';
+import WorkWithUs from '@/components/WorkWithUs';
 import MethodSection from '@/components/MethodSection';
-import AboutFounder from '@/components/AboutFounder';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
@@ -18,8 +18,8 @@ export default function Home() {
       <Hero />
       <BentoGrid />
       <ProjectsSection />
+      <WorkWithUs />
       <MethodSection />
-      <AboutFounder />
       <ContactSection />
       <Footer />
       <BackToTop />

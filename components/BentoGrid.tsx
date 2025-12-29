@@ -2,15 +2,15 @@
 
 import React, { useRef } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Sparkles, Briefcase, MapPin, FileText, Server, Code } from 'lucide-react';
+import { ArrowRight, MapPin, FileText, Server, Code } from 'lucide-react';
 import { AutomationIcon } from './icons/TechIcons';
 import Image from 'next/image';
 import { Globe } from '@/components/ui/globe';
 import { AnimatedBeam } from '@/components/ui/animated-beam';
 import { Marquee } from '@/components/ui/marquee';
 import TechBadge from './TechBadge';
-import { LineShadowText } from './ui/line-shadow-text';
 import { Ripple } from '@/components/ui/ripple';
+import { NumberTicker } from '@/components/ui/number-ticker';
 
 // --- Collaboration Card Component ---
 function CollaborationCard() {
@@ -28,7 +28,7 @@ function CollaborationCard() {
             {/* Title at top */}
             <div className="absolute top-4 sm:top-6 left-0 right-0 text-center z-20">
                 <h3 className="text-white text-base sm:text-lg md:text-xl font-light">
-                    De l&apos;idée à la production
+                    Du problème au système
                 </h3>
             </div>
             
@@ -75,7 +75,7 @@ function CollaborationCard() {
 
             <div className="absolute bottom-4 sm:bottom-5 left-0 right-0 text-center px-4">
                 <p className="text-gray-400 text-xs sm:text-sm">
-                    → AI & automatisation pour livrer plus vite
+                    Problème métier → Système logiciel
                 </p>
             </div>
         </div>
@@ -84,19 +84,17 @@ function CollaborationCard() {
 
 // --- Technologies Card Component (with website preview) ---
 function TechnologiesCard() {
-    // Stack condensé - 10 technologies clés max
     const coreTech = ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'NODE.JS', 'POSTGRESQL'];
     const toolsTech = ['SUPABASE', 'OPENAI', 'N8N', 'VERCEL', 'AWS'];
 
     return (
         <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-4 sm:pt-6 group/card">
             <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-3 sm:mb-4 text-center leading-tight">
-                Stack moderne,<br />résultats concrets
+                Les bons outils,<br />au service du résultat
             </h3>
             
-            {/* Tech marquees - Simplifié */}
+            {/* Tech marquees */}
             <div className="flex w-full flex-col items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-                {/* Row 1: Core stack */}
                 <Marquee pauseOnHover className="[--duration:20s] [--gap:0.75rem]">
                     {coreTech.map((tech: string) => (
                         <div key={tech}>
@@ -104,7 +102,6 @@ function TechnologiesCard() {
                         </div>
                     ))}
                 </Marquee>
-                {/* Row 2: Tools & AI */}
                 <Marquee reverse pauseOnHover className="[--duration:20s] [--gap:0.75rem]">
                     {toolsTech.map((tech: string) => (
                         <div key={tech}>
@@ -114,11 +111,11 @@ function TechnologiesCard() {
                 </Marquee>
             </div>
 
-            {/* Glow effect above browser mockup - Circular */}
+            {/* Glow effect above browser mockup */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-32 bg-gradient-to-t from-purple-500/20 via-purple-500/10 to-transparent blur-2xl pointer-events-none group-hover/card:from-purple-500/40 group-hover/card:via-purple-500/20 transition-all duration-500"></div>
             <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-48 h-48 bg-purple-500/30 rounded-full blur-3xl pointer-events-none"></div>
 
-            {/* Browser mockup preview - positioned at bottom, partially visible */}
+            {/* Browser mockup preview */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] translate-y-[20%] group-hover/card:translate-y-[10%] transition-transform duration-500 ease-out">
                 {/* Ripple effect behind the browser */}
                 <div className="absolute inset-0 -top-20 pointer-events-none">
@@ -126,7 +123,7 @@ function TechnologiesCard() {
                 </div>
                 
                 <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#0c0c0c] shadow-2xl relative group-hover/card:border-white/20 transition-colors duration-300">
-                    {/* Grid pattern inside browser - subtle */}
+                    {/* Grid pattern inside browser */}
                     <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
                         backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
                         backgroundSize: '20px 20px'
@@ -149,21 +146,18 @@ function TechnologiesCard() {
                         </div>
                     </div>
                     
-                    {/* Browser content - Website preview */}
+                    {/* Browser content */}
                     <div className="p-8 flex flex-col items-center justify-center min-h-[200px] relative z-10">
-                        {/* Main text */}
                         <div className="text-center">
                             <h4 className="text-white text-2xl font-medium mb-1">Sites web qui</h4>
                             <h4 className="text-purple-400 text-3xl font-semibold italic">marquent.</h4>
                         </div>
                         
-                        {/* Decorative lines */}
                         <div className="flex gap-3 mt-5">
                             <div className="h-1 w-20 bg-gray-600 rounded"></div>
                             <div className="h-1 w-14 bg-gray-700 rounded"></div>
                         </div>
                         
-                        {/* Buttons */}
                         <div className="flex gap-3 mt-6">
                             <button className="px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full flex items-center gap-2 hover:bg-gray-200 transition-colors">
                                 Commencer
@@ -250,11 +244,11 @@ export default function BentoGrid() {
                     id="solutions"
                 >
                     <p className="text-gray-400 text-sm uppercase tracking-[0.3em] mb-3">
-                        Nos solutions
+                        Ce qu&apos;on construit
                     </p>
                     <h2 className="text-white text-3xl md:text-4xl font-light tracking-tight">
-                        Ce qu&apos;on{' '}
-                        <LineShadowText className="text-purple-400 italic" shadowColor="#a855f7">livre</LineShadowText>
+                        Sites, apps, SaaS{' '}
+                        <span className="text-purple-400 italic">— conçus comme des systèmes</span>
                     </h2>
                 </motion.div>
 
@@ -307,7 +301,7 @@ export default function BentoGrid() {
                                 Lead Architect & Fondateur
                             </p>
                             <p className="text-gray-500 text-xs mb-4 relative z-10 max-w-[200px]">
-                                Chaque projet SmartScaling passe par mes mains.
+                                Architecte de systèmes, pas simple exécutant.
                             </p>
                             <motion.a
                                 href="https://www.linkedin.com/in/miguel-boka-51b407223/"
@@ -323,52 +317,35 @@ export default function BentoGrid() {
                         </div>
                     </motion.div>
 
-                    {/* Row 3, Col 2-3: Mes Projets (Spans 2 cols horizontal) */}
+                    {/* Row 3, Col 2-3: Impact Card avec stats animées */}
                     <div className="sm:col-span-2 sm:row-span-1 lg:col-span-2 lg:row-span-1">
-                        <div className="h-full w-full flex flex-col rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-4 sm:p-6 shadow-2xl backdrop-blur-xl hover:border-white/20 transition-all">
-                            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center shadow-lg">
-                                    <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                </div>
-                                <div>
-                                    <span className="text-xs uppercase tracking-widest text-gray-400 font-bold">PRODUITS LIVE</span>
-                                    <h3 className="text-white text-sm sm:text-base lg:text-lg font-light">Preuve de capacité, pas de promesses</h3>
-                                </div>
+                        <div className="h-full w-full flex flex-col rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-6 sm:p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden">
+                            {/* Subtle animated gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-purple-500/5 animate-pulse pointer-events-none"></div>
+                            
+                            <div className="flex items-center justify-between mb-6 relative z-10">
+                                <span className="text-xs uppercase tracking-widest text-gray-500">Impact mesurable</span>
                             </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 flex-1">
-                                {[
-                                    { name: 'Tracksy', desc: 'Suivi du temps & facturation automatique pour freelances', status: 'Production', color: 'from-yellow-400 to-lime-500', icon: '/projects/tracksy_icon.png' },
-                                    { name: 'MemoCall', desc: 'Assistant vocal IA qui transcrit et analyse vos appels', status: 'Production', color: 'from-green-500 to-emerald-600', icon: '/projects/memocall_icon.png' },
-                                    { name: 'SideQuest', desc: 'App sociale pour découvrir des lieux et événements', status: 'Bêta', color: 'from-purple-500 to-violet-500', icon: '/projects/sidequest-logo.png' },
-                                ].map((project) => (
-                                    <motion.div 
-                                        key={project.name} 
-                                        className="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:bg-white/10 hover:border-white/20 transition-all flex flex-col justify-between h-full group cursor-pointer"
-                                        whileHover={{ y: -4 }}
-                                        transition={{ type: "spring", stiffness: 300 }}
-                                    >
-                                        <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                                            {project.icon ? (
-                                                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg overflow-hidden bg-zinc-900/50">
-                                                    <Image src={project.icon} alt={project.name} width={32} height={32} className="object-cover" />
-                                                </div>
-                                            ) : (
-                                                <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                                                    <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
-                                                </div>
-                                            )}
-                                            <h4 className="text-white text-sm sm:text-base font-medium">{project.name}</h4>
-                                        </div>
-                                        <p className="text-gray-400 text-xs mb-2 sm:mb-3 line-clamp-2">{project.desc}</p>
-                                        <div className="mt-auto flex items-center justify-between">
-                                            <span className="text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-gray-300">
-                                                {project.status}
-                                            </span>
-                                            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
-                                        </div>
-                                    </motion.div>
-                                ))}
+                            <div className="grid grid-cols-3 gap-6 flex-1 relative z-10">
+                                <div className="flex flex-col items-center justify-center text-center">
+                                    <div className="text-3xl sm:text-4xl font-light text-white mb-1">
+                                        <NumberTicker value={4} suffix="+" />
+                                    </div>
+                                    <p className="text-gray-500 text-xs sm:text-sm">Systèmes en production</p>
+                                </div>
+                                <div className="flex flex-col items-center justify-center text-center border-x border-white/10">
+                                    <div className="text-3xl sm:text-4xl font-light text-purple-400 mb-1">
+                                        <NumberTicker value={80} suffix="%" delay={200} />
+                                    </div>
+                                    <p className="text-gray-500 text-xs sm:text-sm">Temps admin économisé</p>
+                                </div>
+                                <div className="flex flex-col items-center justify-center text-center">
+                                    <div className="text-3xl sm:text-4xl font-light text-white mb-1">
+                                        <NumberTicker value={0} suffix=" surprise" delay={400} />
+                                    </div>
+                                    <p className="text-gray-500 text-xs sm:text-sm">Scope creep</p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cta": "Réserver un appel",
+    "viewProjects": "Voir les systèmes en production ↓",
+    "viewLinkedIn": "Voir LinkedIn",
+    "copyEmail": "Copier l'email",
+    "emailCopied": "Email copié dans le presse-papier!",
+    "takeAppointment": "Prendre rendez-vous",
+    "codeSource": "Code Source",
+    "viewAllProjects": "Voir tous les projets",
+    "duration": "Durée"
+  },
+  "header": {
+    "nav": {
+      "solutions": "Solutions",
+      "projects": "Projets",
+      "method": "Méthode",
+      "about": "À propos"
+    }
+  },
+  "hero": {
+    "badge": "Studio technologique — Systèmes sur mesure",
+    "title": {
+      "line1": "Moins de chaos interne.",
+      "line2": "Plus de systèmes qui fonctionnent."
+    },
+    "subtitle": "Quand un processus devient trop lourd, on le transforme en logiciel. Sites web, apps, SaaS, automatisations — conçus pour réduire la friction, pas pour ajouter de la complexité.",
+    "foundedBy": "Fondé par",
+    "founderName": "Miguel Boka",
+    "founderRole": "Lead Architect & Full-Stack Developer"
+  },
+  "bento": {
+    "sectionLabel": "Ce qu'on construit",
+    "sectionTitle": "Sites, apps, SaaS",
+    "sectionTitleAccent": "— conçus comme des systèmes",
+    "collaborationCard": {
+      "title": "Du problème au système",
+      "subtitle": "Problème métier → Système logiciel"
+    },
+    "techCard": {
+      "title": "Les bons outils,",
+      "titleLine2": "au service du résultat"
+    },
+    "globeCard": {
+      "title": "Disponible partout",
+      "subtitle": "Remote-first, basé à Montréal"
+    },
+    "founderCard": {
+      "name": "Miguel Boka",
+      "role": "Lead Architect & Fondateur",
+      "description": "Architecte de systèmes, pas simple exécutant."
+    },
+    "projectsCard": {
+      "label": "SYSTÈMES EN PRODUCTION",
+      "projects": {
+        "tracksy": {
+          "name": "Tracksy",
+          "desc": "Suivi du temps & facturation automatique pour freelances",
+          "status": "Production"
+        },
+        "memocall": {
+          "name": "MemoCall",
+          "desc": "Assistant vocal IA qui transcrit et analyse vos appels",
+          "status": "Production"
+        },
+        "sidequest": {
+          "name": "SideQuest",
+          "desc": "App sociale pour découvrir des lieux et événements",
+          "status": "Bêta"
+        }
+      }
+    }
+  },
+  "projects": {
+    "tracksy": {
+      "title": "Tracksy",
+      "shortDesc": "Facturation automatique pour freelances",
+      "description": "Les freelances perdent 3-5h/semaine à tracker leurs heures et générer des factures. Tracksy automatise tout le cycle: suivi du temps → génération de factures → export comptable.",
+      "features": {
+        "problem": "Problème: 3-5h/semaine perdues sur tracking & facturation",
+        "system": "Système: Suivi temps → factures → export comptable automatisé",
+        "impact": "Impact: Temps administratif réduit de 80%"
+      },
+      "status": "Production"
+    },
+    "memocall": {
+      "title": "MemoCall",
+      "shortDesc": "Vos appels → actions concrètes",
+      "description": "Les PME perdent des informations critiques après chaque appel client. MemoCall transcrit, résume, extrait les actions et pré-remplit les documents automatiquement.",
+      "features": {
+        "problem": "Problème: Info perdue et saisie manuelle après chaque appel",
+        "system": "Système: Transcription → résumé → to-do → docs pré-remplis",
+        "impact": "Impact: 0 prise de notes manuelle, 100% des infos capturées"
+      },
+      "status": "Production"
+    },
+    "coresync": {
+      "title": "CoreSync",
+      "shortDesc": "Base de connaissances + agent IA",
+      "description": "Les équipes perdent du temps à chercher documentation et processus internes. CoreSync centralise tout avec un agent IA qui répond instantanément.",
+      "features": {
+        "problem": "Problème: Temps perdu à chercher docs et processus internes",
+        "system": "Système: Agent IA qui interroge votre base de connaissances",
+        "impact": "Impact: Réponses instantanées, onboarding accéléré"
+      },
+      "status": "Live"
+    },
+    "sidequest": {
+      "title": "SideQuest",
+      "shortDesc": "Sorties organisées, zéro chaos",
+      "description": "Organiser des sorties entre amis = chaos de messages et d'indécision. SideQuest centralise événements, favoris et recommandations personnalisées.",
+      "features": {
+        "problem": "Problème: Organiser des sorties = chaos de messages",
+        "system": "Système: Événements par catégorie + recommandations \"For You\"",
+        "impact": "Impact: App iOS en beta publique"
+      },
+      "status": "TestFlight"
+    },
+    "techUsed": "TECHNOLOGIES UTILISÉES"
+  },
+  "method": {
+    "sectionLabel": "Comment on travaille",
+    "sectionTitle": "La méthode",
+    "sectionTitleAccent": "SmartScaling",
+    "sectionSubtitle": "Chaque étape est conçue pour vous faire gagner du temps et de la clarté. Zéro surprise, zéro scope creep.",
+    "steps": {
+      "diagnostic": {
+        "number": "01",
+        "title": "Diagnostic",
+        "outcome": "Clarté totale sur le problème et le scope — pas de surprise.",
+        "deliverable": "Scope défini + estimation fixée",
+        "duration": "1-2 appels"
+      },
+      "prototype": {
+        "number": "02",
+        "title": "Prototype",
+        "outcome": "Vous décidez sur du concret, pas sur des promesses.",
+        "deliverable": "Prototype testable avant investissement",
+        "duration": "1-2 semaines"
+      },
+      "build": {
+        "number": "03",
+        "title": "Build",
+        "outcome": "Un produit exploitable, pas un POC qui prend la poussière.",
+        "deliverable": "Système déployé en production",
+        "duration": "4-12 semaines"
+      },
+      "iterations": {
+        "number": "04",
+        "title": "Itérations",
+        "outcome": "Ajustements basés sur l'usage réel, pas sur des hypothèses.",
+        "deliverable": "Améliorations continues post-launch",
+        "duration": "Ongoing"
+      }
+    }
+  },
+  "workWithUs": {
+    "sectionLabel": "Collaboration",
+    "sectionTitle": "Deux façons de travailler avec",
+    "sectionTitleAccent": "SmartScaling",
+    "sectionSubtitle": "Selon votre situation, on adapte notre approche pour maximiser la valeur créée.",
+    "option1": {
+      "label": "Option 1",
+      "title": "Service SaaS",
+      "description": "Vous avez un besoin clair et un budget défini. On conçoit et livre un système complet, prêt pour la production.",
+      "features": {
+        "scope": "Scope défini ensemble dès le départ",
+        "price": "Prix fixe, pas de surprise",
+        "delivery": "Système livré en production",
+        "support": "Support post-lancement inclus"
+      },
+      "idealFor": {
+        "label": "Idéal pour",
+        "description": "PME, équipes internes, fondateurs avec un problème opérationnel identifié"
+      }
+    },
+    "option2": {
+      "badge": "Partenariat",
+      "label": "Option 2",
+      "title": "Co-création produit",
+      "description": "Vous avez identifié un problème métier réel dans une niche. On développe ensemble un produit avec une vision partagée.",
+      "features": {
+        "noBilling": "Pas de facturation initiale",
+        "valueShare": "Partage de la valeur créée",
+        "vision": "Vision produit commune",
+        "longTerm": "Engagement long terme"
+      },
+      "idealFor": {
+        "label": "Idéal pour",
+        "description": "Experts métier avec une vraie connaissance terrain et une niche identifiée"
+      }
+    }
+  },
+  "contact": {
+    "sectionLabel": "Contact",
+    "sectionTitle": "Discutons de votre",
+    "sectionTitleAccent": "prochain système",
+    "founderName": "Miguel Boka",
+    "founderRole": "Consultant & Développeur Web & Mobile",
+    "badges": {
+      "consultant": "Consultant",
+      "fullStack": "Full Stack",
+      "uxUi": "UX/UI Design",
+      "location": "Montréal, QC"
+    },
+    "email": {
+      "label": "EMAIL",
+      "value": "contact@miguelboka.dev"
+    },
+    "calendar": {
+      "label": "Calendrier",
+      "value": "Prendre rendez-vous"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "value": "linkedin.com/in/miguelboka"
+    },
+    "github": {
+      "label": "GitHub",
+      "value": "github.com/MrBigboka"
+    }
+  },
+  "footer": {
+    "description": "Studio technologique fondé par Miguel Boka. On conçoit et livre des SaaS qui tournent en production.",
+    "location": "Montréal, Québec",
+    "sections": {
+      "general": "Général",
+      "projects": "Projets",
+      "more": "Plus"
+    },
+    "links": {
+      "solutions": "Solutions",
+      "projects": "Projets",
+      "method": "Méthode",
+      "contact": "Contact",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    },
+    "copyright": "© {year} Miguel Boka. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
+  }
+}

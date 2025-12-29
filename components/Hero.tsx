@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
-import { LineShadowText } from './ui/line-shadow-text';
 import { SmartButton } from './ui/smart-button';
 import DarkVeil from './DarkVeil';
 
@@ -48,11 +47,11 @@ export default function Hero() {
                 >
                     <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm">
                         <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                        Studio technologique pour projets ambitieux
+                        Studio technologique — Systèmes sur mesure
                     </span>
                 </motion.div>
 
-                {/* Title - Headline orienté outcome */}
+                {/* Title - Headline orienté chaos/friction */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -60,13 +59,10 @@ export default function Hero() {
                     className="mb-6 text-center"
                 >
                     <span className="block text-white text-2xl sm:text-3xl md:text-5xl font-serif font-normal leading-tight tracking-tight">
-                        On conçoit et livre des SaaS
+                        Moins de chaos interne.
                     </span>
                     <span className="block text-2xl sm:text-3xl md:text-5xl font-serif italic font-light leading-tight tracking-tight mt-1">
-                        <span className="text-white">qui tournent en </span>
-                        <LineShadowText className="text-purple-400" shadowColor="#a855f7">
-                            production.
-                        </LineShadowText>
+                        <span className="text-purple-400">Plus de systèmes qui fonctionnent.</span>
                     </span>
                 </motion.h1>
 
@@ -77,8 +73,9 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 text-center leading-relaxed"
                 >
-                    Systèmes robustes, interfaces soignées, déploiement rapide.<br className="hidden sm:block" />
-                    Pour fondateurs et équipes qui veulent shipper, pas expérimenter.
+                    Quand un processus devient trop lourd, on le transforme en logiciel.<br className="hidden sm:block" />
+                    Sites web, apps, SaaS, automatisations — conçus pour réduire<br className="hidden sm:block" />
+                    la friction, pas pour ajouter de la complexité.
                 </motion.p>
 
                 {/* Proof Line with Profile Photo */}
@@ -110,42 +107,29 @@ export default function Hero() {
                     </span>
                 </motion.div>
 
-                {/* CTA Buttons */}
+                {/* CTA unique - style header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="flex items-center justify-center gap-4 flex-wrap"
+                    className="flex flex-col items-center gap-4"
                 >
                     <SmartButton
                         variant="cta"
-                        size="lg"
-                        icon="arrow"
+                        size="md"
                         href="https://calendly.com/bokamiguel"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Discutons de votre projet
+                        Réserver un appel
                     </SmartButton>
-
-                    <SmartButton
-                        variant="outline"
-                        size="lg"
-                        href="/projects"
+                    <a
+                        href="#projects"
+                        className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
                     >
-                        Voir les projets
-                    </SmartButton>
+                        Voir les systèmes en production ↓
+                    </a>
                 </motion.div>
-
-                {/* Micro-copy sous CTA */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="text-gray-600 text-xs mt-4"
-                >
-                    30 min pour cadrer votre projet — sans engagement
-                </motion.p>
             </motion.div>
         </section>
     );

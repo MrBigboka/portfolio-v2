@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   title: "SmartScaling - Studio technologique pour projets ambitieux",
   description: "On conçoit et livre des SaaS qui tournent en production. Systèmes robustes, interfaces soignées, déploiement rapide.",
   icons: {
-    icon: '/logo/smartscaling.png?v=2',
-    shortcut: '/logo/smartscaling.png?v=2',
-    apple: '/logo/smartscaling.png?v=2',
+    icon: '/logo/smartscaling-logo.png',
+    shortcut: '/logo/smartscaling-logo.png',
+    apple: '/logo/smartscaling-logo.png',
   },
 };
 
