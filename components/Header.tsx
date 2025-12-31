@@ -12,8 +12,8 @@ const navigation = [
     name: 'Solutions', 
     href: '/#solutions',
     submenu: [
-      { name: 'Apps', href: '/#projects?tab=apps', icon: '📱' },
-      { name: 'Automatisations', href: '/#projects?tab=automations', icon: '⚡' },
+      { name: 'Apps', href: '/#projects?tab=apps', description: 'Applications web & mobile' },
+      { name: 'Automatisations', href: '/#projects?tab=automations', description: 'Systèmes n8n & workflows' },
     ]
   },
   { name: 'Méthode', href: '/#method' },
@@ -79,10 +79,10 @@ export default function Header() {
                           <Link
                             key={subitem.name}
                             href={subitem.href}
-                            className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all"
+                            className="flex flex-col px-4 py-3 text-sm hover:bg-white/5 transition-all"
                           >
-                            <span className="text-lg">{subitem.icon}</span>
-                            <span>{subitem.name}</span>
+                            <span className="text-white font-medium">{subitem.name}</span>
+                            <span className="text-xs text-gray-500">{subitem.description}</span>
                           </Link>
                         ))}
                       </motion.div>
@@ -186,11 +186,10 @@ export default function Header() {
                             key={subitem.name}
                             href={subitem.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="group flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all"
+                            className="group flex flex-col px-4 py-3 rounded-xl hover:bg-white/5 transition-all"
                           >
-                            <span className="text-lg">{subitem.icon}</span>
-                            <span className="flex-1">{subitem.name}</span>
-                            <span className="text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                            <span className="text-white font-medium">{subitem.name}</span>
+                            <span className="text-xs text-gray-500">{subitem.description}</span>
                           </Link>
                         ))}
                       </div>
