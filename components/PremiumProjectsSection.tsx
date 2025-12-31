@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Zap, Calendar, TrendingUp, Users, Briefcase, ShoppingBag, Headphones, MessageSquare, BarChart3, Mail, MapPin, Brain, Clock, Star, ArrowRight } from 'lucide-react';
+import { Sparkles, Calendar, TrendingUp, Users, Briefcase, ShoppingBag, Headphones, MessageSquare, BarChart3, Mail, MapPin, Brain, Star, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { WobbleCard } from '@/components/ui/wobble-card';
@@ -208,7 +208,6 @@ export default function PremiumProjectsSection() {
     ? automations
     : automations.filter(auto => auto.categories.includes(selectedCategory as DetailedCategory));
 
-  const currentItems = activeTab === 'apps' ? filteredApps : filteredAutomations;
 
   return (
     <section id="projects" className="relative min-h-screen bg-black text-white py-20">

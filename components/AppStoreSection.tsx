@@ -678,7 +678,7 @@ export default function AppStoreSection() {
 }
 
 // Premium App Card with liquid glass effect
-function PremiumAppCard({ app, isHovered }: { app: App; isHovered: boolean }) {
+function PremiumAppCard({ app }: { app: App; isHovered: boolean }) {
   const [showPricing, setShowPricing] = useState(false);
 
   return (
@@ -911,7 +911,7 @@ function PremiumAppCard({ app, isHovered }: { app: App; isHovered: boolean }) {
 }
 
 // Premium Automation Card
-function PremiumAutomationCard({ automation, isHovered }: { automation: Automation; isHovered: boolean }) {
+function PremiumAutomationCard({ automation }: { automation: Automation; isHovered: boolean }) {
   return (
     <motion.div
       className="group relative h-full"
