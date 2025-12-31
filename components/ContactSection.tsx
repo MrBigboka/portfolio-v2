@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { ArrowRight, Mail, Linkedin, Github, Calendar } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 import Image from 'next/image';
@@ -20,13 +20,11 @@ export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
-  
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('miguel.boka@smartscaling.dev');
@@ -35,25 +33,19 @@ export default function ContactSection() {
 
   return (
     <section ref={sectionRef} id="contact" className="relative z-10 py-32 px-6 overflow-hidden bg-black">
-      {/* Fluid background image with parallax - Next.js Image optimized */}
-      <motion.div 
-        style={{ y: y1, opacity }}
-        className="absolute inset-0 pointer-events-none"
-      >
-        <div className="absolute inset-0 opacity-30">
-          <Image
-            src="/bg-footer.png"
-            alt="Background"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-          />
-        </div>
-      </motion.div>
+      {/* Background image - using img tag for better iOS compatibility */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/bg-footer.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          loading="eager"
+        />
+      </div>
       
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 pointer-events-none" />
       
       {/* Gradient transitions for smooth section separation */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
