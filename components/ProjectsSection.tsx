@@ -6,6 +6,7 @@ import { ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { AnimatedButton } from '@/components/ui/animated-button';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import TechBadge from './TechBadge';
@@ -38,14 +39,14 @@ export default function ProjectsSection() {
     {
       id: 'tracksy',
       title: 'Tracksy',
-      description: 'Les freelances perdent 3-5h/semaine à tracker leurs heures et générer des factures. Tracksy automatise tout le cycle: suivi du temps → génération de factures → export comptable.',
+      description: 'Plateforme SaaS pour freelances. Suivi du temps automatique, génération de factures en un clic, et analytics de rentabilité. Intégration Stripe pour paiements en ligne.',
       image: '/projects/tracksy-landing.png',
       hoverImage: '/projects/tracksy-landing.png',
       tags: ['NEXT.JS', 'TYPESCRIPT', 'PRISMA', 'POSTGRESQL'],
       demoUrl: 'https://tracksy.me',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#0a1f0a]/90 via-[#0d1a0d]/80 to-[#0a1f0a]/70',
-      shortDesc: 'Facturation automatique pour freelances',
+      shortDesc: 'Time tracking & facturation freelance',
       features: [
         'Problème: 3-5h/semaine perdues sur tracking & facturation',
         'Système: Suivi temps → factures → export comptable automatisé',
@@ -58,14 +59,14 @@ export default function ProjectsSection() {
     {
       id: 'memocall',
       title: 'MemoCall',
-      description: 'Les PME perdent des informations critiques après chaque appel client. MemoCall transcrit, résume, extrait les actions et pré-remplit les documents automatiquement.',
+      description: 'IA vocale pour appels professionnels. Transcription en temps réel, résumés automatiques, extraction de tâches et remplissage de CRM. Powered by GPT-4 et Whisper.',
       image: '/projects/Memocall-landing.png',
       hoverImage: '/projects/Memocall-landing.png',
       tags: ['NEXT.JS', 'TYPESCRIPT', 'OPENAI', 'SUPABASE', 'TWILIO'],
       demoUrl: 'https://memocall.ai',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#1a1a1a]/90 via-[#0d0d0d]/80 to-[#1a1a1a]/70',
-      shortDesc: 'Vos appels → actions concrètes',
+      shortDesc: 'Appels → Actions IA',
       features: [
         'Problème: Info perdue et saisie manuelle après chaque appel',
         'Système: Transcription → résumé → to-do → docs pré-remplis',
@@ -78,14 +79,14 @@ export default function ProjectsSection() {
     {
       id: 'coresync',
       title: 'CoreSync',
-      description: 'Les équipes perdent du temps à chercher documentation et processus internes. CoreSync centralise tout avec un agent IA qui répond instantanément.',
+      description: 'Agent IA encyclopédique pour entreprises. Indexe toute votre documentation interne et répond instantanément aux questions de vos équipes. Recherche sémantique avancée.',
       image: '/projects/coresync.png',
       hoverImage: '/projects/coresync3.png',
       tags: ['NEXT.JS', 'FIRESTORE', 'N8N', 'OPENAI'],
       demoUrl: 'https://coresync.vercel.app',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
-      shortDesc: 'Base de connaissances + agent IA',
+      shortDesc: 'Agent IA encyclopédique interne',
       features: [
         'Problème: Temps perdu à chercher docs et processus internes',
         'Système: Agent IA qui interroge votre base de connaissances',
@@ -98,14 +99,14 @@ export default function ProjectsSection() {
     {
       id: 'sidequest',
       title: 'SideQuest',
-      description: 'Organiser des sorties entre amis = chaos de messages et d\'indécision. SideQuest centralise événements, favoris et recommandations personnalisées.',
+      description: 'App mobile iOS pour organiser des sorties. Crée des événements, découvre des lieux avec recommandations ML, invite tes amis. Calendrier social intégré et mode hors-ligne.',
       image: '/projects/sidequest-mockup.png',
       hoverImage: '/projects/sidequest-mockup.png',
       tags: ['REACT NATIVE', 'TYPESCRIPT', 'SUPABASE'],
       demoUrl: 'https://testflight.apple.com/join/wPWFm761',
       githubUrl: '#',
       bgColor: 'bg-gradient-to-br from-[#2A2A2A]/80 via-[#1A1A1A]/60 to-[#2A2A2A]/30',
-      shortDesc: 'Sorties organisées, zéro chaos',
+      shortDesc: 'Organise tes sorties entre amis',
       features: [
         'Problème: Organiser des sorties = chaos de messages',
         'Système: Événements par catégorie + recommandations "For You"',
@@ -239,7 +240,7 @@ export default function ProjectsSection() {
                         style={{ background: project.id === 'sidequest' ? 'linear-gradient(to bottom right, #c084fc, #8B5CF6)' : project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'tracksy' ? 'linear-gradient(to bottom right, #e8ff8f, #d5ff3f)' : project.id === 'memocall' ? 'linear-gradient(to bottom right, #ffffff, #cccccc)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
                       ></div>
                       <div 
-                        className={`relative mx-auto overflow-hidden z-[106] transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'w-[45%] aspect-[9/19] bg-transparent border-0 shadow-none' : 'w-[90%] aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl shadow-xl border border-white/10 bg-zinc-900 group-hover:rotate-1'}`}
+                        className={`relative mx-auto overflow-hidden z-[106] transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'w-[45%] aspect-[9/19] bg-transparent border-0 shadow-none group-hover:scale-105' : 'w-[90%] aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl shadow-xl border border-white/10 bg-zinc-900 group-hover:rotate-1 group-hover:scale-105'}`}
                         style={{boxShadow: project.id === 'sidequest' ? 'none' : project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'tracksy' ? '0 10px 30px -5px rgba(213, 255, 63, 0.4), 0 0 15px -5px rgba(213, 255, 63, 0.5)' : project.id === 'memocall' ? '0 10px 30px -5px rgba(255, 255, 255, 0.3), 0 0 15px -5px rgba(255, 255, 255, 0.4)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <Image
@@ -410,16 +411,16 @@ export default function ProjectsSection() {
           </div>
         </div>
         
-        {/* Version mobile: affichage en cards comme dans la capture d'écran */}
+        {/* Version mobile: affichage en cards moderne */}
         <div className="lg:hidden mt-8">
-          <div className="space-y-24">
+          <div className="space-y-8">
             {projects.map((project) => (
               <motion.div 
                 key={project.id} 
-                className={`rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] bg-[#0E1A2B] flex flex-col shadow-2xl border-2 ${project.demoUrl && project.demoUrl !== '#' ? 'cursor-pointer' : ''}`}
+                className={`rounded-3xl overflow-hidden transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br from-white/[0.07] to-white/[0.02] flex flex-col shadow-2xl border backdrop-blur-xl ${project.demoUrl && project.demoUrl !== '#' ? 'cursor-pointer' : ''}`}
                 style={{
-                  borderColor: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981',
-                  boxShadow: `0 10px 30px -5px ${project.id === 'coresync' ? 'rgba(157, 113, 232, 0.3)' : project.id === 'nocasemtl' ? 'rgba(148, 148, 156, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
+                  borderColor: `${project.accentColor}40`,
+                  boxShadow: `0 20px 40px -10px ${project.accentColor}30`
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -427,10 +428,9 @@ export default function ProjectsSection() {
                 viewport={{ once: true }}
                 onClick={() => project.demoUrl && project.demoUrl !== '#' ? goToProjectURL(project.demoUrl) : null}
               >
-                {/* Image du projet */}
-                {/* Thumbnail */}
-                <div className="h-[400px] relative overflow-hidden bg-[#0E1A2B]">
-                  <div className="absolute inset-0 flex items-center justify-center">
+                {/* Image du projet avec ratio 16:9 */}
+                <div className="relative overflow-hidden bg-black/20" style={{ aspectRatio: '16/9' }}>
+                  <div className="absolute inset-0">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -439,54 +439,45 @@ export default function ProjectsSection() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 </div>
 
                 {/* Contenu */}
-                <div className="flex-1 p-6 bg-[#0E1A2B]"
-                >
+                <div className="flex-1 p-6">
                   {/* En-tête avec logo et titre */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className="flex items-start gap-4">
-                      {project.logo && (
-                        <div className="w-12 h-12 rounded-full bg-zinc-800/50 p-2 flex items-center justify-center relative flex-shrink-0">
-                          <Image 
-                            src={project.logo} 
-                            alt={`${project.title} logo`}
-                            className="w-full h-full object-contain" 
-                            width={48}
-                            height={48}
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                        <p 
-                          className="text-base leading-relaxed"
-                          style={{ color: project.id === 'coresync' ? '#dea9ff' : project.id === 'nocasemtl' ? '#d9d9df' : '#a5ebd1' }}
-                        >
-                          {project.shortDesc}
-                        </p>
+                  <div className="flex items-start gap-4 mb-4">
+                    {project.logo && (
+                      <div className="w-14 h-14 rounded-2xl p-2.5 flex items-center justify-center relative flex-shrink-0 border" style={{ 
+                        backgroundColor: `${project.accentColor}10`,
+                        borderColor: `${project.accentColor}30`
+                      }}>
+                        <Image 
+                          src={project.logo} 
+                          alt={`${project.title} logo`}
+                          className="w-full h-full object-contain" 
+                          width={56}
+                          height={56}
+                        />
                       </div>
+                    )}
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {project.shortDesc}
+                      </p>
                     </div>
                     <ArrowRight 
-                      className="w-6 h-6 flex-shrink-0"
-                      style={{ color: project.id === 'coresync' ? '#9D71E8' : project.id === 'nocasemtl' ? '#94949C' : '#10B981' }}
+                      className="w-6 h-6 flex-shrink-0 mt-1"
+                      style={{ color: project.accentColor }}
                     />
                   </div>
                   
                   {/* Technologies utilisées */}
                   <div className="pt-4 border-t border-white/10">
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, index) => (
-                        <motion.div
-                          key={tag}
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.05 }}
-                          viewport={{ once: true }}
-                        >
-                          <TechBadge key={`mobile-${project.id}-${tag}`} name={tag} />
-                        </motion.div>
+                      {project.tags.map((tag) => (
+                        <TechBadge key={`mobile-${project.id}-${tag}`} name={tag} />
                       ))}
                     </div>
                   </div>
@@ -504,12 +495,10 @@ export default function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="flex justify-center mt-16"
         >
-          <Link 
-            href="/projects"
-            className="group flex items-center gap-3 px-8 py-4 rounded-full border border-purple-500/30 bg-purple-500/10 text-white text-base font-medium hover:bg-purple-500/20 hover:border-purple-400/50 transition-all"
-          >
-            <span>Voir tous les projets</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <Link href="/projects">
+            <AnimatedButton variant="purple">
+              Voir toutes les solutions
+            </AnimatedButton>
           </Link>
         </motion.div>
       </div>

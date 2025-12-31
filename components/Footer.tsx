@@ -11,7 +11,6 @@ export default function Footer() {
 
   const generalLinks = [
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Projets', href: '#projects' },
     { name: 'Méthode', href: '#method' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -32,15 +31,14 @@ export default function Footer() {
   return (
     <footer className="relative py-12 sm:py-16 px-4 sm:px-6 bg-black">
       <div className="max-w-6xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 mb-8 sm:mb-12">
-          
-          {/* Left - Logo & Description */}
+        {/* Footer Grid */}
+        <div className="grid grid-cols-3 lg:grid-cols-12 gap-8 mb-8">
+          {/* Logo & Description */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4"
+            className="col-span-3 lg:col-span-4"
           >
             <div className="mb-4">
               <Image 
@@ -66,7 +64,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="lg:col-span-2"
+            className="col-span-1 lg:col-span-2"
           >
             <h4 className="text-gray-500 text-xs uppercase tracking-wider mb-3 sm:mb-4">Général</h4>
             <ul className="space-y-3">
@@ -85,9 +83,9 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="lg:col-span-2"
+            className="col-span-1 lg:col-span-2"
           >
-            <h4 className="text-gray-500 text-xs uppercase tracking-wider mb-3 sm:mb-4">Projets</h4>
+            <h4 className="text-gray-500 text-xs uppercase tracking-wider mb-3 sm:mb-4">Solutions</h4>
             <ul className="space-y-3">
               {projectLinks.map((link) => (
                 <li key={link.name}>
@@ -104,7 +102,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="lg:col-span-2"
+            className="col-span-1 lg:col-span-2"
           >
             <h4 className="text-gray-500 text-xs uppercase tracking-wider mb-3 sm:mb-4">Plus</h4>
             <ul className="space-y-3">
@@ -124,7 +122,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.25 }}
-            className="lg:col-span-2 flex lg:justify-end items-start"
+            className="col-span-3 lg:col-span-2 flex lg:justify-end items-start"
           >
             <div className="flex gap-3">
               <a

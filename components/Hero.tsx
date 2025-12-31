@@ -32,15 +32,19 @@ export default function Hero() {
                 />
             </div>
             
-            {/* Particles at the bottom - Extended to overlap with next section */}
-            <div className="absolute bottom-0 left-0 right-0 h-96 pointer-events-none z-[5] -mb-32">
-                <Particles
-                    className="absolute inset-0"
-                    quantity={150}
-                    ease={80}
-                    color="#d1d5db"
-                    refresh={false}
-                />
+            {/* Particles at the bottom - Extended with parabolic shape */}
+            <div className="absolute bottom-0 left-0 right-0 h-[600px] pointer-events-none z-[5] -mb-64">
+                <div className="absolute inset-0" style={{
+                    clipPath: 'ellipse(100% 100% at 50% 0%)',
+                }}>
+                    <Particles
+                        className="absolute inset-0"
+                        quantity={200}
+                        ease={80}
+                        color="#d1d5db"
+                        refresh={false}
+                    />
+                </div>
             </div>
             
             {/* Gradient Transition vers section Solutions - Amélioration */}

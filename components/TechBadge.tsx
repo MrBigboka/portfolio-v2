@@ -22,7 +22,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       'FRAMER': 'https://cdn.simpleicons.org/framer/0055FF',
       'FRAMER MOTION': 'https://cdn.simpleicons.org/framer/0055FF',
       'SHOPIFY': 'https://cdn.simpleicons.org/shopify/7AB55C',
-      'N8N': 'https://cdn.simpleicons.org/n8n/FFFFFF',
+      'N8N': 'https://cdn.simpleicons.org/n8n/EA4B71',
       'MAKE.COM': 'https://cdn.simpleicons.org/integromat/2F8CBB',
       'VERCEL': 'https://cdn.simpleicons.org/vercel/000000',
       'SHADCN': 'https://cdn.simpleicons.org/shadcnui/000000',
@@ -45,11 +45,12 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
       'HTML': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
       'CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
       'JAVASCRIPT': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
-      'OPENAI': 'https://cdn.simpleicons.org/openai/FFFFFF',
+      'OPENAI': 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg',
       'TWILIO': 'https://cdn.simpleicons.org/twilio/F22F46',
       'STRIPE': 'https://cdn.simpleicons.org/stripe/635BFF',
       'FIREBASE': 'https://cdn.simpleicons.org/firebase/FFCA28',
       'LIQUID': 'https://cdn.simpleicons.org/liquid/7AB55C',
+      'EXPO': 'https://cdn.simpleicons.org/expo/000020',
     };
 
     // Recherche exacte
@@ -204,7 +205,9 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
               width={14}
               height={14}
               className="w-3.5 h-3.5 mr-2.5"
-              style={{ filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : 'none' }}
+              style={{ 
+                filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : name === 'OPENAI' ? 'brightness(0) saturate(100%) invert(70%) sepia(47%) saturate(439%) hue-rotate(101deg) brightness(92%) contrast(86%)' : 'none' 
+              }}
             />
             
             {/* Logo avec effet au survol */}
@@ -214,7 +217,9 @@ const TechBadge: React.FC<TechBadgeProps> = ({ name }) => {
               width={16}
               height={16}
               className="absolute inset-0 w-4 h-4 object-contain transition-opacity duration-200 ease-in-out group-hover:opacity-0"
-              style={{ filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : 'none' }}
+              style={{ 
+                filter: name === 'VERCEL' || name === 'SHADCN UI' ? 'invert(1)' : name === 'OPENAI' ? 'brightness(0) saturate(100%) invert(70%) sepia(47%) saturate(439%) hue-rotate(101deg) brightness(92%) contrast(86%)' : 'none' 
+              }}
             />
           </>
         ) : null}

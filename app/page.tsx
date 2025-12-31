@@ -10,10 +10,12 @@ import MethodSection from '@/components/MethodSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
+import TopGlow from '@/components/ui/TopGlow';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
+      <TopGlow />
       <Header />
       <Hero />
       <BentoGrid />

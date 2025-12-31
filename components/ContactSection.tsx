@@ -54,6 +54,10 @@ export default function ContactSection() {
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 pointer-events-none" />
       
+      {/* Gradient transitions for smooth section separation */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+      
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Logo SmartScaling - transparent */}
         <motion.div
@@ -217,18 +221,18 @@ export default function ContactSection() {
             </SheetContent>
           </Sheet>
 
-          {/* Availability message */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-12 text-center"
-          >
-            <p className="text-white text-lg md:text-xl font-medium">
-              Disponible pour nouveaux projets.
-            </p>
-          </motion.div>
+            {/* Availability message */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-12 text-center"
+            >
+              <p className="text-gray-400 text-sm md:text-base">
+                Créons ensemble une plateforme qui convertit.
+              </p>
+            </motion.div>
         </motion.div>
       </div>
       {toastComponent}
