@@ -34,21 +34,22 @@ export default function ContactSection() {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="relative z-10 py-32 px-6 overflow-hidden">
-      {/* Fluid background image with parallax */}
+    <section ref={sectionRef} id="contact" className="relative z-10 py-32 px-6 overflow-hidden bg-black">
+      {/* Fluid background image with parallax - Next.js Image optimized */}
       <motion.div 
         style={{ y: y1, opacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'url(/bg-footer.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
+        <div className="absolute inset-0 opacity-30">
+          <Image
+            src="/bg-footer.png"
+            alt="Background"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+        </div>
       </motion.div>
       
       {/* Dark overlay for better text readability */}

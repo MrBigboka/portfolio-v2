@@ -31,37 +31,37 @@ function CollaborationCard() {
             
             <div className="flex size-full flex-col max-w-md max-h-[140px] sm:max-h-[180px] items-stretch justify-between gap-4 sm:gap-6 mt-6 sm:mt-8">
                 <div className="flex flex-row items-center justify-between px-4">
-                    <div ref={div1Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-white/10 p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
+                    <div ref={div1Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
                         <svg className="text-white w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-                    <div ref={div5Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-500/20 p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
+                    <div ref={div5Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
                         <svg className="text-purple-300 w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                 </div>
                 <div className="flex flex-row items-center justify-between px-4">
-                    <div ref={div2Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-white/10 p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
+                    <div ref={div2Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
                         <FileText className="text-white w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
                     </div>
-                    <div ref={div6Ref} className="z-10 flex size-16 sm:size-20 items-center justify-center rounded-full border-2 border-purple-500/50 bg-white p-3 sm:p-4 shadow-[0_0_24px_-8px_rgba(168,85,247,0.9)]">
+                    <div ref={div6Ref} className="z-10 flex size-16 sm:size-20 items-center justify-center rounded-full border-2 border-purple-500/50 bg-white backdrop-blur-xl p-3 sm:p-4 shadow-[0_0_24px_-8px_rgba(168,85,247,0.9)]">
                         <Image src="/logo/smartscaling-logo.png" alt="SmartScaling" width={56} height={56} className="object-contain" />
                     </div>
-                    <div ref={div4Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-500/20 p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
+                    <div ref={div4Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
                         <svg className="text-purple-300 w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                 </div>
                 <div className="flex flex-row items-center justify-between px-4">
-                    <div ref={div3Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-white/10 p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
+                    <div ref={div3Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
                         <svg className="text-white w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                         </svg>
                     </div>
-                    <div ref={div7Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-500/20 p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
+                    <div ref={div7Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
                         <svg className="text-purple-300 w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                         </svg>

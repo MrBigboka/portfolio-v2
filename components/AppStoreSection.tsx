@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Calendar, Sparkles, TrendingUp, Users, Briefcase, ShoppingBag, Headphones, MessageSquare, BarChart3, Mail, MapPin, Brain, Clock } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IntegrationTooltip } from '@/components/ui/integration-tooltip';
 
 // Enhanced Types with detailed taxonomy
 type AppType = 'iOS' | 'SaaS' | 'Widget' | 'Platform';
@@ -486,6 +487,29 @@ export default function AppStoreSection() {
         'Contexte entreprise',
         'Points de discussion',
         'Notification Slack'
+      ],
+      cta: {
+        text: 'Configurer chez moi',
+        url: 'https://calendly.com/bokamiguel'
+      }
+    },
+    {
+      id: 'social-media-bot',
+      type: 'automation',
+      name: 'Social Media Bot',
+      tagline: 'Publication automatisée multi-plateformes',
+      description: 'Contenu créé → publication automatique sur TikTok, Instagram, LinkedIn, Twitter avec scheduling intelligent',
+      categories: ['Marketing', 'Social'],
+      flow: 'Contenu → Posts multi-plateformes',
+      integrations: ['TikTok', 'Instagram', 'LinkedIn', 'Twitter', 'Facebook', 'Buffer', 'OpenAI'],
+      pricing: 'À partir de 549$',
+      color: '#FF0080',
+      icon: <Sparkles className="w-6 h-6" />,
+      features: [
+        'Publication multi-plateformes',
+        'Scheduling intelligent',
+        'Génération de captions IA',
+        'Analytics centralisés'
       ],
       cta: {
         text: 'Configurer chez moi',
@@ -1005,6 +1029,12 @@ function PremiumAutomationCard({ automation }: { automation: Automation; isHover
 
           <p className="text-gray-300 text-sm mb-4 leading-relaxed">{automation.description}</p>
 
+          {/* Integrations - Moved here with icons */}
+          <div className="mb-4">
+            <p className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-medium">Intégrations</p>
+            <IntegrationTooltip integrations={automation.integrations} />
+          </div>
+
           {/* Flow */}
           <motion.div
             className="mb-4 p-4 rounded-2xl border relative overflow-hidden"
@@ -1020,27 +1050,6 @@ function PremiumAutomationCard({ automation }: { automation: Automation; isHover
               <p className="text-sm text-white font-mono">{automation.flow}</p>
             </div>
           </motion.div>
-
-          {/* Integrations */}
-          <div className="mb-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 font-medium">Intégrations</p>
-            <div className="flex flex-wrap gap-2">
-              {automation.integrations.slice(0, 3).map(integration => (
-                <motion.span
-                  key={integration}
-                  className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs rounded-lg border border-white/10 font-medium backdrop-blur-xl"
-                  whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-                >
-                  {integration}
-                </motion.span>
-              ))}
-              {automation.integrations.length > 3 && (
-                <span className="px-3 py-1.5 bg-white/5 text-gray-400 text-xs rounded-lg border border-white/10">
-                  +{automation.integrations.length - 3}
-                </span>
-              )}
-            </div>
-          </div>
 
           {/* Features */}
           {automation.features && (

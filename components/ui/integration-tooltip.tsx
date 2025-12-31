@@ -27,6 +27,7 @@ const integrationLogos: Record<string, { logo: string; color: string }> = {
   'Twitter': { logo: 'https://cdn.simpleicons.org/x/white', color: '#1DA1F2' },
   'X': { logo: 'https://cdn.simpleicons.org/x/white', color: '#000000' },
   'LinkedIn': { logo: 'https://cdn.simpleicons.org/linkedin/0A66C2', color: '#0A66C2' },
+  'Twitter/X': { logo: 'https://cdn.simpleicons.org/x/white', color: '#1DA1F2' },
   'Instagram': { logo: 'https://cdn.simpleicons.org/instagram/E4405F', color: '#E4405F' },
   'Facebook': { logo: 'https://cdn.simpleicons.org/facebook/1877F2', color: '#1877F2' },
   'YouTube': { logo: 'https://cdn.simpleicons.org/youtube/FF0000', color: '#FF0000' },
@@ -99,6 +100,7 @@ const integrationLogos: Record<string, { logo: string; color: string }> = {
   // Lead Generation & Prospecting
   'Apollo': { logo: 'https://cdn.simpleicons.org/apollographql/311C87', color: '#311C87' },
   'Hunter': { logo: 'https://cdn.simpleicons.org/hunter/FF6B00', color: '#FF6B00' },
+  'Hunter.io': { logo: 'https://cdn.simpleicons.org/hunter/FF6B00', color: '#FF6B00' },
   
   // Social Media Management
   'Buffer': { logo: 'https://cdn.simpleicons.org/buffer/168EEA', color: '#168EEA' },
@@ -106,7 +108,13 @@ const integrationLogos: Record<string, { logo: string; color: string }> = {
   
   // AI & Development
   'OpenAI': { logo: 'https://cdn.simpleicons.org/openai/412991', color: '#412991' },
+  'Perplexity': { logo: 'https://cdn.simpleicons.org/perplexity/1FB8CD', color: '#1FB8CD' },
   'PostgreSQL': { logo: 'https://cdn.simpleicons.org/postgresql/4169E1', color: '#4169E1' },
+  
+  // Maps & Location
+  'Google Maps': { logo: 'https://cdn.simpleicons.org/googlemaps/4285F4', color: '#4285F4' },
+  'Google Calendar': { logo: 'https://cdn.simpleicons.org/googlecalendar/4285F4', color: '#4285F4' },
+  'Google Docs': { logo: 'https://cdn.simpleicons.org/googledocs/4285F4', color: '#4285F4' },
 };
 
 interface IntegrationTooltipProps {
