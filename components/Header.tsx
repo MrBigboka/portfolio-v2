@@ -12,8 +12,8 @@ const navigation = [
     name: 'Solutions', 
     href: '/#solutions',
     submenu: [
-      { name: 'Apps', href: '/#projects?tab=apps', description: 'Applications web & mobile' },
-      { name: 'Automatisations', href: '/#projects?tab=automations', description: 'Systèmes n8n & workflows' },
+      { name: 'Apps', href: '/projects?tab=apps', description: 'Applications web & mobile' },
+      { name: 'Automatisations', href: '/projects?tab=automations', description: 'Systèmes n8n & workflows' },
     ]
   },
   { name: 'Méthode', href: '/#method' },

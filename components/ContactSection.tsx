@@ -223,7 +223,7 @@ export default function ContactSection() {
               className="mt-12 text-center"
             >
               <p className="text-gray-400 text-sm md:text-base">
-                Créons ensemble une plateforme qui convertit.
+                Des solutions tech, adaptées à vos besoins.
               </p>
             </motion.div>
         </motion.div>

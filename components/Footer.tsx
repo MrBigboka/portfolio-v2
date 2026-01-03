@@ -50,7 +50,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mb-4">
-              Studio technologique fondé par Miguel Boka. On conçoit et livre des SaaS qui tournent en production.
+              Studio technologique indépendant. Applications web & mobile, automatisations et intégrations IA sur mesure.
             </p>
             <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
               <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
@@ -162,7 +162,7 @@ export default function Footer() {
           className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-gray-600 text-xs sm:text-sm">
-            © {currentYear} SmartScaling Agency. All rights reserved.
+            © {currentYear} SmartScaling. Studio technologique indépendant.
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/privacy" className="text-gray-600 text-xs sm:text-sm hover:text-gray-400 transition-colors">

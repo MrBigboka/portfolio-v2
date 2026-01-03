@@ -64,7 +64,7 @@ export default function Hero() {
                 >
                     <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm">
                         <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                        Studio technologique — Systèmes sur mesure
+                        Studio technologique indépendant — Applications, automatisations et IA
                     </span>
                 </motion.div>
 

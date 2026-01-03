@@ -23,46 +23,49 @@ function CollaborationCard() {
     return (
         <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-4 sm:p-6 md:p-10 shadow-2xl backdrop-blur-xl" ref={containerRef}>
             {/* Title at top */}
-            <div className="absolute top-4 sm:top-6 left-0 right-0 text-center z-20">
-                <h3 className="text-white text-base sm:text-lg md:text-xl font-light">
+            <div className="absolute top-4 sm:top-6 left-0 right-0 text-center z-20 px-4">
+                <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-1">
                     Du problème au système
                 </h3>
+                <p className="text-gray-400 text-[10px] sm:text-xs max-w-md mx-auto">
+                    De l&apos;idée à l&apos;application en production — web, mobile, SaaS ou automatisation
+                </p>
             </div>
             
-            <div className="flex size-full flex-col max-w-md max-h-[140px] sm:max-h-[180px] items-stretch justify-between gap-4 sm:gap-6 mt-6 sm:mt-8">
-                <div className="flex flex-row items-center justify-between px-4">
-                    <div ref={div1Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
-                        <svg className="text-white w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <div className="flex size-full flex-col max-w-md max-h-[120px] sm:max-h-[180px] items-stretch justify-between gap-3 sm:gap-6 mt-12 sm:mt-8">
+                <div className="flex flex-row items-center justify-between px-2 sm:px-4">
+                    <div ref={div1Ref} className="z-10 flex size-10 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
+                        <svg className="text-white w-4 h-4 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-                    <div ref={div5Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
-                        <svg className="text-purple-300 w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <div ref={div5Ref} className="z-10 flex size-10 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
+                        <svg className="text-purple-300 w-4 h-4 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                 </div>
-                <div className="flex flex-row items-center justify-between px-4">
-                    <div ref={div2Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
-                        <FileText className="text-white w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
+                <div className="flex flex-row items-center justify-between px-2 sm:px-4">
+                    <div ref={div2Ref} className="z-10 flex size-10 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
+                        <FileText className="text-white w-4 h-4 sm:w-6 sm:h-6" strokeWidth={2.5} />
                     </div>
-                    <div ref={div6Ref} className="z-10 flex size-16 sm:size-20 items-center justify-center rounded-full border-2 border-purple-500/50 bg-white backdrop-blur-xl p-3 sm:p-4 shadow-[0_0_24px_-8px_rgba(168,85,247,0.9)]">
+                    <div ref={div6Ref} className="z-10 flex size-14 sm:size-20 items-center justify-center rounded-full border-2 border-purple-500/50 bg-white backdrop-blur-xl p-2.5 sm:p-4 shadow-[0_0_24px_-8px_rgba(168,85,247,0.9)]">
                         <Image src="/logo/smartscaling-logo.png" alt="SmartScaling" width={56} height={56} className="object-contain" />
                     </div>
-                    <div ref={div4Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
-                        <svg className="text-purple-300 w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <div ref={div4Ref} className="z-10 flex size-10 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
+                        <svg className="text-purple-300 w-4 h-4 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                 </div>
-                <div className="flex flex-row items-center justify-between px-4">
-                    <div ref={div3Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
-                        <svg className="text-white w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <div className="flex flex-row items-center justify-between px-2 sm:px-4">
+                    <div ref={div3Ref} className="z-10 flex size-10 sm:size-14 items-center justify-center rounded-full border-2 border-white/20 bg-zinc-900 backdrop-blur-xl p-2 sm:p-3 shadow-[0_0_20px_-8px_rgba(255,255,255,0.9)]">
+                        <svg className="text-white w-4 h-4 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                         </svg>
                     </div>
-                    <div ref={div7Ref} className="z-10 flex size-12 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
-                        <svg className="text-purple-300 w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <div ref={div7Ref} className="z-10 flex size-10 sm:size-14 items-center justify-center rounded-full border-2 border-purple-500/40 bg-purple-900/80 backdrop-blur-xl p-2 sm:p-3 shadow-[0_0_20px_-8px_rgba(168,85,247,0.9)]">
+                        <svg className="text-purple-300 w-4 h-4 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                         </svg>
                     </div>
@@ -75,12 +78,6 @@ function CollaborationCard() {
             <AnimatedBeam containerRef={containerRef} fromRef={div4Ref} toRef={div6Ref} curvature={-50} />
             <AnimatedBeam containerRef={containerRef} fromRef={div5Ref} toRef={div6Ref} curvature={0} />
             <AnimatedBeam containerRef={containerRef} fromRef={div7Ref} toRef={div6Ref} curvature={50} />
-
-            <div className="absolute bottom-4 sm:bottom-5 left-0 right-0 text-center px-4">
-                <p className="text-gray-400 text-xs sm:text-sm">
-                    Problème métier → Système logiciel
-                </p>
-            </div>
         </div>
     );
 }
@@ -92,9 +89,12 @@ function TechnologiesCard() {
 
     return (
         <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-4 sm:pt-6 pb-4 group/card">
-            <h3 className="text-white text-sm sm:text-base md:text-lg font-light mb-3 sm:mb-4 text-center leading-tight px-2">
+            <h3 className="text-white text-sm sm:text-base md:text-lg font-light mb-1 sm:mb-2 text-center leading-tight px-2">
                 Les bons outils,<br />au service du résultat
             </h3>
+            <p className="text-gray-400 text-[10px] sm:text-xs mb-3 sm:mb-4 text-center px-4 max-w-xs mx-auto">
+                Technologies choisies pour livrer des systèmes robustes et performants
+            </p>
             
             {/* Tech marquees */}
             <div className="flex w-full flex-col items-center justify-center gap-1 sm:gap-2 mb-2 sm:mb-4 relative z-10 overflow-hidden">
@@ -174,19 +174,22 @@ function TechnologiesCard() {
 
 // --- Globe Card Component ---
 function GlobeCard() {
-    const [activeLocation, setActiveLocation] = React.useState<'montreal' | 'canada' | 'usa'>('montreal');
+    const [activeLocation, setActiveLocation] = React.useState<'montreal' | 'canada' | 'usa'>('canada');
     
     const locations = {
-        montreal: { name: 'Montréal, Canada', phi: 45.5017, theta: -73.5673 },
+        montreal: { name: 'Montréal, Canada', phi: 56.1304, theta: -106.3468 },
         canada: { name: 'Canada', phi: 56.1304, theta: -106.3468 },
         usa: { name: 'USA', phi: 37.0902, theta: -95.7129 },
     };
 
     return (
         <div className="relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-2xl backdrop-blur-xl pt-6 sm:pt-8 pb-6 sm:pb-0">
-            <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-2 text-center z-10 px-2">
+            <h3 className="text-white text-base sm:text-lg md:text-xl font-light mb-1 text-center z-10 px-2">
                 Flexible avec les<br />fuseaux horaires
             </h3>
+            <p className="text-gray-300 text-[10px] sm:text-xs mb-2 text-center px-4 max-w-xs mx-auto z-10">
+                Collaboration synchrone ou asynchrone selon vos besoins
+            </p>
             <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 z-10 px-2">
                 <button 
                     onClick={() => setActiveLocation('montreal')}
@@ -242,12 +245,12 @@ export default function BentoGrid() {
                     id="solutions"
                 >
                     <p className="text-gray-400 text-sm uppercase tracking-[0.3em] mb-3">
-                        Ce qu&apos;on construit
+                        Notre approche
                     </p>
                     <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-tight px-4 max-w-4xl mx-auto">
-                        Sites, apps, SaaS{' '}
+                        Applications web & mobile, automatisations{' '}
                         <br className="sm:hidden" />
-                        <span className="text-purple-400 italic">— conçus comme des systèmes</span>
+                        <span className="text-purple-400 italic">et intégrations IA sur mesure</span>
                     </h2>
                 </motion.div>
 
@@ -304,9 +307,12 @@ export default function BentoGrid() {
                                 />
                             </div>
                             
-                            <div className="flex items-center justify-between mb-3 sm:mb-4 relative z-10">
-                                <span className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 font-semibold">Solutions en production</span>
-                                <span className="text-[10px] sm:text-xs text-purple-400 font-medium">4</span>
+                            <div className="flex flex-col mb-3 sm:mb-4 relative z-10">
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 font-semibold">Nos réalisations</span>
+                                    <span className="text-[10px] sm:text-xs text-purple-400 font-medium">4</span>
+                                </div>
+                                <p className="text-gray-500 text-[9px] sm:text-[10px] leading-tight">Apps, SaaS et automatisations sur mesure</p>
                             </div>
 
                             <div className="flex-1 flex items-center justify-center relative z-10 py-2">
@@ -344,7 +350,7 @@ export default function BentoGrid() {
                                         </div>
                                         <div className="text-center">
                                             <p className="text-white text-xs sm:text-sm font-semibold">SideQuest</p>
-                                            <p className="text-gray-500 text-[10px] sm:text-xs">Mobile App</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight max-w-[140px]">App iOS pour organiser sorties et événements</p>
                                         </div>
                                     </motion.div>
 
@@ -382,7 +388,7 @@ export default function BentoGrid() {
                                         </div>
                                         <div className="text-center">
                                             <p className="text-white text-xs sm:text-sm font-semibold">Tracksy</p>
-                                            <p className="text-gray-500 text-[10px] sm:text-xs">SaaS</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">SaaS de suivi temps et facturation automatisée</p>
                                         </div>
                                     </motion.div>
 
@@ -419,7 +425,7 @@ export default function BentoGrid() {
                                         </div>
                                         <div className="text-center">
                                             <p className="text-white text-xs sm:text-sm font-semibold">MemoCall</p>
-                                            <p className="text-gray-500 text-[10px] sm:text-xs">AI</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">IA vocale : transcription et automatisation d&apos;appels</p>
                                         </div>
                                     </motion.div>
 
@@ -447,17 +453,16 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(157,113,232,0.5)]" 
-                                                style={{ backgroundColor: '#9D71E8' }}
+                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
-                                                <Image src="/projects/coresyncLogo.png" alt="CoreSync" width={96} height={96} className="w-full h-full object-cover" />
+                                                <Image src="/projects/coresyncLogo.png" alt="CoreSync" width={96} height={96} className="w-full h-full object-contain" />
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
                                             <p className="text-white text-xs sm:text-sm font-semibold">CoreSync</p>
-                                            <p className="text-gray-500 text-[10px] sm:text-xs">Platform</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">Agent IA pour centraliser et exploiter l&apos;information</p>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -490,8 +495,8 @@ export default function BentoGrid() {
                             <p className="text-purple-400 text-sm mb-3 relative z-10">
                                 Lead Architect & Fondateur
                             </p>
-                            <p className="text-gray-500 text-xs mb-4 relative z-10 max-w-[200px]">
-                                Architecte de systèmes, pas simple exécutant.
+                            <p className="text-gray-400 text-xs mb-4 relative z-10 max-w-[200px]">
+                                Architecte de systèmes, créateur d&apos;automatisations et de services IA.
                             </p>
                             <motion.a
                                 href="https://www.linkedin.com/in/miguel-boka-51b407223/"

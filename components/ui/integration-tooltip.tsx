@@ -12,12 +12,13 @@ export function IntegrationTooltip({ integrations }: IntegrationTooltipProps) {
     <div className="flex flex-wrap gap-2">
       {integrations.map((integration) => {
         const IconComponent = IntegrationIconComponents[integration];
-        const color = IntegrationColors[integration] || '#888888';
+        // Use white for Notion in modal, otherwise use default color
+        const color = integration === 'Notion' ? '#FFFFFF' : (IntegrationColors[integration] || '#888888');
         
         return (
           <div
             key={integration}
-            className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all cursor-pointer"
+            className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-white border border-zinc-200 hover:border-zinc-300 transition-all cursor-pointer"
             title={integration}
           >
             {IconComponent ? (

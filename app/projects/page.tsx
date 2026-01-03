@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ExternalLink, Mail, Users, BarChart3, Database, FileText, MessageSquare, TrendingUp, UserPlus, Headphones, X, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -227,7 +228,7 @@ const solutions: Solution[] = [
     id: 'data-sync',
     title: 'Data Sync',
     subtitle: 'Synchronisation bidirectionnelle entre vos outils',
-    description: 'Synchronisation en temps réel de vos données entre tous vos outils, bidirectionnelle et sans perte d\'information.',
+    description: 'Synchronisation en temps réel de vos données entre tous vos outils, bidirectionnelle et sans perte d\'information. Peut être intégré dans des systèmes plus larges comme CoreSync pour centraliser vos données.',
     image: '',
     category: 'Automation',
     pricing: '199',
@@ -271,7 +272,7 @@ const solutions: Solution[] = [
     id: 'invoice-auto',
     title: 'Invoice Flow',
     subtitle: 'Génération et envoi automatique de factures',
-    description: 'Génération automatique de factures professionnelles, envoi programmé, relances de paiement, et intégration comptable.',
+    description: 'Génération automatique de factures professionnelles, envoi programmé, relances de paiement, et intégration comptable. Peut être intégré dans des systèmes comme Tracksy pour une gestion complète du cycle freelance.',
     image: '',
     category: 'Automation',
     pricing: '179',
@@ -393,12 +394,27 @@ const filterTags = [
   { label: 'Support', category: 'Automation' },
 ];
 
-export default function ProjectsPage() {
+// Component that uses searchParams - must be wrapped in Suspense
+function ProjectsContent() {
+  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('Tous');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+
+  // Handle URL query parameters for filtering - reacts to searchParams changes
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    
+    if (tab === 'apps') {
+      setSelectedCategory('Apps');
+    } else if (tab === 'automations') {
+      setSelectedCategory('Automatisations');
+    } else {
+      setSelectedCategory('Tous');
+    }
+  }, [searchParams]);
 
   // Memoize filtered solutions to prevent unnecessary recalculations
   const filteredSolutions = useMemo(() => {
@@ -840,5 +856,14 @@ export default function ProjectsPage() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+// Main page component with Suspense wrapper
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0A0A0F] flex items-center justify-center"><div className="text-white">Chargement...</div></div>}>
+      <ProjectsContent />
+    </Suspense>
   );
 }
