@@ -97,7 +97,7 @@ function TechnologiesCard() {
             </p>
             
             {/* Tech marquees */}
-            <div className="flex w-full flex-col items-center justify-center gap-1 sm:gap-2 mb-2 sm:mb-4 relative z-10 overflow-hidden">
+            <div className="flex w-full flex-col items-center justify-center gap-1 sm:gap-2 mb-4 sm:mb-6 relative z-10 overflow-hidden">
                 <Marquee pauseOnHover className="[--duration:20s] [--gap:0.25rem] sm:[--gap:0.75rem]">
                     {coreTech.map((tech: string) => (
                         <div key={tech} className="scale-[0.55] sm:scale-[0.65] md:scale-100">
@@ -105,7 +105,7 @@ function TechnologiesCard() {
                         </div>
                     ))}
                 </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:20s] [--gap:0.25rem] sm:[--gap:0.75rem]">
+                <Marquee reverse pauseOnHover className="[--duration:20s] [--gap:0.25rem] sm:[--gap:0.75rem] mb-2 sm:mb-0">
                     {toolsTech.map((tech: string) => (
                         <div key={tech} className="scale-[0.55] sm:scale-[0.65] md:scale-100">
                             <TechBadge name={tech} />
@@ -176,10 +176,12 @@ function TechnologiesCard() {
 function GlobeCard() {
     const [activeLocation, setActiveLocation] = React.useState<'montreal' | 'canada' | 'usa'>('canada');
     
+    // Phi values represent the rotation angle to show the location
+    // Montreal and Canada use different phi values for distinct positioning
     const locations = {
-        montreal: { name: 'Montréal, Canada', phi: 56.1304, theta: -106.3468 },
-        canada: { name: 'Canada', phi: 56.1304, theta: -106.3468 },
-        usa: { name: 'USA', phi: 37.0902, theta: -95.7129 },
+        montreal: { name: 'Montréal, Canada', phi: 4.8 },
+        canada: { name: 'Canada', phi: 4.5 },
+        usa: { name: 'USA', phi: 5.2 },
     };
 
     return (

@@ -7,7 +7,7 @@ import { SmartButton } from '@/components/ui/smart-button';
 
 export default function WorkWithUs() {
   return (
-    <section id="work-with-us" className="relative z-10 py-24 px-6 md:px-12 overflow-hidden bg-black">
+    <section id="collaborations" className="relative z-10 py-24 px-6 md:px-12 overflow-hidden bg-black">
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}

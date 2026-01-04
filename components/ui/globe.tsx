@@ -90,7 +90,8 @@ export function Globe({
       width: widthRef.current * 2,
       height: widthRef.current * 2,
       onRender: (state) => {
-        if (!pointerInteracting.current) phiRef.current += 0.001
+        // Slower rotation speed (0.0005 instead of 0.001)
+        if (!pointerInteracting.current) phiRef.current += 0.0005
         state.phi = phiRef.current + rs.get()
         state.width = widthRef.current * 2
         state.height = widthRef.current * 2

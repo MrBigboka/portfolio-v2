@@ -50,51 +50,11 @@ export default function ProjectsSection() {
       features: [
         'Problème: 3-5h/semaine perdues sur tracking & facturation',
         'Système: Suivi temps → factures → export comptable automatisé',
-        'Impact: Temps administratif réduit de 80%'
+        'Impact: Prêt à utiliser, plug & play'
       ],
       accentColor: '#d5ff3f',
       logo: '/projects/tracksy_icon.png',
       status: 'Production'
-    },
-    {
-      id: 'memocall',
-      title: 'MemoCall',
-      description: 'IA vocale pour appels professionnels. Transcription en temps réel, résumés automatiques, extraction de tâches et remplissage de CRM. Powered by GPT-4 et Whisper.',
-      image: '/projects/Memocall-landing.png',
-      hoverImage: '/projects/Memocall-landing.png',
-      tags: ['NEXT.JS', 'TYPESCRIPT', 'OPENAI', 'SUPABASE', 'TWILIO'],
-      demoUrl: 'https://memocall.ai',
-      githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#1a1a1a]/90 via-[#0d0d0d]/80 to-[#1a1a1a]/70',
-      shortDesc: 'Appels → Actions IA',
-      features: [
-        'Problème: Info perdue et saisie manuelle après chaque appel',
-        'Système: Transcription → résumé → to-do → docs pré-remplis',
-        'Impact: 0 prise de notes manuelle, 100% des infos capturées'
-      ],
-      accentColor: '#FFFFFF',
-      logo: '/projects/memocall_icon.png',
-      status: 'Production'
-    },
-    {
-      id: 'coresync',
-      title: 'CoreSync',
-      description: 'Agent IA encyclopédique pour entreprises. Indexe toute votre documentation interne et répond instantanément aux questions de vos équipes. Recherche sémantique avancée.',
-      image: '/projects/coresync.png',
-      hoverImage: '/projects/coresync3.png',
-      tags: ['NEXT.JS', 'FIRESTORE', 'N8N', 'OPENAI'],
-      demoUrl: 'https://coresync.vercel.app',
-      githubUrl: '#',
-      bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
-      shortDesc: 'Agent IA encyclopédique interne',
-      features: [
-        'Problème: Temps perdu à chercher docs et processus internes',
-        'Système: Agent IA qui interroge votre base de connaissances',
-        'Impact: Réponses instantanées, onboarding accéléré'
-      ],
-      accentColor: '#9D71E8',
-      logo: '/projects/coresyncLogo.png',
-      status: 'Live'
     },
     {
       id: 'sidequest',
@@ -110,11 +70,51 @@ export default function ProjectsSection() {
       features: [
         'Problème: Organiser des sorties = chaos de messages',
         'Système: Événements par catégorie + recommandations "For You"',
-        'Impact: App iOS en beta publique'
+        'Impact: Beta publique sur TestFlight'
       ],
       accentColor: '#8B5CF6',
       logo: '/projects/sidequest-logo.png',
-      status: 'TestFlight'
+      status: 'Beta'
+    },
+    {
+      id: 'memocall',
+      title: 'MemoCall',
+      description: 'IA vocale pour appels professionnels. Transcription en temps réel, résumés automatiques, extraction de tâches et remplissage de CRM. Powered by GPT-4 et Whisper.',
+      image: '/projects/Memocall-landing.png',
+      hoverImage: '/projects/Memocall-landing.png',
+      tags: ['NEXT.JS', 'TYPESCRIPT', 'OPENAI', 'SUPABASE', 'TWILIO'],
+      demoUrl: 'https://memocall.ai',
+      githubUrl: '#',
+      bgColor: 'bg-gradient-to-br from-[#1a1a1a]/90 via-[#0d0d0d]/80 to-[#1a1a1a]/70',
+      shortDesc: 'Appels → Actions IA',
+      features: [
+        'Problème: Info perdue et saisie manuelle après chaque appel',
+        'Système: Transcription → résumé → to-do → docs pré-remplis',
+        'Impact: Early access, implémentation sur mesure'
+      ],
+      accentColor: '#FFFFFF',
+      logo: '/projects/memocall_icon.png',
+      status: 'Beta'
+    },
+    {
+      id: 'coresync',
+      title: 'CoreSync',
+      description: 'Agent IA encyclopédique pour entreprises. Indexe toute votre documentation interne et répond instantanément aux questions de vos équipes. Recherche sémantique avancée.',
+      image: '/projects/coresync.png',
+      hoverImage: '/projects/coresync3.png',
+      tags: ['NEXT.JS', 'FIRESTORE', 'N8N', 'OPENAI'],
+      demoUrl: 'https://coresync.vercel.app',
+      githubUrl: '#',
+      bgColor: 'bg-gradient-to-br from-[#5D3A8E]/80 via-[#3E1A6E]/60 to-[#5D3A8E]/30',
+      shortDesc: 'Agent IA encyclopédique interne',
+      features: [
+        'Problème: Temps perdu à chercher docs et processus internes',
+        'Système: Agent IA qui interroge votre base de connaissances',
+        'Impact: Plateforme à adapter selon votre entreprise'
+      ],
+      accentColor: '#9D71E8',
+      logo: '/projects/coresyncLogo.png',
+      status: 'Beta'
     }
   ];
 
@@ -171,9 +171,27 @@ export default function ProjectsSection() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="relative pt-32 pb-32 md:pb-40 text-white min-h-screen bg-black" 
+      className="relative pt-24 sm:pt-32 pb-32 md:pb-40 text-white min-h-screen bg-black" 
     >
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative" ref={projectsContainerRef}>
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-12 sm:mb-16 relative z-10"
+        >
+          <p className="text-gray-400 text-sm uppercase tracking-[0.3em] mb-3">
+            Applications disponibles
+          </p>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-tight px-4 max-w-4xl mx-auto">
+            Des systèmes en production,{' '}
+            <br className="sm:hidden" />
+            <span className="text-purple-400 italic">prêts à utiliser</span>
+          </h2>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
           {/* Version desktop: affichage en colonnes */}

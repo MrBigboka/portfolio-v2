@@ -106,26 +106,28 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="flex items-center justify-center gap-3 mb-10"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-10"
                 >
-                    <span className="text-gray-500 text-xs sm:text-sm">
-                        Fondé par <span className="text-white">Miguel Boka</span>
-                    </span>
-                    <a 
-                        href="https://www.linkedin.com/in/miguel-boka-51b407223/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-purple-500/40 hover:border-purple-400 hover:scale-105 transition-all cursor-pointer"
-                    >
-                        <Image
-                            src="/miguelboka.jpg"
-                            alt="Miguel Boka"
-                            width={40}
-                            height={40}
-                            className="object-cover"
-                        />
-                    </a>
-                    <span className="text-gray-500 text-xs sm:text-sm">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        <span className="text-gray-500 text-xs sm:text-sm whitespace-nowrap">
+                            Fondé par <span className="text-white">Miguel Boka</span>
+                        </span>
+                        <a 
+                            href="https://www.linkedin.com/in/miguel-boka-51b407223/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-purple-500/40 hover:border-purple-400 hover:scale-105 transition-all cursor-pointer flex-shrink-0"
+                        >
+                            <Image
+                                src="/miguelboka.jpg"
+                                alt="Miguel Boka"
+                                width={40}
+                                height={40}
+                                className="object-cover"
+                            />
+                        </a>
+                    </div>
+                    <span className="text-gray-500 text-xs sm:text-sm whitespace-nowrap">
                         — Lead Architect & Full-Stack Developer
                     </span>
                 </motion.div>
