@@ -312,7 +312,7 @@ export default function BentoGrid() {
                             <div className="flex flex-col mb-3 sm:mb-4 relative z-10">
                                 <div className="flex items-center justify-between mb-1">
                                     <span className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 font-semibold">Nos réalisations</span>
-                                    <span className="text-[10px] sm:text-xs text-purple-400 font-medium">4</span>
+                                    <span className="text-[10px] sm:text-xs text-purple-400 font-medium">5</span>
                                 </div>
                                 <p className="text-gray-500 text-[9px] sm:text-[10px] leading-tight">Apps, SaaS et automatisations sur mesure</p>
                             </div>
@@ -465,6 +465,43 @@ export default function BentoGrid() {
                                         <div className="text-center">
                                             <p className="text-white text-xs sm:text-sm font-semibold">CoreSync</p>
                                             <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">Agent IA pour centraliser et exploiter l&apos;information</p>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* AdFrame */}
+                                    <motion.div 
+                                        className="col-span-2 justify-self-center flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 }}
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <div className="relative">
+                                            <motion.div 
+                                                className="absolute inset-0 bg-orange-500/40 rounded-2xl blur-xl"
+                                                animate={{
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.4, 0.6, 0.4],
+                                                }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut",
+                                                    delay: 2,
+                                                }}
+                                            />
+                                            <motion.div 
+                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
+                                                whileHover={{ rotate: [0, -5, 5, 0] }}
+                                                transition={{ duration: 0.5 }}
+                                            >
+                                                <Image src="/logo/adframe_icon.png" alt="AdFrame" width={96} height={96} className="w-full h-full object-cover" />
+                                            </motion.div>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-white text-xs sm:text-sm font-semibold">AdFrame</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight max-w-[180px]">Génération de pubs on-brand par IA (images & vidéos)</p>
                                         </div>
                                     </motion.div>
                                 </div>

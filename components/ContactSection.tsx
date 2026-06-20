@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { motion, useScroll } from 'framer-motion';
-import { ArrowRight, Mail, Linkedin, Github, Calendar } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight, Mail, Linkedin, Github, Calendar, Copy, Sparkles } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 import Image from 'next/image';
 import {
@@ -19,22 +19,80 @@ export default function ContactSection() {
   const { showToast, toastComponent } = useToast();
   const sectionRef = useRef<HTMLElement>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
+
+  // Parallax: le fond bouge plus vite que le contenu, qui dérive doucement vers le haut
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-18%', '18%']);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1.05, 1.15]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ['12%', '-12%']);
+  const glowY = useTransform(scrollYProgress, [0, 1], ['-30%', '30%']);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('miguel.boka@smartscaling.dev');
     showToast('Email copié!', 'success');
   };
 
+  const channels: {
+    id: string;
+    icon: React.ElementType;
+    label: string;
+    value: string;
+    accent: string;
+    accentRgb: string;
+    href?: string;
+    action?: 'copy';
+    featured?: boolean;
+  }[] = [
+    {
+      id: 'calendar',
+      icon: Calendar,
+      label: 'Réserver un appel',
+      value: 'Discutons 30 min de ton projet',
+      accent: '#34d399',
+      accentRgb: '52, 211, 153',
+      href: 'https://calendly.com/bokamiguel',
+      featured: true,
+    },
+    {
+      id: 'email',
+      icon: Mail,
+      label: 'Email',
+      value: 'miguel.boka@smartscaling.dev',
+      accent: '#a855f7',
+      accentRgb: '168, 85, 247',
+      action: 'copy' as const,
+    },
+    {
+      id: 'linkedin',
+      icon: Linkedin,
+      label: 'LinkedIn',
+      value: 'Connectons-nous',
+      accent: '#38bdf8',
+      accentRgb: '56, 189, 248',
+      href: 'https://www.linkedin.com/in/miguel-boka-51b407223/',
+    },
+    {
+      id: 'github',
+      icon: Github,
+      label: 'GitHub',
+      value: 'Mes projets open source',
+      accent: '#e4e4e7',
+      accentRgb: '228, 228, 231',
+      href: 'https://github.com/MrBigboka',
+    },
+  ];
+
   return (
     <section ref={sectionRef} id="contact" className="relative z-10 py-32 px-6 overflow-hidden bg-black">
-      {/* Background image - using img tag for better iOS compatibility */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Background image with parallax - oversized so edges never show while translating */}
+      <motion.div
+        style={{ y: bgY, scale: bgScale }}
+        className="absolute -inset-y-[20%] inset-x-0 pointer-events-none will-change-transform"
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/bg-footer.png"
@@ -42,8 +100,16 @@ export default function ContactSection() {
           className="absolute inset-0 w-full h-full object-cover opacity-60"
           loading="eager"
         />
-      </div>
-      
+      </motion.div>
+
+      {/* Parallax glow accent that drifts opposite to the background */}
+      <motion.div
+        style={{ y: glowY }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[60%] pointer-events-none will-change-transform"
+      >
+        <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.18),transparent_60%)]" />
+      </motion.div>
+
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50 pointer-events-none" />
       
@@ -51,7 +117,7 @@ export default function ContactSection() {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
       
-      <div className="max-w-4xl mx-auto relative z-10">
+      <motion.div style={{ y: contentY }} className="max-w-4xl mx-auto relative z-10 will-change-transform">
         {/* Logo SmartScaling - transparent */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -109,107 +175,127 @@ export default function ContactSection() {
                 </AnimatedButton>
               </motion.div>
             </SheetTrigger>
-            <SheetContent className="bg-black border-l border-white/10">
-              <SheetHeader className="mb-8">
-                <SheetTitle className="text-white text-2xl font-light tracking-tight">
-                  Choisissez votre{' '}
-                  <span className="text-purple-400 italic">méthode de contact</span>
-                </SheetTitle>
-                <SheetDescription className="text-gray-400 mt-2">
-                  Sélectionnez l&apos;option qui vous convient le mieux
-                </SheetDescription>
-              </SheetHeader>
-              
-              {/* Availability message */}
-              <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
-                <p className="text-white font-medium mb-2">
-                  SmartScaling — On construit, on livre.
-                </p>
-                <p className="text-gray-400 text-sm">
-                  Systèmes web & applications qui résolvent de vrais problèmes.
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                {/* Email */}
-                <button
-                  onClick={() => {
-                    handleCopyEmail();
-                    setIsSheetOpen(false);
-                  }}
-                  className="group w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 text-left"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
-                      <Mail className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white font-medium mb-1">Email</p>
-                      <p className="text-sm text-gray-400">miguel.boka@smartscaling.dev</p>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-purple-400 transition-colors" />
-                  </div>
-                </button>
+            <SheetContent className="bg-zinc-950 border-l border-white/10 overflow-y-auto p-0">
+              {/* Ambient glow at the top of the panel */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.22),transparent_70%)]" />
 
-                {/* Calendly */}
-                <a
-                  href="https://calendly.com/bokamiguel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsSheetOpen(false)}
-                  className="group block w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
-                      <Calendar className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white font-medium mb-1">Calendrier</p>
-                      <p className="text-sm text-gray-400">Réserver un appel de 30 min</p>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-purple-400 transition-colors" />
+              <div className="relative p-6">
+                <SheetHeader className="p-0 mb-6">
+                  {/* Availability pill */}
+                  <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                    </span>
+                    <span className="text-xs font-medium text-emerald-300">Disponible pour de nouveaux projets</span>
                   </div>
-                </a>
 
-                {/* LinkedIn */}
-                <a
-                  href="https://www.linkedin.com/in/miguel-boka-51b407223/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsSheetOpen(false)}
-                  className="group block w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
-                      <Linkedin className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white font-medium mb-1">LinkedIn</p>
-                      <p className="text-sm text-gray-400">Me connecter sur LinkedIn</p>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-purple-400 transition-colors" />
-                  </div>
-                </a>
+                  <SheetTitle className="text-white text-2xl font-light tracking-tight">
+                    On{' '}
+                    <span className="bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent font-semibold italic">construit ton projet</span>
+                    {' '}ensemble
+                  </SheetTitle>
+                  <SheetDescription className="text-gray-400 mt-2">
+                    Choisis le canal qui te convient — je réponds vite.
+                  </SheetDescription>
+                </SheetHeader>
 
-                {/* GitHub */}
-                <a
-                  href="https://github.com/MrBigboka"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsSheetOpen(false)}
-                  className="group block w-full p-6 bg-white/5 hover:bg-purple-500/10 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-all">
-                      <Github className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white font-medium mb-1">GitHub</p>
-                      <p className="text-sm text-gray-400">Voir mes projets open source</p>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-purple-400 transition-colors" />
-                  </div>
-                </a>
+                <div className="space-y-3">
+                  {channels.map((channel, index) => {
+                    const Icon = channel.icon;
+
+                    const inner = (
+                      <>
+                        {/* Hover glow */}
+                        <div
+                          className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                          style={{ background: `radial-gradient(120% 120% at 0% 0%, rgba(${channel.accentRgb}, 0.16), transparent 60%)` }}
+                        />
+                        <div className="relative flex items-center gap-4">
+                          {/* Icon tile */}
+                          <div
+                            className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105"
+                            style={{ background: `rgba(${channel.accentRgb}, 0.12)`, border: `1px solid rgba(${channel.accentRgb}, 0.25)` }}
+                          >
+                            <div
+                              className="absolute inset-0 rounded-xl opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-70"
+                              style={{ background: `rgba(${channel.accentRgb}, 0.45)` }}
+                            />
+                            <Icon className="relative h-5 w-5" style={{ color: channel.accent }} />
+                          </div>
+
+                          {/* Text */}
+                          <div className="min-w-0 flex-1">
+                            <p className="font-medium text-white">{channel.label}</p>
+                            <p className="truncate text-sm text-gray-400">{channel.value}</p>
+                          </div>
+
+                          {/* Arrow */}
+                          <div
+                            className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm transition-all duration-300 group-hover:scale-105"
+                          >
+                            {channel.action === 'copy' ? (
+                              <Copy className="h-4 w-4 text-black" />
+                            ) : (
+                              <ArrowUpRight
+                                className="h-4 w-4 text-black transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    );
+
+                    const cardClass = `group relative block w-full overflow-hidden rounded-2xl border p-5 text-left transition-all duration-300 hover:-translate-y-0.5 ${
+                      channel.featured
+                        ? 'border-emerald-400/30 bg-gradient-to-br from-emerald-400/[0.08] to-transparent hover:border-emerald-400/50'
+                        : 'border-white/10 bg-white/[0.03] hover:border-white/20'
+                    }`;
+
+                    const style = { boxShadow: `0 0 0 0 rgba(${channel.accentRgb}, 0)` } as React.CSSProperties;
+
+                    return (
+                      <motion.div
+                        key={channel.id}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35, delay: 0.05 + index * 0.07, ease: 'easeOut' }}
+                      >
+                        {channel.action === 'copy' ? (
+                          <button
+                            onClick={() => {
+                              handleCopyEmail();
+                              setIsSheetOpen(false);
+                            }}
+                            className={cardClass}
+                            style={style}
+                          >
+                            {inner}
+                          </button>
+                        ) : (
+                          <a
+                            href={channel.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsSheetOpen(false)}
+                            className={cardClass}
+                            style={style}
+                          >
+                            {inner}
+                          </a>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Footer note */}
+                <div className="mt-6 flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                  <Image src="/logo/smartscaling-logo.png" alt="SmartScaling" width={20} height={20} className="h-5 w-5 shrink-0 object-contain" />
+                  <p className="text-sm text-gray-400">
+                    <span className="text-white">SmartScaling</span> — du concept à la création.
+                  </p>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
@@ -227,7 +313,7 @@ export default function ContactSection() {
               </p>
             </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
       {toastComponent}
     </section>
   );

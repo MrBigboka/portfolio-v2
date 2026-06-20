@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SmartButton } from '@/components/ui/smart-button';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 
 const navigation = [
   { 
@@ -23,20 +23,30 @@ const navigation = [
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
+  // Scroll-driven (continuous) header animation for a smooth, progressive shrink
+  const { scrollY } = useScroll();
+  const SCROLL_RANGE = [0, 160];
+  const headerMaxWidth = useTransform(scrollY, SCROLL_RANGE, [3000, 1200]); // PC: bar becomes a bit less wide
+  const containerMarginTop = useTransform(scrollY, SCROLL_RANGE, [0, 12]); // floats away from the top edge
+  const containerPaddingX = useTransform(scrollY, SCROLL_RANGE, [0, 16]); // insets on mobile
+  const barPaddingY = useTransform(scrollY, SCROLL_RANGE, [16, 10]);
+  const barRadius = useTransform(scrollY, SCROLL_RANGE, [0, 18]);
+  const barBlur = useTransform(scrollY, SCROLL_RANGE, [0, 14]);
+  const bgAlpha = useTransform(scrollY, SCROLL_RANGE, [0, 0.72]);
+  const borderAlpha = useTransform(scrollY, SCROLL_RANGE, [0, 0.1]);
+  const shadowAlpha = useTransform(scrollY, SCROLL_RANGE, [0, 0.35]);
+  const logoScale = useTransform(scrollY, SCROLL_RANGE, [1, 0.9]);
+  const barBackgroundColor = useMotionTemplate`rgba(24, 24, 27, ${bgAlpha})`;
+  const barBorderColor = useMotionTemplate`rgba(255, 255, 255, ${borderAlpha})`;
+  const barBackdropFilter = useMotionTemplate`blur(${barBlur}px)`;
+  const barBoxShadow = useMotionTemplate`0 10px 30px -10px rgba(0, 0, 0, ${shadowAlpha})`;
+
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    // Check initial scroll position
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -157,18 +167,36 @@ export default function Header() {
 
   return (
     <>
-    <header className={`fixed top-0 left-0 right-0 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl border-b border-white/5' : 'bg-transparent'}`} style={{ zIndex: 9997 }}>
-      <div className="px-6 md:px-12 lg:px-16 py-4 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0" style={{ zIndex: 9997 }}>
+      <motion.div
+        style={{ maxWidth: headerMaxWidth, marginTop: containerMarginTop, paddingLeft: containerPaddingX, paddingRight: containerPaddingX }}
+        className="mx-auto w-full"
+      >
+        <motion.div
+          style={{
+            paddingTop: barPaddingY,
+            paddingBottom: barPaddingY,
+            borderRadius: barRadius,
+            backgroundColor: barBackgroundColor,
+            borderColor: barBorderColor,
+            backdropFilter: barBackdropFilter,
+            WebkitBackdropFilter: barBackdropFilter,
+            boxShadow: barBoxShadow,
+          }}
+          className="flex items-center justify-between border px-6 md:px-10"
+        >
         {/* Logo - Left */}
         <Link href="/" className="relative z-10 group">
-          <Image
-            src="/logo/smartscaling.png?v=3"
-            alt="Smart Scaling"
-            width={140}
-            height={35}
-            className="opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
-            priority
-          />
+          <motion.div style={{ scale: logoScale }} className="origin-left">
+            <Image
+              src="/logo/smartscaling.png?v=3"
+              alt="Smart Scaling"
+              width={140}
+              height={35}
+              className="opacity-90 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105"
+              priority
+            />
+          </motion.div>
         </Link>
 
         {/* Center Navigation - Minimal & Clean */}
@@ -247,8 +275,8 @@ export default function Header() {
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-      </div>
-
+        </motion.div>
+      </motion.div>
     </header>
     
     {/* Mobile Menu Portal - Rendered outside header */}

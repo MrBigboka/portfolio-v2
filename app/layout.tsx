@@ -37,11 +37,6 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "SmartScaling - Studio technologique pour projets ambitieux",
   description: "On conçoit et livre des SaaS qui tournent en production. Systèmes robustes, interfaces soignées, déploiement rapide.",
-  icons: {
-    icon: '/logo/smartscaling-logo.png',
-    shortcut: '/logo/smartscaling-logo.png',
-    apple: '/logo/smartscaling-logo.png',
-  },
 };
 
 export default function RootLayout({

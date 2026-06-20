@@ -16,6 +16,7 @@ export default function Footer() {
   ];
 
   const projectLinks = [
+    { name: 'AdFrame', href: 'https://getadframe.com' },
     { name: 'Tracksy', href: 'https://tracksy.me' },
     { name: 'MemoCall', href: 'https://memocall.ai' },
     { name: 'CoreSync', href: 'https://coresync.vercel.app' },

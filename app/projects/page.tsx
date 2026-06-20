@@ -53,6 +53,32 @@ const automationIcons: Record<string, React.ReactNode> = {
 const solutions: Solution[] = [
   // Apps
   {
+    id: 'adframe',
+    title: 'AdFrame',
+    subtitle: 'Crée des pubs on-brand avec l\'IA',
+    description: 'Plateforme d\'IA générative tout-en-un pour créer des pubs on-brand — que tu sois un SaaS, une marque e-commerce ou un service web. Produis des visuels et vidéos pubs de qualité studio en quelques secondes, sans shooting photo, sans agence, sans Photoshop. Génère des product shots & UGC à partir d\'une simple photo, des vidéos pubs courtes via les modèles IA de pointe (Kling, Veo, Sora), avec veille concurrentielle intégrée et brand kit intelligent.',
+    image: '/projects/AdFrame.png',
+    logo: '/logo/adframe_icon.png',
+    category: 'App',
+    pricing: 'Sur mesure',
+    url: 'https://getadframe.com',
+    cta: 'Découvrir',
+    niche: 'IA Marketing',
+    benefits: [
+      'Génération d\'images produit (product shots & UGC)',
+      'Vidéos publicitaires via Kling, Veo et Sora',
+      'Veille concurrentielle Instagram/TikTok intégrée',
+      'Brand kit intelligent (logos, couleurs, identité)',
+      'Bibliothèque centralisée d\'assets et campagnes',
+      'Auto-save et gestion multi-organisations',
+      'Réutilisation de références visuelles concurrentes',
+      'Export prêt pour Meta Ads, TikTok et site web'
+    ],
+    roi: 'Remplace le triangle « brief → shoot → post-prod » par un seul outil et itère sur tes créatifs sans budget production',
+    technologies: ['Next.js', 'TypeScript', 'Supabase', 'OpenAI', 'Kling', 'Veo', 'Sora', 'TailwindCSS'],
+    tags: ['IA', 'E-commerce', 'Marketing', 'Génération', 'Vidéo', 'DTC', 'B2B']
+  },
+  {
     id: 'sidequest',
     title: 'SideQuest',
     subtitle: 'Organise tes sorties entre amis',

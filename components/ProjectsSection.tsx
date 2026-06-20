@@ -30,12 +30,32 @@ interface ExtendedProject {
   shortDesc?: string;
   features?: string[];
   accentColor?: string;
-  status: 'Production' | 'Beta' | 'Live' | 'TestFlight';
+  status: 'Production' | 'Beta' | 'Live' | 'TestFlight' | 'Nouveau';
 }
 
 export default function ProjectsSection() {
   // Projets principaux pour la landing (3-4 max, format Problème → Système → Impact)
   const projects: ExtendedProject[] = [
+    {
+      id: 'adframe',
+      title: 'AdFrame',
+      description: 'Plateforme d\'IA générative tout-en-un pour créer des pubs on-brand — que tu sois un SaaS, une marque e-commerce ou un service web. Génère des visuels produit (product shots & UGC) et des vidéos pubs de qualité studio en quelques secondes via les modèles IA de pointe (Kling, Veo, Sora), avec veille concurrentielle intégrée et brand kit intelligent.',
+      image: '/projects/AdFrame.png',
+      hoverImage: '/projects/AdFrame.png',
+      tags: ['NEXT.JS', 'TYPESCRIPT', 'SUPABASE', 'OPENAI'],
+      demoUrl: 'https://getadframe.com',
+      githubUrl: '#',
+      bgColor: 'bg-gradient-to-br from-[#1f0f06]/90 via-[#1a0d05]/80 to-[#1f0f06]/70',
+      shortDesc: 'Crée des pubs on-brand avec l\'IA',
+      features: [
+        'Problème: Shooting, agence et Photoshop = lent et coûteux',
+        'Système: Upload produit → style → dizaines de variations pubs',
+        'Impact: Visuels & vidéos prêts pour Meta, TikTok et ton site'
+      ],
+      accentColor: '#FF5722',
+      logo: '/logo/adframe_icon.png',
+      status: 'Nouveau'
+    },
     {
       id: 'tracksy',
       title: 'Tracksy',
@@ -208,7 +228,7 @@ export default function ProjectsSection() {
                   <div 
                     className={`group relative flex flex-col rounded-2xl md:rounded-3xl overflow-hidden h-[500px] md:h-[600px] transition-all duration-300 ease-in-out border-2 shadow-xl hover:shadow-2xl ${project.bgColor || 'bg-gray-900'} z-[200] ${project.demoUrl && project.demoUrl !== '#' ? 'cursor-pointer' : ''}`}
                     style={{
-                       backgroundColor: project.id === 'memocall' ? '#0a0a0a' : project.id === 'tracksy' ? '#0a1f0a' : '#0E1A2B',
+                       backgroundColor: project.id === 'memocall' ? '#0a0a0a' : project.id === 'tracksy' ? '#0a1f0a' : project.id === 'adframe' ? '#fdf2ea' : '#0E1A2B',
                        position: 'relative',
                        zIndex: 200,
                        isolation: 'isolate',
@@ -231,10 +251,12 @@ export default function ProjectsSection() {
                         ? 'linear-gradient(135deg, #1e1e1e 0%, #0d0d0d 100%)'
                         : project.id === 'econome'
                         ? 'linear-gradient(135deg, #1a3a1a 0%, #0d1a0d 100%)'
+                        : project.id === 'adframe'
+                        ? 'linear-gradient(135deg, #fff4ec 0%, #ffe3d2 100%)'
                         : 'linear-gradient(135deg, #0c1e14 0%, #07130d 100%)'
                     }}></div>
                     {/* Extra opaque overlay to ensure no transparency */}
-                    <div className="absolute inset-0 bg-[#060c18]/95 mix-blend-normal z-[104]"></div>
+                    <div className={`absolute inset-0 mix-blend-normal z-[104] ${project.id === 'adframe' ? 'bg-white/10' : 'bg-[#060c18]/95'}`}></div>
                     
                     <div className="p-6 md:p-8 z-[105] flex-grow flex flex-col justify-start mb-6">
                       <div className="flex items-start justify-between mb-4">
@@ -255,11 +277,11 @@ export default function ProjectsSection() {
                       {/* Lueur thématique derrière la miniature */}
                       <div 
                         className={`absolute inset-0 mx-auto rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 ${project.id === 'sidequest' ? 'w-[50%] aspect-[9/16]' : 'w-[95%] aspect-[4/3] md:aspect-[5/4]'}`}
-                        style={{ background: project.id === 'sidequest' ? 'linear-gradient(to bottom right, #c084fc, #8B5CF6)' : project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'tracksy' ? 'linear-gradient(to bottom right, #e8ff8f, #d5ff3f)' : project.id === 'memocall' ? 'linear-gradient(to bottom right, #ffffff, #cccccc)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
+                        style={{ background: project.id === 'sidequest' ? 'linear-gradient(to bottom right, #c084fc, #8B5CF6)' : project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'tracksy' ? 'linear-gradient(to bottom right, #e8ff8f, #d5ff3f)' : project.id === 'memocall' ? 'linear-gradient(to bottom right, #ffffff, #cccccc)' : project.id === 'adframe' ? 'linear-gradient(to bottom right, #ff8a50, #FF5722)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
                       ></div>
                       <div 
                         className={`relative mx-auto overflow-hidden z-[106] transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'w-[45%] aspect-[9/19] bg-transparent border-0 shadow-none group-hover:scale-105' : 'w-[90%] aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl shadow-xl border border-white/10 bg-zinc-900 group-hover:rotate-1 group-hover:scale-105'}`}
-                        style={{boxShadow: project.id === 'sidequest' ? 'none' : project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'tracksy' ? '0 10px 30px -5px rgba(213, 255, 63, 0.4), 0 0 15px -5px rgba(213, 255, 63, 0.5)' : project.id === 'memocall' ? '0 10px 30px -5px rgba(255, 255, 255, 0.3), 0 0 15px -5px rgba(255, 255, 255, 0.4)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
+                        style={{boxShadow: project.id === 'sidequest' ? 'none' : project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'tracksy' ? '0 10px 30px -5px rgba(213, 255, 63, 0.4), 0 0 15px -5px rgba(213, 255, 63, 0.5)' : project.id === 'memocall' ? '0 10px 30px -5px rgba(255, 255, 255, 0.3), 0 0 15px -5px rgba(255, 255, 255, 0.4)' : project.id === 'adframe' ? '0 10px 30px -5px rgba(255, 87, 34, 0.4), 0 0 15px -5px rgba(255, 87, 34, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <Image
                           src={project.image}
