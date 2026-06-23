@@ -1,8 +1,47 @@
 import { NextResponse } from 'next/server';
+import { supabaseAdmin } from '@/lib/supabase';
+import { createHash } from 'crypto';
+
+// Simple in-memory rate limit (resets on cold start — suffisant pour un portfolio)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 3;       // max 3 soumissions
+const RATE_WINDOW = 60_000; // par minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
 
 export async function POST(req: Request) {
   try {
+    // ── Anti-spam: rate limit par IP ──────────────────────────────────────────
+    const forwarded = req.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown';
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json({ ok: false, error: 'rate_limit' }, { status: 429 });
+    }
+
     const data = await req.json();
+
+    // ── Anti-spam: honeypot field (doit être vide) ────────────────────────────
+    if (data._hp && data._hp.trim() !== '') {
+      return NextResponse.json({ ok: true }); // silently ignore bots
+    }
+
+    // ── Anti-spam: email basique ──────────────────────────────────────────────
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!data.email || !emailRegex.test(data.email)) {
+      return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
+    }
+
+    const ipHash = createHash('sha256').update(ip).digest('hex');
 
     const lines = [
       `📋 NOUVELLE DEMANDE DE DÉCOUVERTE`,
@@ -28,7 +67,9 @@ export async function POST(req: Request) {
       ``,
       `💰 BUDGET & DÉLAI`,
       `Budget: ${data.budget || '—'}`,
+      `Montant exact: ${data.budgetExact || '—'}`,
       `Délai: ${data.timeline || '—'}`,
+      `Précisions budget: ${data.budgetNotes || '—'}`,
       ``,
       `👤 CONTACT`,
       `Nom: ${data.name || '—'}`,
@@ -37,9 +78,53 @@ export async function POST(req: Request) {
       `Message: ${data.message || '—'}`,
     ];
 
-    const body = lines.join('\n');
+    // ── Supabase: vérifier doublons récents (même email, < 10 min) ───────────
+    const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+    const { data: existing } = await supabaseAdmin
+      .from('discovery_submissions')
+      .select('id')
+      .eq('email', data.email)
+      .gte('created_at', tenMinutesAgo)
+      .limit(1);
 
-    // Send via Resend if configured, otherwise log
+    if (existing && existing.length > 0) {
+      return NextResponse.json({ ok: false, error: 'duplicate' }, { status: 429 });
+    }
+
+    // ── Supabase: insérer la soumission ───────────────────────────────────────
+    const { error: insertError } = await supabaseAdmin
+      .from('discovery_submissions')
+      .insert({
+        ip_hash: ipHash,
+        project_type: data.projectType,
+        business_name: data.businessName,
+        service_area: data.serviceArea,
+        target_audience: data.targetAudience,
+        has_logo: data.hasLogo,
+        has_photos: data.hasPhotos,
+        has_texts: data.hasTexts,
+        has_google_business: data.hasGoogleBusiness,
+        existing_socials: data.existingSocials,
+        features: data.features,
+        wants_quote_form: data.wantsQuoteForm,
+        wants_bilingual: data.wantsBilingual,
+        wants_maintenance_plan: data.wantsMaintenancePlan,
+        budget: data.budget,
+        budget_exact: data.budgetExact,
+        timeline: data.timeline,
+        budget_notes: data.budgetNotes,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+      });
+
+    if (insertError) {
+      console.error('[Discovery Form] Supabase insert error:', insertError);
+    }
+
+    // ── Email via Resend (optionnel) ──────────────────────────────────────────
+    const body = lines.join('\n');
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey) {
       await fetch('https://api.resend.com/emails', {

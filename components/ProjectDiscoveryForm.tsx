@@ -7,6 +7,7 @@ import { ArrowRight, ArrowLeft, Check, Loader2, Globe, ShoppingBag, Briefcase, Z
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface FormData {
+  _hp: string; // honeypot anti-spam
   // Step 1 — Le projet
   projectType: string;
   businessName: string;
@@ -28,7 +29,9 @@ interface FormData {
 
   // Step 4 — Budget & délai
   budget: string;
+  budgetExact: string;
   timeline: string;
+  budgetNotes: string;
 
   // Step 5 — Contact
   name: string;
@@ -38,6 +41,7 @@ interface FormData {
 }
 
 const initialData: FormData = {
+  _hp: '',
   projectType: '',
   businessName: '',
   serviceArea: '',
@@ -52,7 +56,9 @@ const initialData: FormData = {
   wantsBilingual: '',
   wantsMaintenancePlan: '',
   budget: '',
+  budgetExact: '',
   timeline: '',
+  budgetNotes: '',
   name: '',
   email: '',
   phone: '',
@@ -375,6 +381,22 @@ function Step4({ data, update }: { data: FormData; update: (p: Partial<FormData>
             />
           ))}
         </div>
+        {/* Montant exact optionnel */}
+        {data.budget && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mt-3 overflow-hidden"
+          >
+            <InputField
+              label="Montant exact (optionnel)"
+              placeholder="Ex: 4 500 $"
+              value={data.budgetExact}
+              onChange={(v) => update({ budgetExact: v })}
+            />
+          </motion.div>
+        )}
       </div>
       <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Délai souhaité</p>
@@ -389,6 +411,16 @@ function Step4({ data, update }: { data: FormData; update: (p: Partial<FormData>
           ))}
         </div>
       </div>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-gray-400">Précisions sur le budget ou les contraintes (optionnel)</label>
+        <textarea
+          rows={2}
+          value={data.budgetNotes}
+          onChange={(e) => update({ budgetNotes: e.target.value })}
+          placeholder="Ex: j'ai déjà un hébergement, je veux payer en 2 versements…"
+          className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-all focus:border-purple-500/50 focus:bg-white/[0.06] focus:shadow-[0_0_0_1px_rgba(168,85,247,0.25)]"
+        />
+      </div>
     </div>
   );
 }
@@ -397,6 +429,17 @@ function Step5({ data, update }: { data: FormData; update: (p: Partial<FormData>
   return (
     <div className="space-y-4">
       <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Tes coordonnées</p>
+      {/* Honeypot — caché aux humains, rempli par les bots */}
+      <div aria-hidden="true" className="absolute opacity-0 pointer-events-none h-0 overflow-hidden">
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={data._hp}
+          onChange={(e) => update({ _hp: e.target.value })}
+        />
+      </div>
       <InputField label="Ton nom" placeholder="Marie Tremblay" value={data.name} onChange={(v) => update({ name: v })} required />
       <InputField label="Adresse courriel" placeholder="marie@exemple.com" type="email" value={data.email} onChange={(v) => update({ email: v })} required />
       <InputField label="Téléphone (optionnel)" placeholder="+1 514 000-0000" type="tel" value={data.phone} onChange={(v) => update({ phone: v })} />
@@ -459,13 +502,17 @@ export default function ProjectDiscoveryForm({ onBack }: ProjectDiscoveryFormPro
     if (!canContinue()) return;
     setIsSubmitting(true);
     try {
-      await fetch('/api/discovery', {
+      const res = await fetch('/api/discovery', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
+      if (res.status === 429) {
+        // rate limit ou doublon — on affiche quand même le succès pour ne pas frustrer
+        console.warn('[Discovery] rate limited or duplicate');
+      }
     } catch {
-      // silent — show success anyway, email fallback
+      // silent — show success anyway
     }
     setIsSubmitting(false);
     setSubmitted(true);
@@ -520,15 +567,15 @@ export default function ProjectDiscoveryForm({ onBack }: ProjectDiscoveryFormPro
     <div className="flex h-full flex-col">
       {/* Header */}
       <div className="mb-6">
-        <div className="mb-4 flex items-center gap-3">
+        <div className="mb-4 flex items-center gap-3 pr-10">
           <button
             type="button"
             onClick={goPrev}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-white/20 hover:text-white"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-white/20 hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
           </button>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-500">Étape {step} sur {STEPS.length}</span>
               <span className="text-xs font-medium text-purple-400">{Math.round((step / STEPS.length) * 100)}%</span>

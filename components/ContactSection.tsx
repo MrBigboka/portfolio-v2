@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Mail, Linkedin, Github, Calendar, Copy, FileText } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 import Image from 'next/image';
@@ -15,12 +16,36 @@ import {
 } from '@/components/ui/sheet';
 import { AnimatedButton } from '@/components/ui/animated-button';
 import ProjectDiscoveryForm from '@/components/ProjectDiscoveryForm';
+import { createPortal } from 'react-dom';
+
+// ─── Sous-composant isolé pour useSearchParams (requis par Next.js App Router) ─
+function ContactParamWatcher({ onOpen }: { onOpen: () => void }) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (searchParams.get('contact') === 'projet') {
+      onOpen();
+      // Retire le param proprement
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete('contact');
+      const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+      router.replace(newUrl, { scroll: false });
+    }
+  }, [searchParams, onOpen, router]);
+
+  return null;
+}
 
 export default function ContactSection() {
   const { showToast, toastComponent } = useToast();
   const sectionRef = useRef<HTMLElement>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [showDiscoveryForm, setShowDiscoveryForm] = useState(false);
+  const [showDiscoveryModal, setShowDiscoveryModal] = useState(false);
+
+  const closeDiscoveryModal = () => {
+    setShowDiscoveryModal(false);
+  };
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -164,7 +189,7 @@ export default function ContactSection() {
           </motion.h3>
 
           {/* CTA Button to open sheet */}
-          <Sheet open={isSheetOpen} onOpenChange={(open) => { setIsSheetOpen(open); if (!open) setShowDiscoveryForm(false); }}>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -177,14 +202,15 @@ export default function ContactSection() {
                 </AnimatedButton>
               </motion.div>
             </SheetTrigger>
-            <SheetContent className="bg-zinc-950 border-l border-white/10 overflow-y-auto p-0">
+            <SheetContent className="bg-zinc-950 border-white/10 overflow-y-auto p-0">
+              {/* Drag handle — mobile only */}
+              <div className="flex justify-center pt-3 pb-1 sm:hidden">
+                <div className="h-1 w-10 rounded-full bg-white/20" />
+              </div>
               {/* Ambient glow at the top of the panel */}
               <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.22),transparent_70%)]" />
 
-              <div className="relative p-6 h-full flex flex-col">
-                {showDiscoveryForm ? (
-                  <ProjectDiscoveryForm onBack={() => setShowDiscoveryForm(false)} />
-                ) : (
+              <div className="relative px-5 pb-6 pt-2 sm:p-6 h-full flex flex-col">
                 <>
                 <SheetHeader className="p-0 mb-6">
                   {/* Availability pill */}
@@ -297,7 +323,7 @@ export default function ContactSection() {
 
                 {/* Parler de mon projet */}
                 <button
-                  onClick={() => setShowDiscoveryForm(true)}
+                  onClick={() => { setIsSheetOpen(false); setTimeout(() => setShowDiscoveryModal(true), 200); }}
                   className="group mt-3 w-full flex items-center gap-3 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-fuchsia-500/5 p-5 text-left transition-all duration-300 hover:border-purple-500/50 hover:-translate-y-0.5"
                 >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-500/15 border border-purple-500/25">
@@ -320,7 +346,6 @@ export default function ContactSection() {
                   </p>
                 </div>
                 </>
-                )}
               </div>
             </SheetContent>
           </Sheet>
@@ -340,6 +365,55 @@ export default function ContactSection() {
         </motion.div>
       </motion.div>
       {toastComponent}
+
+      {/* Watcher: ouvre le modal si ?contact=projet dans l'URL */}
+      <Suspense fallback={null}>
+        <ContactParamWatcher onOpen={() => setShowDiscoveryModal(true)} />
+      </Suspense>
+
+      {/* Discovery Form — centered modal */}
+      {showDiscoveryModal && typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          <motion.div
+            key="discovery-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8"
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+              onClick={closeDiscoveryModal}
+            />
+            {/* Modal */}
+            <motion.div
+              key="discovery-modal"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 w-full max-w-xl max-h-[90vh] flex flex-col rounded-2xl border border-white/10 bg-zinc-950 shadow-2xl overflow-hidden"
+            >
+              {/* Top glow */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.2),transparent_70%)]" />
+              {/* Close button */}
+              <button
+                onClick={closeDiscoveryModal}
+                className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-white/20 hover:text-white"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </button>
+              {/* Form */}
+              <div className="relative flex-1 overflow-y-auto p-6 pt-5">
+                <ProjectDiscoveryForm onBack={closeDiscoveryModal} />
+              </div>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
