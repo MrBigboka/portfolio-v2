@@ -38,11 +38,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true }); // silently ignore bots
     }
 
-    // ── Anti-spam: email basique ──────────────────────────────────────────────
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!data.email || !emailRegex.test(data.email)) {
-      console.log('[Discovery] invalid email:', data.email);
-      return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
+    // ── Validation minimale: nom + email requis ────────────────────────────
+    if (!data.name || !data.email) {
+      console.log('[Discovery] missing name or email:', { name: data.name, email: data.email });
+      return NextResponse.json({ ok: false, error: 'missing_fields' }, { status: 400 });
     }
 
     const ipHash = createHash('sha256').update(ip).digest('hex');
