@@ -30,14 +30,18 @@ export async function POST(req: Request) {
 
     const data = await req.json();
 
+    console.log('[Discovery] received:', JSON.stringify({ email: data.email, name: data.name, _hp: data._hp }));
+
     // ── Anti-spam: honeypot field (doit être vide) ────────────────────────────
     if (data._hp && data._hp.trim() !== '') {
+      console.log('[Discovery] honeypot triggered');
       return NextResponse.json({ ok: true }); // silently ignore bots
     }
 
     // ── Anti-spam: email basique ──────────────────────────────────────────────
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!data.email || !emailRegex.test(data.email)) {
+      console.log('[Discovery] invalid email:', data.email);
       return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
     }
 
