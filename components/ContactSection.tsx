@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Mail, Linkedin, Github, Calendar, Copy, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Mail, Linkedin, Github, Calendar, Copy, FileText } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 import Image from 'next/image';
 import {
@@ -14,11 +14,13 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { AnimatedButton } from '@/components/ui/animated-button';
+import ProjectDiscoveryForm from '@/components/ProjectDiscoveryForm';
 
 export default function ContactSection() {
   const { showToast, toastComponent } = useToast();
   const sectionRef = useRef<HTMLElement>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [showDiscoveryForm, setShowDiscoveryForm] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -162,7 +164,7 @@ export default function ContactSection() {
           </motion.h3>
 
           {/* CTA Button to open sheet */}
-          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <Sheet open={isSheetOpen} onOpenChange={(open) => { setIsSheetOpen(open); if (!open) setShowDiscoveryForm(false); }}>
             <SheetTrigger asChild>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -179,7 +181,11 @@ export default function ContactSection() {
               {/* Ambient glow at the top of the panel */}
               <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.22),transparent_70%)]" />
 
-              <div className="relative p-6">
+              <div className="relative p-6 h-full flex flex-col">
+                {showDiscoveryForm ? (
+                  <ProjectDiscoveryForm onBack={() => setShowDiscoveryForm(false)} />
+                ) : (
+                <>
                 <SheetHeader className="p-0 mb-6">
                   {/* Availability pill */}
                   <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1">
@@ -289,13 +295,32 @@ export default function ContactSection() {
                   })}
                 </div>
 
+                {/* Parler de mon projet */}
+                <button
+                  onClick={() => setShowDiscoveryForm(true)}
+                  className="group mt-3 w-full flex items-center gap-3 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-fuchsia-500/5 p-5 text-left transition-all duration-300 hover:border-purple-500/50 hover:-translate-y-0.5"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-500/15 border border-purple-500/25">
+                    <FileText className="h-5 w-5 text-purple-400" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-semibold text-white">Parler de mon projet</p>
+                    <p className="text-sm text-gray-400">Formulaire de découverte · 5 étapes</p>
+                  </div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+                    <ArrowUpRight className="h-4 w-4 text-black" />
+                  </div>
+                </button>
+
                 {/* Footer note */}
-                <div className="mt-6 flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-4">
                   <Image src="/logo/smartscaling-logo.png" alt="SmartScaling" width={20} height={20} className="h-5 w-5 shrink-0 object-contain" />
                   <p className="text-sm text-gray-400">
                     <span className="text-white">SmartScaling</span> — du concept à la création.
                   </p>
                 </div>
+                </>
+                )}
               </div>
             </SheetContent>
           </Sheet>
