@@ -317,8 +317,8 @@ export default function BentoGrid() {
                                 <p className="text-gray-500 text-[9px] sm:text-[10px] leading-tight">Apps, SaaS et automatisations sur mesure</p>
                             </div>
 
-                            <div className="flex-1 flex items-center justify-center relative z-10 py-2">
-                                <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 w-full px-2">
+                            <div className="flex-1 relative z-10 py-1 overflow-y-auto">
+                                <div className="grid grid-cols-2 gap-y-3 gap-x-2 w-full px-1">
                                     {/* SideQuest */}
                                     <motion.div 
                                         className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
@@ -342,7 +342,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(139,92,246,0.5)]" 
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(139,92,246,0.5)]" 
                                                 style={{ backgroundColor: '#8B5CF6' }}
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
@@ -380,7 +380,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(213,255,63,0.5)]" 
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(213,255,63,0.5)]" 
                                                 style={{ backgroundColor: '#d5ff3f' }}
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
@@ -418,7 +418,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,255,255,0.4)] bg-white"
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,255,255,0.4)] bg-white"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
@@ -455,7 +455,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
@@ -492,7 +492,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
