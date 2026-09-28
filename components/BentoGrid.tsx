@@ -309,7 +309,7 @@ export default function BentoGrid() {
                                 />
                             </div>
                             
-                            <div className="flex flex-col mb-3 sm:mb-4 relative z-10">
+                            <div className="flex flex-col mb-2 sm:mb-4 relative z-10">
                                 <div className="flex items-center justify-between mb-1">
                                     <span className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 font-semibold">Nos réalisations</span>
                                     <span className="text-[10px] sm:text-xs text-purple-400 font-medium">5</span>
@@ -317,163 +317,14 @@ export default function BentoGrid() {
                                 <p className="text-gray-500 text-[9px] sm:text-[10px] leading-tight">Apps, SaaS et automatisations sur mesure</p>
                             </div>
 
-                            <div className="flex-1 relative z-10 py-1 overflow-y-auto">
-                                <div className="grid grid-cols-2 gap-y-3 gap-x-2 w-full px-1">
-                                    {/* SideQuest */}
+                            <div className="flex-1 relative z-10 py-0 sm:py-1 overflow-y-auto">
+                                <div className="grid grid-cols-2 gap-y-1.5 sm:gap-y-3 gap-x-2 w-full px-1">
+                                    {/* AdFrame */}
                                     <motion.div 
-                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
+                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.1 }}
-                                        whileHover={{ scale: 1.08, y: -5 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <div className="relative">
-                                            <motion.div 
-                                                className="absolute inset-0 bg-purple-500/40 rounded-2xl blur-xl"
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.4, 0.6, 0.4],
-                                                }}
-                                                transition={{
-                                                    duration: 3,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut",
-                                                }}
-                                            />
-                                            <motion.div 
-                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(139,92,246,0.5)]" 
-                                                style={{ backgroundColor: '#8B5CF6' }}
-                                                whileHover={{ rotate: [0, -5, 5, 0] }}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                <Image src="/projects/sidequest-logo.png" alt="SideQuest" width={96} height={96} className="w-full h-full object-cover" />
-                                            </motion.div>
-                                        </div>
-                                        <div className="text-center">
-                                            <p className="text-white text-xs sm:text-sm font-semibold">SideQuest</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight max-w-[140px]">App iOS pour organiser sorties et événements</p>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Tracksy */}
-                                    <motion.div 
-                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.2 }}
-                                        whileHover={{ scale: 1.08, y: -5 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <div className="relative">
-                                            <motion.div 
-                                                className="absolute inset-0 bg-yellow-400/40 rounded-2xl blur-xl"
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.4, 0.6, 0.4],
-                                                }}
-                                                transition={{
-                                                    duration: 3,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut",
-                                                    delay: 0.5,
-                                                }}
-                                            />
-                                            <motion.div 
-                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(213,255,63,0.5)]" 
-                                                style={{ backgroundColor: '#d5ff3f' }}
-                                                whileHover={{ rotate: [0, -5, 5, 0] }}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                <Image src="/projects/tracksy_icon.png" alt="Tracksy" width={96} height={96} className="w-full h-full object-cover" />
-                                            </motion.div>
-                                        </div>
-                                        <div className="text-center">
-                                            <p className="text-white text-xs sm:text-sm font-semibold">Tracksy</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">SaaS de suivi temps et facturation automatisée</p>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* MemoCall */}
-                                    <motion.div 
-                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.3 }}
-                                        whileHover={{ scale: 1.08, y: -5 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <div className="relative">
-                                            <motion.div 
-                                                className="absolute inset-0 bg-white/40 rounded-2xl blur-xl"
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.3, 0.5, 0.3],
-                                                }}
-                                                transition={{
-                                                    duration: 3,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut",
-                                                    delay: 1,
-                                                }}
-                                            />
-                                            <motion.div 
-                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,255,255,0.4)] bg-white"
-                                                whileHover={{ rotate: [0, -5, 5, 0] }}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                <Image src="/projects/memocall_icon.png" alt="MemoCall" width={96} height={96} className="w-full h-full object-cover" />
-                                            </motion.div>
-                                        </div>
-                                        <div className="text-center">
-                                            <p className="text-white text-xs sm:text-sm font-semibold">MemoCall</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">IA vocale : transcription et automatisation d&apos;appels</p>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* CoreSync */}
-                                    <motion.div 
-                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.4 }}
-                                        whileHover={{ scale: 1.08, y: -5 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <div className="relative">
-                                            <motion.div 
-                                                className="absolute inset-0 bg-purple-400/40 rounded-2xl blur-xl"
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.4, 0.6, 0.4],
-                                                }}
-                                                transition={{
-                                                    duration: 3,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut",
-                                                    delay: 1.5,
-                                                }}
-                                            />
-                                            <motion.div 
-                                                className="relative w-14 h-14 sm:w-16 sm:h-16"
-                                                whileHover={{ rotate: [0, -5, 5, 0] }}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                <Image src="/projects/coresyncLogo.png" alt="CoreSync" width={96} height={96} className="w-full h-full object-contain" />
-                                            </motion.div>
-                                        </div>
-                                        <div className="text-center">
-                                            <p className="text-white text-xs sm:text-sm font-semibold">CoreSync</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">Agent IA pour centraliser et exploiter l&apos;information</p>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* AdFrame */}
-                                    <motion.div 
-                                        className="col-span-2 justify-self-center flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.5 }}
                                         whileHover={{ scale: 1.08, y: -5 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
@@ -492,7 +343,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
+                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
@@ -500,10 +351,159 @@ export default function BentoGrid() {
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-white text-xs sm:text-sm font-semibold">AdFrame</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight max-w-[180px]">Génération de pubs on-brand par IA (images & vidéos)</p>
+                                            <p className="text-white text-[11px] sm:text-sm font-semibold">AdFrame</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2 max-w-[180px]">Génération de pubs on-brand par IA (images & vidéos)</p>
                                         </div>
                                     </motion.div>
+                                    {/* MemoCall */}
+                                    <motion.div 
+                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <div className="relative">
+                                            <motion.div 
+                                                className="absolute inset-0 bg-[#79BE8F]/40 rounded-2xl blur-xl"
+                                                animate={{
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.3, 0.5, 0.3],
+                                                }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut",
+                                                    delay: 1,
+                                                }}
+                                            />
+                                            <motion.div 
+                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(121,190,143,0.45)] bg-[#07130d]"
+                                                whileHover={{ rotate: [0, -5, 5, 0] }}
+                                                transition={{ duration: 0.5 }}
+                                            >
+                                                <Image src="/projects/memocall_icon.png" alt="MemoCall" width={96} height={96} className="w-full h-full object-cover" />
+                                            </motion.div>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-white text-[11px] sm:text-sm font-semibold">MemoCall</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2">Chaque appel devient une tâche assignée</p>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* SideQuest */}
+                                    <motion.div 
+                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.3 }}
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <div className="relative">
+                                            <motion.div 
+                                                className="absolute inset-0 bg-purple-500/40 rounded-2xl blur-xl"
+                                                animate={{
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.4, 0.6, 0.4],
+                                                }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut",
+                                                }}
+                                            />
+                                            <motion.div 
+                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(139,92,246,0.5)]" 
+                                                style={{ backgroundColor: '#8B5CF6' }}
+                                                whileHover={{ rotate: [0, -5, 5, 0] }}
+                                                transition={{ duration: 0.5 }}
+                                            >
+                                                <Image src="/projects/sidequest-logo.png" alt="SideQuest" width={96} height={96} className="w-full h-full object-cover" />
+                                            </motion.div>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-white text-[11px] sm:text-sm font-semibold">SideQuest</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2 max-w-[140px]">App iOS pour organiser sorties et événements</p>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Tracksy */}
+                                    <motion.div 
+                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.4 }}
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <div className="relative">
+                                            <motion.div 
+                                                className="absolute inset-0 bg-yellow-400/40 rounded-2xl blur-xl"
+                                                animate={{
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.4, 0.6, 0.4],
+                                                }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut",
+                                                    delay: 0.5,
+                                                }}
+                                            />
+                                            <motion.div 
+                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(213,255,63,0.5)]" 
+                                                style={{ backgroundColor: '#d5ff3f' }}
+                                                whileHover={{ rotate: [0, -5, 5, 0] }}
+                                                transition={{ duration: 0.5 }}
+                                            >
+                                                <Image src="/projects/tracksy_icon.png" alt="Tracksy" width={96} height={96} className="w-full h-full object-cover" />
+                                            </motion.div>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-white text-[11px] sm:text-sm font-semibold">Tracksy</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2">SaaS de suivi temps et facturation automatisée</p>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* CoreSync */}
+                                    <motion.div 
+                                        className="col-span-2 justify-self-center flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 }}
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <div className="relative">
+                                            <motion.div 
+                                                className="absolute inset-0 bg-purple-400/40 rounded-2xl blur-xl"
+                                                animate={{
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.4, 0.6, 0.4],
+                                                }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut",
+                                                    delay: 1.5,
+                                                }}
+                                            />
+                                            <motion.div 
+                                                className="relative w-10 h-10 sm:w-16 sm:h-16"
+                                                whileHover={{ rotate: [0, -5, 5, 0] }}
+                                                transition={{ duration: 0.5 }}
+                                            >
+                                                <Image src="/projects/coresyncLogo.png" alt="CoreSync" width={96} height={96} className="w-full h-full object-contain" />
+                                            </motion.div>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-white text-[11px] sm:text-sm font-semibold">CoreSync</p>
+                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2">Agent IA pour centraliser et exploiter l&apos;information</p>
+                                        </div>
+                                    </motion.div>
+
                                 </div>
                             </div>
                         </div>
