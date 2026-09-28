@@ -309,7 +309,7 @@ export default function BentoGrid() {
                                 />
                             </div>
                             
-                            <div className="flex flex-col mb-2 sm:mb-4 relative z-10">
+                            <div className="flex flex-col mb-1.5 sm:mb-4 relative z-10">
                                 <div className="flex items-center justify-between mb-1">
                                     <span className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 font-semibold">Nos réalisations</span>
                                     <span className="text-[10px] sm:text-xs text-purple-400 font-medium">5</span>
@@ -318,7 +318,7 @@ export default function BentoGrid() {
                             </div>
 
                             <div className="flex-1 relative z-10 py-0 sm:py-1 overflow-y-auto">
-                                <div className="grid grid-cols-2 gap-y-1.5 sm:gap-y-3 gap-x-2 w-full px-1">
+                                <div className="grid grid-cols-2 gap-y-1 sm:gap-y-3 gap-x-2 w-full px-1">
                                     {/* AdFrame */}
                                     <motion.div 
                                         className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
