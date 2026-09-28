@@ -136,7 +136,7 @@ const solutions: Solution[] = [
     subtitle: 'Transforme tes appels en actions IA',
     description: 'IA vocale pour automatiser tes appels. Transcription temps réel, résumés intelligents, extraction d\'infos clés, remplissage auto de CRM et actions post-appel. Utilise l\'IA pour ne plus jamais perdre d\'informations importantes.',
     image: '/projects/Memocall-landing.png',
-    logo: '/projects/memocall_icon.png',
+    logo: '/logo/memocall-mark.svg',
     category: 'App',
     pricing: 'Sur mesure',
     url: 'https://memocall.ai',
