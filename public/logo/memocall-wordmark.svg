@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -15 1467 209" fill="none" role="img" aria-label="MemoCall">
+  <defs>
+    <clipPath id="mcw-cr3"><path d="M0-4h1452v190H0ZM940 54h72v72h-72Z" clip-rule="evenodd"/></clipPath>
+  </defs>
+  <g stroke="#FFFFFF" stroke-width="32" stroke-miterlimit="4">
+    <path d="M16 178V63a47 47 0 0 1 94 0a47 47 0 0 1 94 0v115"/>
+    <path d="M110 40v138"/>
+    <path d="M363 16h-44a59 59 0 0 0-59 59v28a59 59 0 0 0 59 59h44"/>
+    <path d="M401 178V64a48 48 0 0 1 96 0a48 48 0 0 1 96 0v114"/>
+    <path d="M497 42v81"/>
+    <path d="M1046 178V73a57 57 0 0 1 114 0v105"/>
+    <path d="M1217 1v102a59 59 0 0 0 59 59h43"/>
+    <path d="M1353 1v102a59 59 0 0 0 59 59h39"/>
+    <path d="M870 74.5a58.5 58.5 0 0 1 117 0v29a58.5 58.5 0 0 1-117 0Z" clip-path="url(#mcw-cr3)"/>
+  </g>
+  <path d="M700 171.3A90 87 0 1 0 659.8 142L651 171Z" stroke="#FFFFFF" stroke-width="19" stroke-miterlimit="4"/>
+  <g fill="#79BE8F" stroke="#79BE8F">
+    <circle cx="319" cy="91" r="17" stroke="none"/>
+    <circle cx="497" cy="161" r="17" stroke="none"/>
+    <circle cx="1103" cy="91" r="17" stroke="none"/>
+    <path d="M693 80v21" stroke-width="20" stroke-linecap="round"/>
+    <path d="M732 53v76" stroke-width="20" stroke-linecap="round"/>
+    <path d="M771 80v21" stroke-width="20" stroke-linecap="round"/>
+  </g>
+</svg>

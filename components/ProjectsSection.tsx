@@ -26,6 +26,7 @@ interface ExtendedProject {
   demoUrl?: string;
   githubUrl?: string;
   logo?: string;
+  wordmark?: string;
   bgColor?: string;
   shortDesc?: string;
   features?: string[];
@@ -74,6 +75,7 @@ export default function ProjectsSection() {
       ],
       accentColor: '#79BE8F',
       logo: '/logo/memocall-mark.svg',
+      wordmark: '/logo/memocall-wordmark.svg',
       status: 'Nouveau'
     },
     {
@@ -260,7 +262,7 @@ export default function ProjectsSection() {
                     {/* Extra opaque overlay to ensure no transparency */}
                     <div className={`absolute inset-0 mix-blend-normal z-[104] ${project.id === 'adframe' ? 'bg-white/10' : 'bg-[#060c18]/95'}`}></div>
                     
-                    <div className="p-6 md:p-8 z-[105] flex-grow flex flex-col justify-start mb-6">
+                    <div className="px-6 pt-6 pb-3 md:px-8 md:pt-7 md:pb-4 z-[105] flex flex-col justify-start">
                       <div className="flex items-start justify-between mb-4">
                         <p 
                           className="text-xl md:text-2xl font-medium leading-snug max-w-[calc(100%-3rem)]"
@@ -275,14 +277,14 @@ export default function ProjectsSection() {
                       </div>
                     </div>
 
-                    <div className={`relative z-[105] mt-auto px-3 pb-3 md:px-4 md:pb-4 ${project.id === 'sidequest' ? 'flex justify-center' : ''}`}>
+                    <div className={`relative z-[105] flex-1 min-h-0 px-3 pb-3 md:px-4 md:pb-4 ${project.id === 'sidequest' ? 'flex justify-center' : ''}`}>
                       {/* Lueur thématique derrière la miniature */}
                       <div 
-                        className={`absolute inset-0 mx-auto rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 ${project.id === 'sidequest' ? 'w-[50%] aspect-[9/16]' : 'w-[95%] aspect-[4/3] md:aspect-[5/4]'}`}
+                        className={`absolute inset-0 mx-auto rounded-3xl blur-2xl z-[1] transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:rotate-1 ${project.id === 'sidequest' ? 'w-[50%] aspect-[9/16]' : 'w-[95%] h-full'}`}
                         style={{ background: project.id === 'sidequest' ? 'linear-gradient(to bottom right, #c084fc, #8B5CF6)' : project.id === 'coresync' ? 'linear-gradient(to bottom right, #dea9ff, #9D71E8)' : project.id === 'tracksy' ? 'linear-gradient(to bottom right, #e8ff8f, #d5ff3f)' : project.id === 'memocall' ? 'linear-gradient(to bottom right, #a8dcb9, #79BE8F)' : project.id === 'adframe' ? 'linear-gradient(to bottom right, #ff8a50, #FF5722)' : 'linear-gradient(to bottom right, #a5ebd1, #10B981)' }}
                       ></div>
                       <div 
-                        className={`relative mx-auto overflow-hidden z-[106] transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'w-[45%] aspect-[9/19] bg-transparent border-0 shadow-none group-hover:scale-105' : 'w-[90%] aspect-[4/3] md:aspect-[5/4] rounded-lg md:rounded-xl shadow-xl border border-white/10 bg-zinc-900 group-hover:rotate-1 group-hover:scale-105'}`}
+                        className={`relative mx-auto overflow-hidden z-[106] transition-all duration-500 ease-out ${project.id === 'sidequest' ? 'w-[45%] h-full bg-transparent border-0 shadow-none group-hover:scale-105' : 'w-[90%] h-full rounded-lg md:rounded-xl shadow-xl border border-white/10 bg-zinc-900 group-hover:rotate-1 group-hover:scale-105'}`}
                         style={{boxShadow: project.id === 'sidequest' ? 'none' : project.id === 'coresync' ? '0 10px 30px -5px rgba(222, 169, 255, 0.4), 0 0 15px -5px rgba(222, 169, 255, 0.5)' : project.id === 'tracksy' ? '0 10px 30px -5px rgba(213, 255, 63, 0.4), 0 0 15px -5px rgba(213, 255, 63, 0.5)' : project.id === 'memocall' ? '0 10px 30px -5px rgba(121, 190, 143, 0.4), 0 0 15px -5px rgba(121, 190, 143, 0.5)' : project.id === 'adframe' ? '0 10px 30px -5px rgba(255, 87, 34, 0.4), 0 0 15px -5px rgba(255, 87, 34, 0.5)' : '0 10px 30px -5px rgba(165, 235, 209, 0.4), 0 0 15px -5px rgba(165, 235, 209, 0.5)'}}
                       >
                         <Image
@@ -337,48 +339,77 @@ export default function ProjectsSection() {
                       transition={{ duration: 0.1, delay: 0.02 }}
                       data-component-name="MotionComponent"
                     >
-                      {/* Logo avec glow */}
-                      {projects[activeProject].logo && (
-                        <div className="relative flex-shrink-0 transition-transform duration-300 hover:scale-105">
-                          {/* Glow derrière le logo */}
-                          <div className="absolute -inset-3 rounded-2xl blur-xl opacity-40" 
-                               style={{ background: getProjectAccentColor(activeProject) }}
-                          ></div>
-                          
-                          {/* Logo */}
-                          <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
-                          >
-                            <Image 
-                              src={projects[activeProject].logo!} 
-                              alt={`${projects[activeProject].title} logo`} 
-                              className="w-full h-full object-contain p-1 rounded-xl"
-                              width={80}
-                              height={80}
-                              style={{ filter: `drop-shadow(0 0 5px ${getProjectAccentColor(activeProject)}40)` }}
+                      {projects[activeProject].wordmark ? (
+                        /* Lockup complet (logo + texte) quand la marque en fournit un */
+                        <div className="flex-grow min-w-0">
+                          <div className="flex items-center gap-3 mb-2.5">
+                            <Image
+                              src={projects[activeProject].wordmark!}
+                              alt={`${projects[activeProject].title} logo`}
+                              width={586}
+                              height={84}
+                              className="h-7 md:h-9 w-auto"
+                              style={{ filter: `drop-shadow(0 0 8px ${getProjectAccentColor(activeProject)}40)` }}
                             />
-                          </div>
-                        </div>
-                      )}
-                      
-                      {/* Titre à droite */}
-                      <div className="flex-grow">
-                        <div className="flex items-center gap-3 mb-1">
-                          <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-                            {projects[activeProject].title}
-                          </h3>
-                          <span 
-                            className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider rounded-full"
-                            style={{ 
+                            <span 
+                              className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider rounded-full flex-shrink-0"
+                              style={{ 
                               backgroundColor: `${getProjectAccentColor(activeProject)}20`,
                               color: getProjectAccentColor(activeProject),
                               border: `1px solid ${getProjectAccentColor(activeProject)}40`
                             }}
-                          >
-                            {projects[activeProject].status}
-                          </span>
+                            >
+                              {projects[activeProject].status}
+                            </span>
+                          </div>
+                          <div className="w-20 h-1 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
                         </div>
-                        <div className="w-20 h-1 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
-                      </div>
+                      ) : (
+                        <>
+                        {/* Logo avec glow */}
+                        {projects[activeProject].logo && (
+                          <div className="relative flex-shrink-0 transition-transform duration-300 hover:scale-105">
+                            {/* Glow derrière le logo */}
+                            <div className="absolute -inset-3 rounded-2xl blur-xl opacity-40" 
+                                 style={{ background: getProjectAccentColor(activeProject) }}
+                            ></div>
+                          
+                            {/* Logo */}
+                            <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
+                            >
+                              <Image 
+                                src={projects[activeProject].logo!} 
+                                alt={`${projects[activeProject].title} logo`} 
+                                className="w-full h-full object-contain p-1 rounded-xl"
+                                width={80}
+                                height={80}
+                                style={{ filter: `drop-shadow(0 0 5px ${getProjectAccentColor(activeProject)}40)` }}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      
+                        {/* Titre à droite */}
+                        <div className="flex-grow">
+                          <div className="flex items-center gap-3 mb-1">
+                            <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                              {projects[activeProject].title}
+                            </h3>
+                            <span 
+                              className="px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider rounded-full"
+                              style={{ 
+                                backgroundColor: `${getProjectAccentColor(activeProject)}20`,
+                                color: getProjectAccentColor(activeProject),
+                                border: `1px solid ${getProjectAccentColor(activeProject)}40`
+                              }}
+                            >
+                              {projects[activeProject].status}
+                            </span>
+                          </div>
+                          <div className="w-20 h-1 rounded-full" style={{ backgroundColor: getProjectAccentColor(activeProject) }}></div>
+                        </div>
+                        </>
+                      )}
                     </motion.div>
                     
                     <motion.div 
@@ -476,7 +507,7 @@ export default function ProjectsSection() {
                     <Image
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full ${project.id === 'sidequest' ? 'object-contain py-3' : 'object-cover'}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
