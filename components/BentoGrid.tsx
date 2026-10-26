@@ -262,20 +262,20 @@ export default function BentoGrid() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[320px] md:auto-rows-[380px]">
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-auto md:auto-rows-[380px]">
 
                     {/* Row 1, Col 1-2: Collaboration */}
-                    <div className="md:col-span-2 md:row-span-1 h-full">
+                    <div className="min-w-0 md:col-span-2 md:row-span-1 h-[320px] md:h-full">
                         <CollaborationCard />
                     </div>
 
                     {/* Row 1-2, Col 3: Technologies (Spans 2 rows vertically on larger screens) */}
-                    <div className="md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-full">
+                    <div className="min-w-0 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-[320px] md:h-full">
                         <TechnologiesCard />
                     </div>
 
                     {/* Row 2-3, Col 1: Solutions en production - Carousel dynamique */}
-                    <div className="md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 h-full relative z-10">
+                    <div className="min-w-0 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2 md:h-full relative z-10">
                         <div className="h-full w-full flex flex-col rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-4 sm:p-6 shadow-2xl backdrop-blur-xl relative overflow-hidden">
                             {/* Animated gradient background */}
                             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-purple-500/10 animate-gradient-x pointer-events-none"></div>
@@ -314,14 +314,14 @@ export default function BentoGrid() {
                                     <span className="text-xs sm:text-sm uppercase tracking-widest text-gray-400 font-semibold">Nos réalisations</span>
                                     <span className="text-[10px] sm:text-xs text-purple-400 font-medium">5</span>
                                 </div>
-                                <p className="text-gray-500 text-[9px] sm:text-[10px] leading-tight">Apps, SaaS et automatisations sur mesure</p>
+                                <p className="text-gray-400 text-xs leading-relaxed">Apps, SaaS et automatisations sur mesure</p>
                             </div>
 
-                            <div className="flex-1 relative z-10 py-0 sm:py-1 overflow-y-auto">
-                                <div className="grid grid-cols-2 gap-y-1 sm:gap-y-3 gap-x-2 w-full px-1">
+                            <div className="relative z-10 py-2 md:flex-1 md:min-h-0">
+                                <div className="grid grid-cols-2 gap-y-6 gap-x-3 w-full px-1 md:h-full md:grid-rows-3 md:items-center">
                                     {/* AdFrame */}
                                     <motion.div 
-                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.1 }}
@@ -343,7 +343,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(255,87,34,0.5)] bg-white"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
@@ -351,13 +351,13 @@ export default function BentoGrid() {
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-white text-[11px] sm:text-sm font-semibold">AdFrame</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2 max-w-[180px]">Génération de pubs on-brand par IA (images & vidéos)</p>
+                                            <p className="text-white text-sm md:text-base font-semibold">AdFrame</p>
+                                            <p className="text-gray-400 text-xs leading-snug max-w-[180px]">Génération de pubs on-brand par IA (images & vidéos)</p>
                                         </div>
                                     </motion.div>
                                     {/* MemoCall */}
                                     <motion.div 
-                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.2 }}
@@ -379,7 +379,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(121,190,143,0.45)] bg-[#07130d]"
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(121,190,143,0.45)] bg-[#07130d]"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
@@ -387,14 +387,14 @@ export default function BentoGrid() {
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-white text-[11px] sm:text-sm font-semibold">MemoCall</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2">Chaque appel devient une tâche assignée</p>
+                                            <p className="text-white text-sm md:text-base font-semibold">MemoCall</p>
+                                            <p className="text-gray-400 text-xs leading-snug">Chaque appel devient une tâche assignée</p>
                                         </div>
                                     </motion.div>
 
                                     {/* SideQuest */}
                                     <motion.div 
-                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.3 }}
@@ -415,7 +415,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(139,92,246,0.5)]" 
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(139,92,246,0.5)]"
                                                 style={{ backgroundColor: '#8B5CF6' }}
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
@@ -424,14 +424,14 @@ export default function BentoGrid() {
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-white text-[11px] sm:text-sm font-semibold">SideQuest</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2 max-w-[140px]">App iOS pour organiser sorties et événements</p>
+                                            <p className="text-white text-sm md:text-base font-semibold">SideQuest</p>
+                                            <p className="text-gray-400 text-xs leading-snug max-w-[140px]">App iOS pour organiser sorties et événements</p>
                                         </div>
                                     </motion.div>
 
                                     {/* Tracksy */}
                                     <motion.div 
-                                        className="flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        className="flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.4 }}
@@ -453,7 +453,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(213,255,63,0.5)]" 
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(213,255,63,0.5)]"
                                                 style={{ backgroundColor: '#d5ff3f' }}
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
@@ -462,14 +462,14 @@ export default function BentoGrid() {
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-white text-[11px] sm:text-sm font-semibold">Tracksy</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2">SaaS de suivi temps et facturation automatisée</p>
+                                            <p className="text-white text-sm md:text-base font-semibold">Tracksy</p>
+                                            <p className="text-gray-400 text-xs leading-snug">SaaS de suivi temps et facturation automatisée</p>
                                         </div>
                                     </motion.div>
 
                                     {/* CoreSync */}
                                     <motion.div 
-                                        className="col-span-2 justify-self-center flex flex-col items-center gap-1 sm:gap-2 group cursor-pointer"
+                                        className="col-span-2 justify-self-center flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.5 }}
@@ -491,7 +491,7 @@ export default function BentoGrid() {
                                                 }}
                                             />
                                             <motion.div 
-                                                className="relative w-10 h-10 sm:w-16 sm:h-16"
+                                                className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20"
                                                 whileHover={{ rotate: [0, -5, 5, 0] }}
                                                 transition={{ duration: 0.5 }}
                                             >
@@ -499,8 +499,8 @@ export default function BentoGrid() {
                                             </motion.div>
                                         </div>
                                         <div className="text-center">
-                                            <p className="text-white text-[11px] sm:text-sm font-semibold">CoreSync</p>
-                                            <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight line-clamp-2">Agent IA pour centraliser et exploiter l&apos;information</p>
+                                            <p className="text-white text-sm md:text-base font-semibold">CoreSync</p>
+                                            <p className="text-gray-400 text-xs leading-snug">Agent IA pour centraliser et exploiter l&apos;information</p>
                                         </div>
                                     </motion.div>
 
@@ -511,7 +511,7 @@ export default function BentoGrid() {
 
                     {/* Row 2, Col 2: Travaillons ensemble */}
                     <motion.div 
-                        className="md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1 h-full"
+                        className="min-w-0 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1 h-[320px] md:h-full"
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -552,7 +552,7 @@ export default function BentoGrid() {
                     </motion.div>
 
                     {/* Row 3, Col 2-3: Globe horizontal */}
-                    <div className="md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1 h-full">
+                    <div className="min-w-0 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1 h-[320px] md:h-full">
                         <GlobeCard />
                     </div>
 

@@ -333,7 +333,7 @@ export default function ProjectsSection() {
                     className="flex flex-col pt-0 mt-0"
                   >
                     <motion.div 
-                      className="flex items-center mb-8 pt-0 gap-5"
+                      className="flex items-center mb-8 pt-0 gap-3 xl:gap-5"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.1, delay: 0.02 }}
@@ -342,13 +342,13 @@ export default function ProjectsSection() {
                       {projects[activeProject].wordmark ? (
                         /* Lockup complet (logo + texte) quand la marque en fournit un */
                         <div className="flex-grow min-w-0">
-                          <div className="flex items-center gap-3 mb-2.5">
+                          <div className="flex flex-wrap items-center gap-3 mb-2.5">
                             <Image
                               src={projects[activeProject].wordmark!}
                               alt={`${projects[activeProject].title} logo`}
                               width={586}
                               height={84}
-                              className="h-7 md:h-9 w-auto"
+                              className="h-7 xl:h-9 w-auto max-w-full object-contain object-left"
                               style={{ filter: `drop-shadow(0 0 8px ${getProjectAccentColor(activeProject)}40)` }}
                             />
                             <span 
@@ -375,7 +375,7 @@ export default function ProjectsSection() {
                             ></div>
                           
                             {/* Logo */}
-                            <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
+                            <div className="relative w-16 h-16 xl:w-20 xl:h-20 flex items-center justify-center"
                             >
                               <Image 
                                 src={projects[activeProject].logo!} 
@@ -390,9 +390,9 @@ export default function ProjectsSection() {
                         )}
                       
                         {/* Titre à droite */}
-                        <div className="flex-grow">
-                          <div className="flex items-center gap-3 mb-1">
-                            <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2 xl:gap-3 mb-1">
+                            <h3 className="text-2xl xl:text-4xl font-bold tracking-tight text-white break-words">
                               {projects[activeProject].title}
                             </h3>
                             <span 
